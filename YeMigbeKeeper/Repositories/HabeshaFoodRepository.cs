@@ -1,14 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using YeMigbeKeeper.Models;
 using YeMigbeKeeper.Utils;
 
 namespace YeMigbeKeeper.Repositories
 {
-    public class HabeshaFoodRepository : BaseRepository
+    public class HabeshaFoodRepository : BaseRepository, IHabeshaFoodRepository
     {
         public HabeshaFoodRepository(IConfiguration configuration) : base(configuration) { }
         public List<HabeshaFood> GetAll()
@@ -33,21 +30,21 @@ namespace YeMigbeKeeper.Repositories
                         habeshaFoods.Add(new HabeshaFood()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
-                            TypeId = DbUtils.GetInt(reader, "TypeId")
-                            Type = new Type()
-                            {
-                                Id = DbUtils.GetInt(reader, "Id"),
-                                Name = DbUtils.GetString(reader, "Name")
-                            }
-                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                            UserProfile = new UserProfile()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserProfileId"),
-                                Name = DbUtils.GetString(reader, "Name"),
-                                Email = DbUtils.GetString(reader, "Email"),
-                                DateCreated = DbUtils.GetDateTime(reader, "UserProfileDateCreated"),
-                                ImageUrl = DbUtils.GetString(reader, "UserProfileImageUrl"),
-                            },
+                            TypeId = DbUtils.GetInt(reader, "TypeId"),
+                            Picture = DbUtils.GetString(reader, "Picture"),
+                            Name = DbUtils.GetString(reader, "Name"),
+                            Description = DbUtils.GetString(reader, "Description"),
+                            Ingredient = DbUtils.GetString(reader, "Ingredient"),
+                            TotalCalorie = DbUtils.GetInt(reader, "TotalCalorie"),
+                            TotalFat = DbUtils.GetInt(reader, "TotalFat"),
+                            Cholesterol = DbUtils.GetInt(reader, "Cholesterol"),
+                            Sodium = DbUtils.GetInt(reader, "Sodium"),
+                            TotalCarbohydrate = DbUtils.GetInt(reader, "TotalCarbohydrate"),
+                            Protein = DbUtils.GetInt(reader, "Protein"),
+                            Calcium = DbUtils.GetInt(reader, "Calcium"),
+                            Iron = DbUtils.GetInt(reader, "Iron"),
+                            Potassium = DbUtils.GetInt(reader, "Potassium"),
+                            UserId = DbUtils.GetInt(reader, "UserId"),
                         });
                     }
 
@@ -57,6 +54,5 @@ namespace YeMigbeKeeper.Repositories
                 }
             }
         }
-
     }
 }

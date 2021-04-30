@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YeMigbeKeeper.Repositories;
 
 namespace YeMigbeKeeper
 {
@@ -27,7 +28,7 @@ namespace YeMigbeKeeper
         public void ConfigureServices(IServiceCollection services)
         {
 
-
+            services.AddTransient<IHabeshaFoodRepository, HabeshaFoodRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
