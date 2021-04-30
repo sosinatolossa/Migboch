@@ -4,7 +4,7 @@ using YeMigbeKeeper.Models;
 
 namespace YeMigbeKeeper.Repositories
 {
-    interface IHabeshaFoodRepository
+    public interface IHabeshaFoodRepository
     {
         List<HabeshaFood> GetAll();
     }

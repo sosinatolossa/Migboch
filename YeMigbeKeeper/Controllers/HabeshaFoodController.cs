@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YeMigbeKeeper.Repositories;
+using YeMigbeKeeper.Models;
 
-namespace Tabloid.Controllers
+
+namespace YeMigbeKeeper.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -9,8 +11,7 @@ namespace Tabloid.Controllers
     {
         private readonly IHabeshaFoodRepository _habeshaFoodRepository;
 
-        public HabeshaFoodController(
-            IHabeshaFoodRepository habeshaFoodRepository)
+        public HabeshaFoodController(IHabeshaFoodRepository habeshaFoodRepository)
         {
             _habeshaFoodRepository = habeshaFoodRepository;
         }

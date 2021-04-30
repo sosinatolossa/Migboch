@@ -16,7 +16,7 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                SELECT hf.Id AS HabeshaFoodId, hf.TypeId, hf.Picture, hf.Name, hf.Description, hf.Ingredient,
+                SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name, hf.Description, hf.Ingredient,
                 hf.TotalCalorie, hf.TotalFat, hf.Cholesterol, hf.Sodium, hf.TotalCarbohydrate,
                 hf.Protein, hf.Calcium, hf.Iron, hf.Potassium, hf.UserId
 
@@ -35,18 +35,19 @@ namespace YeMigbeKeeper.Repositories
                             Name = DbUtils.GetString(reader, "Name"),
                             Description = DbUtils.GetString(reader, "Description"),
                             Ingredient = DbUtils.GetString(reader, "Ingredient"),
-                            TotalCalorie = DbUtils.GetInt(reader, "TotalCalorie"),
-                            TotalFat = DbUtils.GetInt(reader, "TotalFat"),
-                            Cholesterol = DbUtils.GetInt(reader, "Cholesterol"),
-                            Sodium = DbUtils.GetInt(reader, "Sodium"),
-                            TotalCarbohydrate = DbUtils.GetInt(reader, "TotalCarbohydrate"),
-                            Protein = DbUtils.GetInt(reader, "Protein"),
-                            Calcium = DbUtils.GetInt(reader, "Calcium"),
-                            Iron = DbUtils.GetInt(reader, "Iron"),
-                            Potassium = DbUtils.GetInt(reader, "Potassium"),
+                            TotalCalorie = DbUtils.GetNullableInt(reader, "TotalCalorie"),
+                            TotalFat = DbUtils.GetNullableInt(reader, "TotalFat"),
+                            Cholesterol = DbUtils.GetNullableInt(reader, "Cholesterol"),
+                            Sodium = DbUtils.GetNullableInt(reader, "Sodium"),
+                            TotalCarbohydrate = DbUtils.GetNullableInt(reader, "TotalCarbohydrate"),
+                            Protein = DbUtils.GetNullableInt(reader, "Protein"),
+                            Calcium = DbUtils.GetNullableInt(reader, "Calcium"),
+                            Iron = DbUtils.GetNullableInt(reader, "Iron"),
+                            Potassium = DbUtils.GetNullableInt(reader, "Potassium"),
                             UserId = DbUtils.GetInt(reader, "UserId"),
                         });
                     }
+                        
 
                     reader.Close();
 
