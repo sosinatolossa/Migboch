@@ -5,7 +5,7 @@ using YeMigbeKeeper.Models;
 
 namespace YeMigbeKeeper.Repositories
 {
-    public class UserRepository : BaseRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
         public UserRepository(IConfiguration configuration) : base(configuration) { }
         public List<User> GetAll()
