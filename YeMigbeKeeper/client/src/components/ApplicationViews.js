@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
 import Login from "./Login";
 import Register from "./Register";
+import UserList from "././Users/UserList";
 
 
 export default function ApplicationViews() {

@@ -19,8 +19,8 @@ export default function Register() {
         if (password && password !== confirmPassword) {
             alert("Passwords don't match. Try again.");
         } else {
-            const User = { firstName, lastName, displayName, email };
-            register(User, password)
+            const user = { firstName, lastName, displayName, email };
+            register(user, password)
                 .then(() => history.push("/"));
         }
     };
