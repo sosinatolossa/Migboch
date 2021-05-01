@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using YeMigbeKeeper.Utils;
 using YeMigbeKeeper.Models;
+using Microsoft.Data.SqlClient;
+
 
 namespace YeMigbeKeeper.Repositories
 {
@@ -44,6 +46,30 @@ namespace YeMigbeKeeper.Repositories
                 }
             }
         }
+
+        public void Add(User user)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO [User] (FirstName, LastName, DisplayName, Email, FireBaseUserId)
+                        OUTPUT INSERTED.ID
+                        VALUES (@FirstName, @LastName, @DisplayName, @Email, @FireBaseUserId)";
+
+                    DbUtils.AddParameter(cmd, "@FirstName", user.FirstName);
+                    DbUtils.AddParameter(cmd, "@LastName", user.LastName);
+                    DbUtils.AddParameter(cmd, "@DisplayName", user.DisplayName);
+                    DbUtils.AddParameter(cmd, "@Email", user.Email);
+                    DbUtils.AddParameter(cmd, "@FireBaseUserId", user.FireBaseUserId);
+
+                    user.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
         public List<User> GetAll()
         {
             using (var conn = Connection)
@@ -111,29 +137,6 @@ namespace YeMigbeKeeper.Repositories
                     reader.Close();
 
                     return user;
-                }
-            }
-        }
-
-        public void Add(User user)
-        {
-            using (var conn = Connection)
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"
-                        INSERT INTO [User] (FirstName, LastName, DisplayName, Email, FireBaseUserId)
-                        OUTPUT INSERTED.ID
-                        VALUES (@FirstName, @Lastname, @DisplayName, @Email, @FireBaseUserId";
-
-                    DbUtils.AddParameter(cmd, "@FirstName", user.FirstName);
-                    DbUtils.AddParameter(cmd, "@LastName", user.LastName);
-                    DbUtils.AddParameter(cmd, "@DisplayName", user.DisplayName);
-                    DbUtils.AddParameter(cmd, "@Email", user.Email);
-                    DbUtils.AddParameter(cmd, "@FireBaseUserId", user.FireBaseUserId);
-
-                    user.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }
