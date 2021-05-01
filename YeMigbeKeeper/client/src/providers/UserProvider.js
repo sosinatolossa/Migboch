@@ -26,8 +26,8 @@ export function UserProvider(props) {
             .auth()
             .signInWithEmailAndPassword(email, pw)
             .then((signInResponse) => getUser(signInResponse.user.uid))
-            .then((User) => {
-                sessionStorage.setItem("User", JSON.stringify(User));
+            .then((user) => {
+                sessionStorage.setItem("User", JSON.stringify(user));
                 setIsLoggedIn(true);
             });
     };
@@ -43,15 +43,15 @@ export function UserProvider(props) {
             });
     };
 
-    const register = (User, password) => {
+    const register = (user, password) => {
         return firebase
             .auth()
-            .createUserWithEmailAndPassword(User.email, password)
+            .createUserWithEmailAndPassword(user.email, password)
             .then((createResponse) =>
-                saveUser({ ...User, firebaseUserId: createResponse.user.uid })
+                saveUser({ ...user, firebaseUserId: createResponse.user.uid })
             )
             .then((savedUser) => {
-                sessionStorage.setItem("User", JSON.stringify(savedUser));
+                sessionStorage.setItem("user", JSON.stringify(savedUser));
                 setIsLoggedIn(true);
             });
     };
@@ -69,7 +69,7 @@ export function UserProvider(props) {
         );
     };
 
-    const saveUser = (User) => {
+    const saveUser = (user) => {
         return getToken().then((token) =>
             fetch(apiUrl, {
                 method: "POST",
@@ -77,7 +77,7 @@ export function UserProvider(props) {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(User),
+                body: JSON.stringify(user),
             }).then((resp) => resp.json())
         );
     };

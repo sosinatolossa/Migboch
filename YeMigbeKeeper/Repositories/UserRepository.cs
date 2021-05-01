@@ -8,6 +8,42 @@ namespace YeMigbeKeeper.Repositories
     public class UserRepository : BaseRepository, IUserRepository
     {
         public UserRepository(IConfiguration configuration) : base(configuration) { }
+        public User GetByFireBaseUserId(string fireBaseUserId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT u.Id, u.FireBaseUserId, u.FirstName, u.LastName, u.DisplayName, 
+                               u.Email
+                          FROM [User] u
+                         WHERE FireBaseUserId = @FireBaseuserId";
+
+                    DbUtils.AddParameter(cmd, "@FirebaseUserId", fireBaseUserId);
+
+                    User user = null;
+
+                    var reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        user = new User()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            FireBaseUserId = DbUtils.GetString(reader, "FireBaseUserId"),
+                            FirstName = DbUtils.GetString(reader, "FirstName"),
+                            LastName = DbUtils.GetString(reader, "LastName"),
+                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                            Email = DbUtils.GetString(reader, "Email"),
+                        };
+                    }
+                    reader.Close();
+
+                    return user;
+                }
+            }
+        }
         public List<User> GetAll()
         {
             using (var conn = Connection)
@@ -58,10 +94,10 @@ namespace YeMigbeKeeper.Repositories
 
                     var reader = cmd.ExecuteReader();
 
-                    User userProfile = null;
+                    User user = null;
                     if (reader.Read())
                     {
-                        userProfile = new User()
+                        user = new User()
                         {
                             Id = id,
                             FirstName = DbUtils.GetString(reader, "FirstName"),
@@ -74,7 +110,7 @@ namespace YeMigbeKeeper.Repositories
 
                     reader.Close();
 
-                    return userProfile;
+                    return user;
                 }
             }
         }
@@ -87,7 +123,7 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO User (FirstName, LastName, DisplayName, Email, FireBaseUserId)
+                        INSERT INTO [User] (FirstName, LastName, DisplayName, Email, FireBaseUserId)
                         OUTPUT INSERTED.ID
                         VALUES (@FirstName, @Lastname, @DisplayName, @Email, @FireBaseUserId";
 
