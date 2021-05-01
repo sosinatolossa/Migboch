@@ -45,7 +45,7 @@ namespace YeMigbeKeeper
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WisdomAndGrace", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "YeMigbeKeeper", Version = "v1" });
 
                 var securitySchema = new OpenApiSecurityScheme
                 {

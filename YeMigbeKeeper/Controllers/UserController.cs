@@ -17,12 +17,6 @@ namespace YeMigbeKeeper.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpGet("{firebaseUserId}")]
-        public IActionResult GetUser(string fireBaseUserId)
-        {
-            return Ok(_userRepository.GetByFireBaseUserId(fireBaseUserId));
-        }
-
         [HttpGet]
         public IActionResult Get()
         {
@@ -30,6 +24,13 @@ namespace YeMigbeKeeper.Controllers
 
             return Ok(profiles);
         }
+
+        [HttpGet("{firebaseUserId}")]
+        public IActionResult GetUser(string fireBaseUserId)
+        {
+            return Ok(_userRepository.GetByFireBaseUserId(fireBaseUserId));
+        }
+
 
         [HttpPost]
         public IActionResult Post(User user)
