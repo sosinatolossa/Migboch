@@ -6,6 +6,7 @@ using YeMigbeKeeper.Repositories;
 
 namespace YeMigbeKeeper.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
