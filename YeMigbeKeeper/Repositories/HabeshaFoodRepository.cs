@@ -20,12 +20,11 @@ namespace YeMigbeKeeper.Repositories
                 hf.TotalCalorie, hf.TotalFat, hf.Cholesterol, hf.Sodium, hf.TotalCarbohydrate,
                 hf.Protein, hf.Calcium, hf.Iron, hf.Potassium, hf.UserId,
 
-                t.Name,
+                t.Name as TypeName,
                 u.FirstName, u.LastName, u.DisplayName, u.Email, u.FireBaseUserId
                 FROM HabeshaFood hf
                 LEFT JOIN Type t ON t.Id = hf.TypeId
-                LEFT JOIN [User] u ON u.Id = hf.UserId;
-                          WHERE hf.Id = @id";
+                LEFT JOIN [User] u ON u.Id = hf.UserId";
 
                     var reader = cmd.ExecuteReader();
 
@@ -39,7 +38,7 @@ namespace YeMigbeKeeper.Repositories
                             Type = new Type()
                             {
                                 Id = DbUtils.GetInt(reader, "TypeId"),
-                                Name = DbUtils.GetString(reader, "Name"),
+                                Name = DbUtils.GetString(reader, "TypeName"),
                             },
                             Picture = DbUtils.GetString(reader, "Picture"),
                             Name = DbUtils.GetString(reader, "Name"),
@@ -87,7 +86,7 @@ namespace YeMigbeKeeper.Repositories
                 hf.TotalCalorie, hf.TotalFat, hf.Cholesterol, hf.Sodium, hf.TotalCarbohydrate,
                 hf.Protein, hf.Calcium, hf.Iron, hf.Potassium, hf.UserId,
 
-                t.Name,
+                t.Name as TypeName,
                 u.FirstName, u.LastName, u.DisplayName, u.Email, u.FireBaseUserId
                 FROM HabeshaFood hf
                 LEFT JOIN Type t ON t.Id = hf.TypeId
@@ -109,7 +108,7 @@ namespace YeMigbeKeeper.Repositories
                             Type = new Type()
                             {
                                 Id = DbUtils.GetInt(reader, "TypeId"),
-                                Name = DbUtils.GetString(reader, "Name"),
+                                Name = DbUtils.GetString(reader, "TypeName"),
                             },
                             Picture = DbUtils.GetString(reader, "Picture"),
                             Name = DbUtils.GetString(reader, "Name"),
