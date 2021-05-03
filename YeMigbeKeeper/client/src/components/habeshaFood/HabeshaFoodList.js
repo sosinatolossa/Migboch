@@ -13,8 +13,8 @@ const HabeshaFoodList = () => {
     // them to be converted to HTML then prints them all out.
     return (
         <section>
-            {habeshaFoods.map((aHabeshaFood) => (
-                <HabeshaFood key={aHabeshaFood.id} HabeshaFood={aHabeshaFood} />
+            {habeshaFoods.map((habeshaFoodObj) => (
+                <HabeshaFood key={habeshaFoodObj.id} habeshaFood={habeshaFoodObj} /> //habeshaFood is our parameter(object) in HabeshaFoodCard
             ))}
         </section>
     );

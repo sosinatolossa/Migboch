@@ -26,7 +26,7 @@ export default function ApplicationViews() {
                     {isLoggedIn ? <UserList /> : <Redirect to="/login" />}
                 </Route>
 
-                <Route path="/habeshaFoods" exact>
+                <Route exact path="/HabeshaFood">
                     {isLoggedIn ? <HabeshaFoodList /> : <Redirect to="/login" />}
                 </Route>
 
