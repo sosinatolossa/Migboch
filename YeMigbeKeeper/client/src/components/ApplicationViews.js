@@ -4,6 +4,7 @@ import { UserContext } from "./user/UserProvider";
 import Login from "./Login";
 import Register from "./Register";
 import UserList from "././user/UserList";
+import HabeshaFoodList from "././habeshaFood/HabeshaFoodList";
 
 
 export default function ApplicationViews() {
@@ -23,6 +24,10 @@ export default function ApplicationViews() {
 
                 <Route path="/user" exact>
                     {isLoggedIn ? <UserList /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/habeshaFoods" exact>
+                    {isLoggedIn ? <HabeshaFoodList /> : <Redirect to="/login" />}
                 </Route>
 
             </Switch>
