@@ -17,11 +17,16 @@ namespace YeMigbeKeeper.Controllers
         }
 
 
-
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_habeshaFoodRepository.GetAll());
+        }
+
+        [HttpGet("{habeshaFoodId}")]
+        public IActionResult GetHabeshaFoodById(int habeshaFoodId)
+        {
+            return Ok(_habeshaFoodRepository.GetById(habeshaFoodId));
         }
     }
 }
