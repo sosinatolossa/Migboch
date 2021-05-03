@@ -7,5 +7,6 @@ namespace YeMigbeKeeper.Repositories
     public interface IHabeshaFoodRepository
     {
         List<HabeshaFood> GetAll();
+        HabeshaFood GetById(int id);
     }
 }
