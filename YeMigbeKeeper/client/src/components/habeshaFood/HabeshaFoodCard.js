@@ -1,17 +1,16 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import CardDeck from 'react-bootstrap/CardDeck';
-import { Card } from "reactstrap";
+import { CardDeck, Card } from "react-bootstrap";
+
 
 
 const HabeshaFood = ({ habeshaFood }) => {
     console.log(habeshaFood)
-    const history = useHistory();
+    //const history = useHistory();
 
     return (
         <CardDeck>
             <Card>
-                <Card.Img variant="top" src="holder.js/100px160" />
+                <Card.Img variant="top" />
                 <Card.Body>
                     <Card.Title>Name: {habeshaFood.name}</Card.Title>
                     <Card.Text>Type: {habeshaFood.typeId}</Card.Text>
@@ -27,8 +26,10 @@ const HabeshaFood = ({ habeshaFood }) => {
                     <Card.Text>Iron: {habeshaFood.iron}</Card.Text>
                     <Card.Text>Potassium: {habeshaFood.potassium}</Card.Text>
                 </Card.Body>
+
             </Card>
-        </CardDeck>
+        </CardDeck >
+
     )
 };
 
