@@ -23,7 +23,7 @@ export const HabeshaFoodProvider = (props) => {
     }
 
     return (
-        <HabeshaFoodContext.Provider value={{ habeshaFoods, getAllHabeshaFoods }}>
+        <HabeshaFoodContext.Provider value={{ habeshaFoods, setHabeshaFoods, getAllHabeshaFoods }}>
             {props.children}
         </HabeshaFoodContext.Provider>
     )

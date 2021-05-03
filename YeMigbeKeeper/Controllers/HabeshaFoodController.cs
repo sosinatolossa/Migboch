@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace YeMigbeKeeper.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class HabeshaFoodController : ControllerBase
