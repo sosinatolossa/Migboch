@@ -38,5 +38,12 @@ namespace YeMigbeKeeper.Controllers
             _habeshaFoodRepository.Add(habeshaFood);
             return CreatedAtAction("Get", new { id = habeshaFood.Id }, habeshaFood);
         }
+
+        [HttpPut]
+        public IActionResult Put(HabeshaFood habeshaFood)
+        {
+            _habeshaFoodRepository.Update(habeshaFood);
+            return NoContent();
+        }
     }
 }
