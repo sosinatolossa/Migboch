@@ -17,13 +17,26 @@ export const HabeshaFoodProvider = (props) => {
                     Authorization: `Bearer ${token}`,
                 },
             })
-                .then((res) => res.json())
+                .then((res) => res.json()) //changing it to json bc that's what's readable in the browser
                 .then(setHabeshaFoods)
         );
     }
 
+    //this function is for deatils of a habesha food
+    const getHabehsaFoodById = (habeshaFoodId) => {
+        return getToken().then((token) =>
+            fetch(`/api/HabeshaFood/${habeshaFoodId}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }).then((res) => res.json())
+        );
+    }
+
+
     return (
-        <HabeshaFoodContext.Provider value={{ habeshaFoods, setHabeshaFoods, getAllHabeshaFoods }}>
+        <HabeshaFoodContext.Provider value={{ habeshaFoods, setHabeshaFoods, getAllHabeshaFoods, getHabehsaFoodById }}>
             {props.children}
         </HabeshaFoodContext.Provider>
     )
