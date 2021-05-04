@@ -1,4 +1,4 @@
-import { CardGroup, Card, CardBody, CardTitle, CardText } from "reactstrap";
+import { CardGroup, Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
 import React, { useContext, useEffect, useState } from "react";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import { useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
     return (
         <CardGroup className="foodCard">
             <Card>
-
+                <CardImg top width="100%" src={aHabeshaFood.picture} alt="route" />
                 <CardBody>
                     <CardTitle>{aHabeshaFood.name}</CardTitle>
                     <CardText>Type: {aHabeshaFood.typeId}</CardText>
