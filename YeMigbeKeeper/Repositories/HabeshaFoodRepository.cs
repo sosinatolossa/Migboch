@@ -139,7 +139,87 @@ namespace YeMigbeKeeper.Repositories
                     return habeshaFood;
                 }
             }
+        }
 
+        public void Add(HabeshaFood habeshaFood)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO HabeshaFood (TypeId, Picture, Name, Description, Ingredient, TotalCalorie, TotalFat, Cholesterol, Sodium, TotalCarbohydrate, Protein, Calcium, Iron, Potassium, UserId)
+                        OUTPUT INSERTED.ID
+                        VALUES (@TypeId, @Picture, @Name, @Description, @Ingredient, @TotalCalorie, @TotalFat, @Cholesterol, @Sodium, @TotalCarbohydrate, @Protein, @Calcium, @Iron, @Potassium, @UserId)";
+
+                    DbUtils.AddParameter(cmd, "@TypeId", habeshaFood.TypeId);
+                    DbUtils.AddParameter(cmd, "@Picture", habeshaFood.Picture);
+                    DbUtils.AddParameter(cmd, "@Name", habeshaFood.Name);
+                    DbUtils.AddParameter(cmd, "@Description", habeshaFood.Description);
+                    DbUtils.AddParameter(cmd, "@Ingredient", habeshaFood.Ingredient);
+                    DbUtils.AddParameter(cmd, "@TotalCalorie", habeshaFood.TotalCalorie);
+                    DbUtils.AddParameter(cmd, "@TotalFat", habeshaFood.TotalFat);
+                    DbUtils.AddParameter(cmd, "@Cholesterol", habeshaFood.Cholesterol);
+                    DbUtils.AddParameter(cmd, "@Sodium", habeshaFood.Sodium);
+                    DbUtils.AddParameter(cmd, "@TotalCarbohydrate", habeshaFood.TotalCarbohydrate);
+                    DbUtils.AddParameter(cmd, "@Protein", habeshaFood.Protein);
+                    DbUtils.AddParameter(cmd, "@Calcium", habeshaFood.Calcium);
+                    DbUtils.AddParameter(cmd, "@Iron", habeshaFood.Iron);
+                    DbUtils.AddParameter(cmd, "@Potassium", habeshaFood.Potassium);
+                    DbUtils.AddParameter(cmd, "@UserId", habeshaFood.UserId);
+
+
+
+                    habeshaFood.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public void Update(HabeshaFood habeshaFood)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE HabeshaFood
+                           SET TypeId = @TypeId, 
+                               Picture = @Picture,
+                               Name = @Name,
+                               Description = @Description,
+                               Ingredient = @Ingredient,
+                               TotalCalorie = @TotalCalorie, 
+                               TotalFat = @TotalFat,
+                               Cholesterol = @Cholesterol,
+                               Sodium = @Sodium,
+                               TotalCarbohydrate = @TotalCarbohydrate,
+                               Protein = @Protein,
+                               Calcium = @Calcium,
+                               Iron = @Iron,
+                               Potassium = @Potassium
+                         WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Id", habeshaFood.Id);
+                    DbUtils.AddParameter(cmd, "@TypeId", habeshaFood.TypeId);
+                    DbUtils.AddParameter(cmd, "@Picture", habeshaFood.Picture);
+                    DbUtils.AddParameter(cmd, "@Name", habeshaFood.Name);
+                    DbUtils.AddParameter(cmd, "@Description", habeshaFood.Description);
+                    DbUtils.AddParameter(cmd, "@Ingredient", habeshaFood.Ingredient);
+                    DbUtils.AddParameter(cmd, "@TotalCalorie", habeshaFood.TotalCalorie);
+                    DbUtils.AddParameter(cmd, "@TotalFat", habeshaFood.TotalFat);
+                    DbUtils.AddParameter(cmd, "@Cholesterol", habeshaFood.Cholesterol);
+                    DbUtils.AddParameter(cmd, "@Sodium", habeshaFood.Sodium);
+                    DbUtils.AddParameter(cmd, "@TotalCarbohydrate", habeshaFood.TotalCarbohydrate);
+                    DbUtils.AddParameter(cmd, "@Protein", habeshaFood.Protein);
+                    DbUtils.AddParameter(cmd, "@Calcium", habeshaFood.Calcium);
+                    DbUtils.AddParameter(cmd, "@Iron", habeshaFood.Iron);
+                    DbUtils.AddParameter(cmd, "@Potassium", habeshaFood.Potassium);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
