@@ -8,5 +8,6 @@ namespace YeMigbeKeeper.Repositories
     {
         List<HabeshaFood> GetAll();
         HabeshaFood GetById(int id);
+        void Add(HabeshaFood habeshaFood);
     }
 }

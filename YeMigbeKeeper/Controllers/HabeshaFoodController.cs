@@ -28,5 +28,15 @@ namespace YeMigbeKeeper.Controllers
         {
             return Ok(_habeshaFoodRepository.GetById(habeshaFoodId));
         }
+
+        [HttpPost]
+        public IActionResult HabeshaFood(HabeshaFood habeshaFood)
+        {
+            //var currentUserProfile = GetCurrentUserProfile();
+
+            //post.UserProfileId = currentUserProfile.Id;
+            _habeshaFoodRepository.Add(habeshaFood);
+            return CreatedAtAction("Get", new { id = habeshaFood.Id }, habeshaFood);
+        }
     }
 }
