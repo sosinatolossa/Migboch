@@ -14,7 +14,7 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
                     <CardTitle>{aHabeshaFood.name}</CardTitle>
                     <CardText>Type: {aHabeshaFood.typeId}</CardText>
                     <CardText>{aHabeshaFood.description}</CardText>
-                    <CardText>{aHabeshaFood.ingredient}</CardText>
+                    <CardText>Ingredients: {aHabeshaFood.ingredient}</CardText>
                     <CardText>{aHabeshaFood.totalCalorie} calories</CardText>
                     <CardText>{aHabeshaFood.totalFat} grams fat</CardText>
                     <CardText>{aHabeshaFood.cholesterol} mg cholesterol</CardText>
