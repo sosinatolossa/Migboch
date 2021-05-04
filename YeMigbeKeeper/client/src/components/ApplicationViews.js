@@ -5,6 +5,7 @@ import Login from "./Login";
 import Register from "./Register";
 import UserList from "././user/UserList";
 import HabeshaFoodList from "././habeshaFood/HabeshaFoodList";
+import HabeshaFoodDetails from "././habeshaFood/HabeshaFoodDetails";
 
 
 export default function ApplicationViews() {
@@ -28,6 +29,10 @@ export default function ApplicationViews() {
 
                 <Route exact path="/HabeshaFood">
                     {isLoggedIn ? <HabeshaFoodList /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/HabeshaFood/:id(\d+)">
+                    {isLoggedIn ? <HabeshaFoodDetails /> : <Redirect to="/login" />}
                 </Route>
 
             </Switch>
