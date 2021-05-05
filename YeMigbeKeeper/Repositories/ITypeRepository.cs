@@ -9,3 +9,4 @@ namespace YeMigbeKeeper.Repositories
         List<Type> GetAllTypes();
     }
 }
+

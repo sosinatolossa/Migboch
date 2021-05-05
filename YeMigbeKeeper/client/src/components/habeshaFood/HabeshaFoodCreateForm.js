@@ -1,11 +1,16 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider"
 //import "./HabeshaFood.css"
 import { Form, Button } from 'react-bootstrap';
 
 export const HabeshaFoodCreateForm = () => {
-    const { addHabeshaFood } = useContext(HabeshaFoodContext)
+    const { habeshaFoods, addHabeshaFood, getAllHabeshaFoods } = useContext(HabeshaFoodContext)
+    console.log(habeshaFoods)
+
+    useEffect(() => {
+        getAllHabeshaFoods()
+    }, []);
 
     /*
     With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
@@ -70,8 +75,9 @@ export const HabeshaFoodCreateForm = () => {
         // update state
         setHabeshaFood(newHabeshaFood)
     }
-    // useEffect(() => {
-    // }, [habeshaFood])
+
+
+
 
     const handleClickSaveHabeshaFood = () => {
 
@@ -146,6 +152,7 @@ export const HabeshaFoodCreateForm = () => {
     // </div>
     return (
         <>
+
             <Form className="habeshaFoodForm">
                 <button className="link--close">
                     <Link to="/HabeshaFood">close</Link>
@@ -162,7 +169,7 @@ export const HabeshaFoodCreateForm = () => {
                     <Form.Label>Select type</Form.Label>
                     <Form.Control id="typeId" onChange={handleControlledInputChange}>
                         <option value="0">Select a type </option>
-                        {type.map((t) => (
+                        {habeshaFoods.type.map((t) => (
                             <option key={t.id} value={t.id}>
                                 {t.name}
                             </option>
