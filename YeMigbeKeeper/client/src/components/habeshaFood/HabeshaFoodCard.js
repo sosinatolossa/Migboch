@@ -14,7 +14,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                     <CardTitle>
                         <Link to={`HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
                     </CardTitle>
-                    <CardText>Type: {habeshaFood.typeId}</CardText>
+                    <CardText>Type: {habeshaFood.type.name}</CardText>
                     <CardText>{habeshaFood.description}</CardText>
                     <CardText>Ingredients: {habeshaFood.ingredient}</CardText>
                 </CardBody>

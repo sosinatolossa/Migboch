@@ -99,10 +99,6 @@ export const HabeshaFoodCreateForm = () => {
             window.alert("Please type in the name of the food")
         }
 
-        //typeId 0 or not a number, alert user with message
-        // else if (typeId === 0 || typeId === NaN) {
-        //     window.alert("Please select a type.")
-        // }
 
 
         else if (ingredient === "") {
@@ -164,11 +160,11 @@ export const HabeshaFoodCreateForm = () => {
 
                 <Form.Group>
                     <Form.Label>Select type</Form.Label>
-                    <Form.Control id="typeid" onChange={handleControlledInputChange}>
-                        <option value="0">Select a category </option>
-                        {habeshaFood.map((c) => (
-                            <option key={c.id} value={c.id}>
-                                {c.name}
+                    <Form.Control id="typeId" onChange={handleControlledInputChange}>
+                        <option value="0">Select a type </option>
+                        {type.map((t) => (
+                            <option key={t.id} value={t.id}>
+                                {t.name}
                             </option>
                         ))}
                     </Form.Control>

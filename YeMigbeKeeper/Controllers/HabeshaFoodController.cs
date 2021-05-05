@@ -20,6 +20,7 @@ namespace YeMigbeKeeper.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            
             return Ok(_habeshaFoodRepository.GetAll());
         }
 
@@ -30,7 +31,7 @@ namespace YeMigbeKeeper.Controllers
         }
 
         [HttpPost]
-        public IActionResult HabeshaFood(HabeshaFood habeshaFood)
+        public IActionResult Post(HabeshaFood habeshaFood)
         {
             //var currentUserProfile = GetCurrentUserProfile();
 
