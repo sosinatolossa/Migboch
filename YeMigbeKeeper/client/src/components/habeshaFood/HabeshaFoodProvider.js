@@ -1,12 +1,16 @@
 import React, { useState, createContext, useContext } from "react";
 import "firebase/auth";
 import { UserContext } from "../user/UserProvider";
+import { useHistory } from 'react-router-dom';
+
 
 export const HabeshaFoodContext = createContext();
 
 export const HabeshaFoodProvider = (props) => {
     const [habeshaFoods, setHabeshaFoods] = useState([]);
     const { getToken } = useContext(UserContext);
+    const history = useHistory();
+
 
     //this function fetches habeshaFoods api, gets the data and changes it to json and sets our data with it
     const getAllHabeshaFoods = () => {
@@ -48,9 +52,23 @@ export const HabeshaFoodProvider = (props) => {
         });
     };
 
+    //this function is for editing a habesha food
+    const updateHabeshaFood = (habeshaFood) => {
+        return getToken().then((token) =>
+            fetch(`/api/HabeshaFood/${habeshaFood.id}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(habeshaFood),
+            }).then(history.push(`/HabeshaFood/${habeshaFood.id}`))
+        );
+    };
+
 
     return (
-        <HabeshaFoodContext.Provider value={{ habeshaFoods, setHabeshaFoods, getAllHabeshaFoods, getHabehsaFoodById, addHabeshaFood }}>
+        <HabeshaFoodContext.Provider value={{ habeshaFoods, setHabeshaFoods, getAllHabeshaFoods, getHabehsaFoodById, addHabeshaFood, updateHabeshaFood }}>
             {props.children}
         </HabeshaFoodContext.Provider>
     )
