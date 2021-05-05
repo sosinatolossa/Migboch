@@ -12,7 +12,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                 <CardImg top width="100%" src={habeshaFood.picture} alt="route" />
                 <CardBody>
                     <CardTitle>
-                        <Link to={`HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
+                        <Link to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
                     </CardTitle>
                     <CardText>Type: {habeshaFood.type.name}</CardText>
                     <CardText>{habeshaFood.description}</CardText>

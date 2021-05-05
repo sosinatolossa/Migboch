@@ -107,11 +107,7 @@ export const HabeshaFoodCreateForm = () => {
             window.alert("Please upload a picture")
         } else if (name === "") {
             window.alert("Please type in the name of the food")
-        }
-
-
-
-        else if (ingredient === "") {
+        } else if (ingredient === "") {
             window.alert("Please type in the ingredients.")
         } else {
             //disable the button - no extra clicks
