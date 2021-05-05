@@ -25,6 +25,7 @@ namespace YeMigbeKeeper
 
             services.AddTransient<IHabeshaFoodRepository, HabeshaFoodRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ITypeRepository, TypeRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";

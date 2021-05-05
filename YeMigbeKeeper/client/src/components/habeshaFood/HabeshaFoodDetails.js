@@ -4,7 +4,9 @@ import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import { useParams } from "react-router-dom";
 
 
+
 const OneHabeshaFood = ({ aHabeshaFood }) => {
+    console.log(aHabeshaFood)
 
     return (
         <CardGroup className="foodCard">
@@ -12,7 +14,7 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
                 <CardImg top width="100%" src={aHabeshaFood.picture} alt="route" />
                 <CardBody>
                     <CardTitle>{aHabeshaFood.name}</CardTitle>
-                    <CardText>Type: {aHabeshaFood.typeId}</CardText>
+                    <CardText>Type: {aHabeshaFood.type?.name}</CardText>
                     <CardText>{aHabeshaFood.description}</CardText>
                     <CardText>Ingredients: {aHabeshaFood.ingredient}</CardText>
                     <CardText>{aHabeshaFood.totalCalorie} calories</CardText>
