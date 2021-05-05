@@ -3,7 +3,6 @@ import { CardGroup, Card, CardBody, CardText } from "reactstrap";
 
 
 const Type = ({ type }) => {
-    console.log(type)
 
     return (
         <CardGroup className="foodCard">

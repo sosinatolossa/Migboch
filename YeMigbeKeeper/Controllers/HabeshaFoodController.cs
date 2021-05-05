@@ -2,6 +2,7 @@
 using YeMigbeKeeper.Repositories;
 using YeMigbeKeeper.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace YeMigbeKeeper.Controllers
 {
@@ -10,10 +11,12 @@ namespace YeMigbeKeeper.Controllers
     public class HabeshaFoodController : ControllerBase
     {
         private readonly IHabeshaFoodRepository _habeshaFoodRepository;
+        private readonly IUserRepository _userRepository;
 
-        public HabeshaFoodController(IHabeshaFoodRepository habeshaFoodRepository)
+        public HabeshaFoodController(IHabeshaFoodRepository habeshaFoodRepository, IUserRepository userRepository)
         {
             _habeshaFoodRepository = habeshaFoodRepository;
+            _userRepository = userRepository;
         }
 
 
@@ -33,9 +36,9 @@ namespace YeMigbeKeeper.Controllers
         [HttpPost]
         public IActionResult Post(HabeshaFood habeshaFood)
         {
-            //var currentUserProfile = GetCurrentUserProfile();
+            var currentUser = GetCurrentUser();
 
-            //post.UserProfileId = currentUserProfile.Id;
+            habeshaFood.UserId = currentUser.Id;
             _habeshaFoodRepository.Add(habeshaFood);
             return CreatedAtAction("Get", new { id = habeshaFood.Id }, habeshaFood);
         }
@@ -45,6 +48,13 @@ namespace YeMigbeKeeper.Controllers
         {
             _habeshaFoodRepository.Update(habeshaFood);
             return NoContent();
+        }
+
+        // Retrieves the current user object by using the provided firebaseId
+        private User GetCurrentUser()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepository.GetByFireBaseUserId(firebaseUserId);
         }
     }
 }

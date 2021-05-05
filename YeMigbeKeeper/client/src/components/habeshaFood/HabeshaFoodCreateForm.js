@@ -1,14 +1,15 @@
 import React, { useContext, useState, useEffect } from "react"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider"
 //import "./HabeshaFood.css"
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { TypeContext } from "../type/TypeProvider";
 
 export const HabeshaFoodCreateForm = () => {
     const { addHabeshaFood } = useContext(HabeshaFoodContext)
     const { types, getAllTypes } = useContext(TypeContext)
-    console.log(types)
+
+    const history = useHistory();
 
     useEffect(() => {
         getAllTypes();
@@ -40,7 +41,8 @@ export const HabeshaFoodCreateForm = () => {
         potassium: 0
     });
     //wait for data before button is active
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [habeshaFoodObj, setHabeshaFoodObj] = useState({});
 
     //image upload handling
     // const [loading, setLoading] = useState(false)
@@ -111,12 +113,6 @@ export const HabeshaFoodCreateForm = () => {
 
         else if (ingredient === "") {
             window.alert("Please type in the ingredients.")
-        } else if (totalCalorie === 0 || totalCalorie === NaN) {
-            totalCalorie = "-"
-        } else if (totalFat === 0 || totalFat === NaN) {
-            totalFat = "-"
-        } else if (cholesterol === 0 || cholesterol === NaN) {
-            cholesterol = "-"
         } else {
             //disable the button - no extra clicks
             setIsLoading(true); //this ensures the user cannot repeatedly click the button while the API is being updated
@@ -136,11 +132,17 @@ export const HabeshaFoodCreateForm = () => {
                 calcium: habeshaFood.calcium,
                 iron: habeshaFood.iron,
                 potassium: habeshaFood.potassium
-            })
-            //.then(() => history.push("/HabeshaFood")) //then push it to the habesha foods list
-
+            }).then(setHabeshaFoodObj)
+                .then(() => setIsLoading(false))
         }
     }
+
+    useEffect(() => {
+        if (habeshaFoodObj.id > 0) {
+            history.push(`/habeshaFood`);
+        }
+    }, [habeshaFoodObj]) //habeshaFoodObj here is waiting for the state to be set
+
 
 
     // <div className="form-group">
@@ -167,10 +169,10 @@ export const HabeshaFoodCreateForm = () => {
                         value={habeshaFood.picture} />
                 </Form.Group>
 
+
                 <Form.Group>
                     <Form.Label>Select type</Form.Label>
-                    <Form.Control id="typeId" onChange={handleControlledInputChange}>
-                        <option value="0">Select a type </option>
+                    <Form.Control id="typeId" onChange={handleControlledInputChange} as="select">
                         {types.map((t) => (
                             <option key={t.id} value={t.id}>
                                 {t.name}
