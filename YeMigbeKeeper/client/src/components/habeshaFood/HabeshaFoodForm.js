@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider"
 //import "./HabeshaFood.css"
 import { useHistory, useParams } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 
 export const HabeshaFoodForm = () => {
     const { addHabeshaFood, getHabeshaFoodById, updateHabeshaFood } = useContext(HabeshaFoodContext)
@@ -12,47 +13,52 @@ export const HabeshaFoodForm = () => {
     Define the initial state of the form inputs with useState()
     */
 
-    const currentUser = parseInt(localStorage.getItem("ZuringTheWorld_user"))
+    //const currentUser = parseInt(localStorage.getItem("ZuringTheWorld_user"))
 
-    const [imageURL, setImageURL] = useState("")
-    //for edit, hold on to state of HabeshaFood in this view
-    const [HabeshaFood, setHabeshaFood] = useState({
-        location: "",
-        startDate: "",
-        endDate: "",
-        planeTicketPrice: 0,
-        costOfFood: 0,
-        costOnHotel: 0,
-        noteDetails: "",
-        overallExperience: "",
-        imageURL: ""
+    //const [imageURL, setImageURL] = useState("")
+    //for edit, hold on to state of habeshaFood in this view
+    const [habeshaFood, setHabeshaFood] = useState({
+        typeId: 0,
+        picture: "",
+        name: "",
+        description: "",
+        ingredient: "",
+        totalCalorie: 0,
+        totalFat: 0,
+        cholesterol: 0,
+        sodium: 0,
+        totalCarbohydrate: 0,
+        protein: 0,
+        calcium: 0,
+        iron: 0,
+        potassium: 0
     });
     //wait for data before button is active
     const [isLoading, setIsLoading] = useState(true);
 
-    // Now that the form can be used for editing as well as adding a travel note, you need access to the travel note id for fetching the travel note you want to edit
-    const { HabeshaFoodId } = useParams();
+    // Now that the form can be used for editing as well as adding a habesha food, you need access to the habesha food id for fetching the habesha food you want to edit
+    const { habeshaFoodId } = useParams();
     const history = useHistory();
 
     //image upload handling
-    const [loading, setLoading] = useState(false)
-    const uploadImage = async e => {
-        const files = e.target.files
-        const data = new FormData()
-        data.append("file", files[0])
-        data.append("upload_preset", "ZuringTheWorld")
-        setLoading(true)
-        const response = await fetch(
-            "https://api.cloudinary.com/v1_1/sosina/image/upload",
-            {
-                method: "POST",
-                body: data
-            }
-        )
-        const file = await response.json()
-        setImageURL(file.secure_url)
-        setLoading(false)
-    }
+    // const [loading, setLoading] = useState(false)
+    // const uploadImage = async e => {
+    //     const files = e.target.files
+    //     const data = new FormData()
+    //     data.append("file", files[0])
+    //     data.append("upload_preset", "ZuringTheWorld")
+    //     setLoading(true)
+    //     const response = await fetch(
+    //         "https://api.cloudinary.com/v1_1/sosina/image/upload",
+    //         {
+    //             method: "POST",
+    //             body: data
+    //         }
+    //     )
+    //     const file = await response.json()
+    //     setImageURL(file.secure_url)
+    //     setLoading(false)
+    // }
 
 
     //when a field changes, update state. The return will re-render and display based on the values in state
@@ -60,7 +66,7 @@ export const HabeshaFoodForm = () => {
     const handleControlledInputChange = (event) => {
         /* When changing a state object or array,
         always create a copy, make changes, and then set state.*/
-        const newHabeshaFood = { ...HabeshaFood }
+        const newHabeshaFood = { ...habeshaFood }
 
         /* HabeshaFood is an object with properties.
         Set the property to the new value
@@ -70,105 +76,117 @@ export const HabeshaFoodForm = () => {
         setHabeshaFood(newHabeshaFood)
     }
     useEffect(() => {
-    }, [HabeshaFood])
+    }, [habeshaFood])
 
     const handleClickSaveHabeshaFood = () => {
 
-        const [startMonth, startDay, startYear] = HabeshaFood.startDate.split("-");
-        const [endMonth, endDay, endYear] = HabeshaFood.endDate.split("-");
+        const typeId = parseInt(habeshaFood.typeId)
+        const picture = habeshaFood.picture
+        const name = habeshaFood.name
+        const description = habeshaFood.description
+        const ingredient = habeshaFood.ingredient
+        let totalCalorie = parseInt(habeshaFood.totalCalorie)
+        let totalFat = parseInt(habeshaFood.totalFat)
+        let cholesterol = parseInt(habeshaFood.cholesterol)
+        let sodium = parseInt(habeshaFood.sodium)
+        let totalCarbohydrate = parseInt(habeshaFood.totalCarbohydrate)
+        let protein = parseInt(habeshaFood.protein)
+        let calcium = parseInt(habeshaFood.calcium)
+        let iron = parseInt(habeshaFood.iron)
+        let potassium = parseInt(habeshaFood.potassium)
 
-        const location = HabeshaFood.location
-        const startDate = startMonth + "-" + startDay + "-" + startYear
-        const endDate = endMonth + "-" + endDay + "-" + endYear
-        const planeTicketPrice = parseInt(HabeshaFood.planeTicketPrice)
-        const costOfFood = parseInt(HabeshaFood.costOfFood)
-        const costOnHotel = parseInt(HabeshaFood.costOnHotel)
-        const noteDetails = HabeshaFood.noteDetails
-        const overallExperience = HabeshaFood.overallExperience
 
-
-        if (location === "") {
-            window.alert("Please type in name of city you visited")
+        if (description === "") {
+            window.alert("Please write a few description.")
         }
 
-        else if (startDate === "" || startDate === NaN) {
-            window.alert("Please select or type in start date")
+        else if (picture === "") {
+            window.alert("Please upload a picture")
         }
 
-        else if (endDate === "" || endDate === NaN) {
-            window.alert("Please select or type in end date")
+        else if (name === "") {
+            window.alert("Please type in the name of the food")
         }
 
-        //plane ticket price is 0 or not a number, alert user with message
-        else if (planeTicketPrice === 0 || planeTicketPrice === NaN) {
-            window.alert("Please type in plane ticket price or total money you've spent on gas")
+        //typeId 0 or not a number, alert user with message
+        else if (typeId === 0 || typeId === NaN) {
+            window.alert("Please select a type.")
         }
 
-        else if (costOfFood === 0 || costOfFood === NaN) {
-            window.alert("Please type in total cost on food")
+
+        else if (ingredient === "") {
+            window.alert("Please type in the ingredients.")
         }
 
-        else if (costOnHotel === 0 || costOnHotel === NaN) {
-            window.alert("Please type in total cost on hotel")
+        else if (totalCalorie === 0 || totalCalorie === NaN) {
+            totalCalorie = "-"
         }
 
-        else if (noteDetails === "") {
-            window.alert("Please describe your traveling experiences")
+        else if (totalFat === 0 || totalFat === NaN) {
+            totalFat = "-"
         }
 
-        else if (overallExperience === "") {
-            window.alert("Please rate your overall travel experience")
+        else if (cholesterol === 0 || cholesterol === NaN) {
+            cholesterol = "-"
         }
 
         else {
             //disable the button - no extra clicks
             setIsLoading(true); //this ensures the user cannot repeatedly click the button while the API is being updated
-            if (HabeshaFoodId) {   //if this is the note that already exists in our api
+            if (habeshaFoodId) {   //if this is the food that already exists in our api
                 //PUT - update
-                updateHabeshaFood({ //the notes will be populated the input fields with current values from the api
-                    id: HabeshaFood.id,
-                    location: HabeshaFood.location,
-                    startDate: startDate,
-                    endDate: endDate,
-                    planeTicketPrice: HabeshaFood.planeTicketPrice,
-                    costOfFood: HabeshaFood.costOfFood,
-                    costOnHotel: HabeshaFood.costOnHotel,
-                    noteDetails: HabeshaFood.noteDetails,
-                    overallExperience: HabeshaFood.overallExperience,
-                    userId: currentUser,
-                    imageURL: imageURL
+                updateHabeshaFood({ //the foods will be populated the input fields with current values from the api
+                    id: habeshaFood.id,
+                    typeId: habeshaFood.typeId,
+                    picture: habeshaFood.picture,
+                    name: habeshaFood.name,
+                    description: habeshaFood.description,
+                    ingredient: habeshaFood.ingredient,
+                    totalCalorie: habeshaFood.totalCalorie,
+                    totalFat: habeshaFood.totalFat,
+                    cholesterol: habeshaFood.cholesterol,
+                    sodium: habeshaFood.sodium,
+                    totalCarbohydrate: habeshaFood.totalCarbohydrate,
+                    protein: habeshaFood.protein,
+                    calcium: habeshaFood.calcium,
+                    iron: habeshaFood.iron,
+                    potassium: habeshaFood.potassium
                 })
-                    .then(() => history.push(`/HabeshaFoods`)) //then push it to the travel notes list
+                    .then(() => history.push(`/HabeshaFood`)) //then push it to the habesha foods list
             } else {
                 //POST - add
                 addHabeshaFood({ //if not, this must be a new note so the input fields will be empty
-                    location: HabeshaFood.location,
-                    startDate: startDate,
-                    endDate: endDate,
-                    planeTicketPrice: HabeshaFood.planeTicketPrice,
-                    costOfFood: HabeshaFood.costOfFood,
-                    costOnHotel: HabeshaFood.costOnHotel,
-                    noteDetails: HabeshaFood.noteDetails,
-                    overallExperience: HabeshaFood.overallExperience,
-                    userId: currentUser,
-                    imageURL: imageURL
+                    typeId: habeshaFood.typeId,
+                    picture: habeshaFood.picture,
+                    name: habeshaFood.name,
+                    description: habeshaFood.description,
+                    ingredient: habeshaFood.ingredient,
+                    totalCalorie: habeshaFood.totalCalorie,
+                    totalFat: habeshaFood.totalFat,
+                    cholesterol: habeshaFood.cholesterol,
+                    sodium: habeshaFood.sodium,
+                    totalCarbohydrate: habeshaFood.totalCarbohydrate,
+                    protein: habeshaFood.protein,
+                    calcium: habeshaFood.calcium,
+                    iron: habeshaFood.iron,
+                    potassium: habeshaFood.potassium
                 })
-                    .then(() => history.push("/HabeshaFoods")) //then push it to the travel notes list
+                    .then(() => history.push("/HabeshaFood")) //then push it to the habesha foods list
             }
         }
     }
 
 
     /*
-    Reach out to the world and get travel notes state
+    Reach out to the world and get habesha foods state
     and locations state on initialization.
     */
     useEffect(() => {
-        if (HabeshaFoodId) { //if we have this travel note id in the URL(api)
-            getHabeshaFoodById(HabeshaFoodId) //get that id(we're passing the id)
-                .then(HabeshaFood => { //get the object
+        if (habeshaFoodId) { //if we have this habesha food id in the URL(api)
+            getHabeshaFoodById(habeshaFoodId) //get that id(we're passing the id)
+                .then(habeshaFood => { //get the object
 
-                    setHabeshaFood(HabeshaFood) //set the travel note state with the new object
+                    setHabeshaFood(habeshaFood) //set the habesha food state with the new object
                     setIsLoading(false)
                 })
         } else {
@@ -178,96 +196,107 @@ export const HabeshaFoodForm = () => {
     }, [])
 
 
+    // <div className="form-group">
+    //     <div>Upload Image</div>
+    //     <input type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
+    //     {loading ? (
+    //         <h3>Loading...</h3>
+    //     ) : (
+    //         <img src={imageURL} style={{ width: "100px" }} />
+    //     )}
+    // </div>
     return (
         <>
-            <form className="HabeshaFoodForm">
+            <Form className="habeshaFoodForm">
                 <button className="link--close">
                     <Link to="/HabeshaFoods">close</Link>
                 </button>
-                <h2 className="HabeshaFoodForm__title">{HabeshaFoodId ? "Edit travel note" : "Add new travel note"}</h2>
+                <h2 className="habeshaFoodForm__title">{habeshaFoodId ? "Edit travel note" : "Add new habesha food"}</h2>
 
-                <div className="form-group">
-                    <div>Upload Image</div>
-                    <input type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
-                    {loading ? (
-                        <h3>Loading...</h3>
-                    ) : (
-                        <img src={imageURL} style={{ width: "100px" }} />
-                    )}
-                </div>
+                <Form.Group>
+                    <Form.File id="picture" label="Upload image" />
+                </Form.Group>
 
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="location">City: </label>
-                        <input type="text" id="location" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                            placeholder="City visited" value={HabeshaFood.location} />
-                    </div>
-                </fieldset>
+                <Form.Group controlId="typeId">
+                    <Form.Label>Select type</Form.Label>
+                    <Form.Control as="select">
+                        <option>breakfast</option>
+                        <option>lunch</option>
+                        <option>dinner</option>
+                        <option>snack</option>
+                        <option>dessert</option>
+                    </Form.Control>
+                </Form.Group>
 
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="startDate">From: </label>
-                        <input type="date" id="startDate" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                            placeholder="Start date" value={HabeshaFood.startDate} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="endDate">To: </label>
-                        <input type="date" id="endDate" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                            placeholder="End date" value={HabeshaFood.endDate} />
-                    </div>
-                </fieldset>
+                <Form.Group controlId="name">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control type="name" placeholder="name" />
+                </Form.Group>
 
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="planeTicketPrice">Plane ticket price/Total money spent on gas: </label>
-                        <input type="text" id="planeTicketPrice" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Plane ticket price" value={HabeshaFood.planeTicketPrice} />
-                    </div>
-                </fieldset>
+                <Form.Group controlId="description">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control type="description" placeholder="description" />
+                </Form.Group>
 
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="costOfFood">Total cost of food: </label>
-                        <input type="text" id="costOfFood" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Cost of food" value={HabeshaFood.costOfFood} />
-                    </div>
-                </fieldset>
+                <Form.Group controlId="ingredient">
+                    <Form.Label>Ingredients</Form.Label>
+                    <Form.Control type="ingredient" placeholder="ingredients" />
+                </Form.Group>
 
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="costOnHotel">Total money spent on hotel: </label>
-                        <input type="text" id="costOnHotel" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Cost on hotel" value={HabeshaFood.costOnHotel} />
-                    </div>
-                </fieldset>
+                <Form.Group controlId="totalCalorie">
+                    <Form.Label>Calorie</Form.Label>
+                    <Form.Control type="totalCalorie" placeholder="calorie" />
+                </Form.Group>
 
-                {/* <textarea type="text" id="noteDetails" placeholder="notes"></textarea> */}
+                <Form.Group controlId="totalFat">
+                    <Form.Label>Fat</Form.Label>
+                    <Form.Control type="totalFat" placeholder="fat" />
+                </Form.Group>
 
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="noteDetails">Travel details: </label>
-                        <textarea type="text" id="noteDetails" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Travel details" value={HabeshaFood.noteDetails} />
-                    </div>
-                </fieldset>
+                <Form.Group controlId="cholesterol">
+                    <Form.Label>Cholesterol</Form.Label>
+                    <Form.Control type="cholesterol" placeholder="cholesterol" />
+                </Form.Group>
 
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="overallExperience">Overall experience: </label>
-                        <select defaultValue={HabeshaFood.overallExperience} name="overallExperience" id="overallExperience" onChange={handleControlledInputChange} className="form-control" >
-                            <option selected={HabeshaFood.overallExperience === "😡" ? "selected" : ""} value="😡">😡 (Terrible)</option>
-                            <option selected={HabeshaFood.overallExperience === "😟" ? "selected" : ""} value="😟">😟 (Bad)</option>
-                            <option selected={HabeshaFood.overallExperience === "😕" ? "selected" : ""} value="😕">😕 (Okay)</option>
-                            <option selected={HabeshaFood.overallExperience === "😊" ? "selected" : ""} value="😊">😊 (Good)</option>
-                            <option selected={HabeshaFood.overallExperience === "😃" ? "selected" : ""} value="😃">😃 (Great)</option>
-                        </select>
-                    </div>
-                </fieldset>
+                <Form.Group controlId="sodium">
+                    <Form.Label>Sodium</Form.Label>
+                    <Form.Control type="sodium" placeholder="sodium" />
+                </Form.Group>
 
-                <button className="btn btn-primary"
+                <Form.Group controlId="totalCarbohydrate">
+                    <Form.Label>Total Carbohydrate</Form.Label>
+                    <Form.Control type="totalCarbohydrate" placeholder="total carbohydrate" />
+                </Form.Group>
+
+                <Form.Group controlId="protein">
+                    <Form.Label>Protein</Form.Label>
+                    <Form.Control type="protein" placeholder="protein" />
+                </Form.Group>
+
+                <Form.Group controlId="calcium">
+                    <Form.Label>Calcium</Form.Label>
+                    <Form.Control type="calcium" placeholder="calcium" />
+                </Form.Group>
+
+                <Form.Group controlId="iron">
+                    <Form.Label>Iron</Form.Label>
+                    <Form.Control type="iron" placeholder="iron" />
+                </Form.Group>
+
+                <Form.Group controlId="potassium">
+                    <Form.Label>Potassium</Form.Label>
+                    <Form.Control type="potassium" placeholder="potassium" />
+                </Form.Group>
+
+                <Button variant="outline-success" className="btn btn-primary"
                     disabled={isLoading}
                     onClick={event => {
                         event.preventDefault()
                         handleClickSaveHabeshaFood()
-                    }}>
-                    {HabeshaFoodId ? "Save note" : "Add note"}</button>
-            </form>
+                    }}>{habeshaFoodId ? "Save note" : "Add note"}</Button>{' '}
+            </Form>
         </>
     )
 }
+
+export default HabeshaFoodForm;
