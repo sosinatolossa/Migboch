@@ -97,7 +97,7 @@ export const HabeshaFoodForm = () => {
 
 
         if (description === "") {
-            window.alert("Please write a few description.")
+            window.alert("Please write description")
         }
 
         else if (picture === "") {
@@ -109,9 +109,9 @@ export const HabeshaFoodForm = () => {
         }
 
         //typeId 0 or not a number, alert user with message
-        else if (typeId === 0 || typeId === NaN) {
-            window.alert("Please select a type.")
-        }
+        // else if (typeId === 0 || typeId === NaN) {
+        //     window.alert("Please select a type.")
+        // }
 
 
         else if (ingredient === "") {
@@ -209,17 +209,20 @@ export const HabeshaFoodForm = () => {
         <>
             <Form className="habeshaFoodForm">
                 <button className="link--close">
-                    <Link to="/HabeshaFoods">close</Link>
+                    <Link to="/HabeshaFood">back</Link>
                 </button>
                 <h2 className="habeshaFoodForm__title">{habeshaFoodId ? "Edit travel note" : "Add new habesha food"}</h2>
 
-                <Form.Group>
-                    <Form.File id="picture" label="Upload image" />
+                <Form.Group controlId="potassium">
+                    <Form.Label>Picture</Form.Label>
+                    <Form.Control type="picture" placeholder="picture" id="picture" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.picture} />
                 </Form.Group>
 
-                <Form.Group controlId="typeId">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Select type</Form.Label>
-                    <Form.Control as="select">
+                    <Form.Control id="typeid" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        placeholder="City visited" value={habeshaFood.typeId} as="select">
                         <option>breakfast</option>
                         <option>lunch</option>
                         <option>dinner</option>
@@ -228,64 +231,76 @@ export const HabeshaFoodForm = () => {
                     </Form.Control>
                 </Form.Group>
 
-                <Form.Group controlId="name">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="name" placeholder="name" />
+                    <Form.Control type="name" placeholder="name" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.name} />
                 </Form.Group>
 
-                <Form.Group controlId="description">
+                <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control type="description" placeholder="description" />
+                    <Form.Control type="description" placeholder="Please describe this dish" id="description" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.description} as="textarea" rows={3} />
                 </Form.Group>
 
-                <Form.Group controlId="ingredient">
+                <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Ingredients</Form.Label>
-                    <Form.Control type="ingredient" placeholder="ingredients" />
+                    <Form.Control type="ingredient" placeholder="Please specify" id="ingredient" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.ingredient} as="textarea" rows={3} />
                 </Form.Group>
 
-                <Form.Group controlId="totalCalorie">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Calorie</Form.Label>
-                    <Form.Control type="totalCalorie" placeholder="calorie" />
+                    <Form.Control type="totalCalorie" placeholder="calorie" id="totalCalorie" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.totalCalorie} />
                 </Form.Group>
 
-                <Form.Group controlId="totalFat">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Fat</Form.Label>
-                    <Form.Control type="totalFat" placeholder="fat" />
+                    <Form.Control type="totalFat" placeholder="fat" id="totalFat" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.totalFat} />
                 </Form.Group>
 
-                <Form.Group controlId="cholesterol">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Cholesterol</Form.Label>
-                    <Form.Control type="cholesterol" placeholder="cholesterol" />
+                    <Form.Control type="cholesterol" placeholder="cholesterol" id="cholesterol" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.cholesterol} />
                 </Form.Group>
 
-                <Form.Group controlId="sodium">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Sodium</Form.Label>
-                    <Form.Control type="sodium" placeholder="sodium" />
+                    <Form.Control type="sodium" placeholder="sodium" id="sodium" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.sodium} />
                 </Form.Group>
 
-                <Form.Group controlId="totalCarbohydrate">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Total Carbohydrate</Form.Label>
-                    <Form.Control type="totalCarbohydrate" placeholder="total carbohydrate" />
+                    <Form.Control type="totalCarbohydrate" placeholder="total carbohydrate" id="totalCarbohydrate" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.totalCarbohydrate} />
                 </Form.Group>
 
-                <Form.Group controlId="protein">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Protein</Form.Label>
-                    <Form.Control type="protein" placeholder="protein" />
+                    <Form.Control type="protein" placeholder="protein" id="protein" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.protein} />
                 </Form.Group>
 
-                <Form.Group controlId="calcium">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Calcium</Form.Label>
-                    <Form.Control type="calcium" placeholder="calcium" />
+                    <Form.Control type="calcium" placeholder="calcium" id="calcium" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.calcium} />
                 </Form.Group>
 
-                <Form.Group controlId="iron">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Iron</Form.Label>
-                    <Form.Control type="iron" placeholder="iron" />
+                    <Form.Control type="iron" placeholder="iron" id="iron" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.iron} />
                 </Form.Group>
 
-                <Form.Group controlId="potassium">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Potassium</Form.Label>
-                    <Form.Control type="potassium" placeholder="potassium" />
+                    <Form.Control type="potassium" placeholder="potassium" id="potassium" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                        value={habeshaFood.potassium} />
                 </Form.Group>
 
                 <Button variant="outline-success" className="btn btn-primary"
