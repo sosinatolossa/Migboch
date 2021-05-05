@@ -9,7 +9,7 @@ export const TypeProvider = (props) => {
 
     const getAllTypes = () => {
         return getToken()
-            .then(token => fetch("/api/type", {
+            .then(token => fetch("/api/Type", {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`

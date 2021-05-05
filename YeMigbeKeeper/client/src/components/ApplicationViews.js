@@ -39,7 +39,6 @@ export default function ApplicationViews() {
                 <Route exact path="/HabeshaFood/create">
                     <HabeshaFoodCreateForm />
                 </Route>
-
             </Switch>
         </main>
     );

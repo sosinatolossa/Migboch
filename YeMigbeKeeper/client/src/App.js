@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { UserProvider } from "./components/user/UserProvider";
 import ApplicationViews from "./components/ApplicationViews";
 import { HabeshaFoodProvider } from './components/habeshaFood/HabeshaFoodProvider';
+import { TypeProvider } from './components/type/TypeProvider';
 
 
 function App() {
@@ -11,7 +12,9 @@ function App() {
     <Router>
       <UserProvider>
         <HabeshaFoodProvider>
-          <ApplicationViews />
+          <TypeProvider>
+            <ApplicationViews />
+          </TypeProvider>
         </HabeshaFoodProvider>
       </UserProvider>
     </Router>

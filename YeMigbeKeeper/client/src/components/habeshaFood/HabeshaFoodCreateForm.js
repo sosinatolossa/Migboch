@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider"
 //import "./HabeshaFood.css"
 import { Form, Button } from 'react-bootstrap';
+import { TypeContext } from "../type/TypeProvider";
 
 export const HabeshaFoodCreateForm = () => {
-    const { habeshaFoods, addHabeshaFood, getAllHabeshaFoods } = useContext(HabeshaFoodContext)
-    console.log(habeshaFoods)
+    const { addHabeshaFood } = useContext(HabeshaFoodContext)
+    const { types, getAllTypes } = useContext(TypeContext)
+    console.log(types)
 
     useEffect(() => {
-        getAllHabeshaFoods()
+        getAllTypes();
     }, []);
 
     /*
@@ -169,7 +171,7 @@ export const HabeshaFoodCreateForm = () => {
                     <Form.Label>Select type</Form.Label>
                     <Form.Control id="typeId" onChange={handleControlledInputChange}>
                         <option value="0">Select a type </option>
-                        {habeshaFoods.type.map((t) => (
+                        {types.map((t) => (
                             <option key={t.id} value={t.id}>
                                 {t.name}
                             </option>
