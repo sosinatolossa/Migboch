@@ -74,7 +74,7 @@ export const HabeshaFoodProvider = (props) => {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
-            }).then(history.push("/HabeshaFood"))
+            })
         );
 
     return (

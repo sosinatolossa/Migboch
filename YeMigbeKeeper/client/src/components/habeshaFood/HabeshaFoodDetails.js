@@ -1,22 +1,25 @@
 import React, { useEffect, useState, useContext } from "react";
 import { CardGroup, Card, CardBody, CardTitle, CardText, CardImg, Button } from "reactstrap";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 
 const OneHabeshaFood = ({ aHabeshaFood }) => {
-    const { deleteHabeshaFood } = useContext(HabeshaFoodContext);
+    const { deleteHabeshaFood, getAllHabeshaFoods } = useContext(HabeshaFoodContext);
+    const history = useHistory();
 
     // Handles showing the delete button if the current user is viewing a habesha food that they created. 
     const deleteButton = (habeshaFood) => {
         let currentUser = JSON.parse(sessionStorage.getItem("User"));
-        if (habeshaFood.user.id === currentUser.id) {
+        if (aHabeshaFood.user?.id === currentUser.id) {
             return <Button variant="secondary" onClick={() => {
                 const confirmBox = window.confirm(
                     "Do you really want to delete this habesha food?"
                 )
                 if (confirmBox === true) {
-                    deleteHabeshaFood(habeshaFood.id);
+                    deleteHabeshaFood(habeshaFood.id)
+                        .then(getAllHabeshaFoods)
+                        .then(history.push("/HabeshaFood"));
                 }
             }} className="delete-button">
                 Delete
