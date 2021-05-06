@@ -102,6 +102,7 @@ export const HabeshaFoodEditForm = () => {
                 <Form.Group>
                     <Form.Label>Select type</Form.Label>
                     <Form.Control id="typeId" onChange={handleControlledInputChange} as="select">
+                        <option value="0">Select a type </option>
                         {types.map((t) => (
                             <option key={t.id} value={t.id}>
                                 {t.name}
