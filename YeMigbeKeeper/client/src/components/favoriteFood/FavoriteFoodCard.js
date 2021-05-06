@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 
 const FavoriteFood = ({ favoriteFood }) => {
 
-    console.log(favoriteFood)
-
     return (
         <CardGroup className="foodCard">
             <Card>

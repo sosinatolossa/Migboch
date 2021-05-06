@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Security.Claims;
+using YeMigbeKeeper.Models;
 using YeMigbeKeeper.Repositories;
 
 namespace YeMigbeKeeper.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FavoriteFoodController : ControllerBase
@@ -22,6 +26,13 @@ namespace YeMigbeKeeper.Controllers
         {
 
             return Ok(_favoriteFoodRepository.GetAllFavoriteFoods());
+        }
+
+        // Retrieves the current user object by using the provided firebaseId
+        private User GetCurrentUser()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepository.GetByFireBaseUserId(firebaseUserId);
         }
     }
 }
