@@ -44,7 +44,7 @@ namespace YeMigbeKeeper.Controllers
             return CreatedAtAction("Get", new { id = habeshaFood.Id }, habeshaFood);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult Put(HabeshaFood habeshaFood)
         {
             _habeshaFoodRepository.Update(habeshaFood);

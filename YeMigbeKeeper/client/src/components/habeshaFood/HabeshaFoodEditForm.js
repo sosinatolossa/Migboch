@@ -12,7 +12,6 @@ export const HabeshaFoodEditForm = () => {
 
     // Set the initial state of HabeshaFood
     const [habeshaFood, setHabeshaFood] = useState({
-        id: 0,
         typeId: 0,
         picture: "",
         name: "",
