@@ -1,30 +1,18 @@
-import React, { useContext, useState, useEffect } from "react"
-import { Link, useHistory } from "react-router-dom";
-import { HabeshaFoodContext } from "./HabeshaFoodProvider"
-//import "./HabeshaFood.css"
-import { Form } from 'react-bootstrap';
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import { TypeContext } from "../type/TypeProvider";
+import { Form } from 'react-bootstrap';
 
-export const HabeshaFoodCreateForm = () => {
-    const { addHabeshaFood } = useContext(HabeshaFoodContext)
-    const { types, getAllTypes } = useContext(TypeContext)
+export const HabeshaFoodEditForm = () => {
+    const { updateHabeshaFood, getHabehsaFoodById } = useContext(HabeshaFoodContext);
+    const { types, getAllTypes } = useContext(TypeContext);
+    const { habeshaFoodId } = useParams();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const history = useHistory();
-
-    useEffect(() => {
-        getAllTypes();
-    }, []);
-
-    /*
-    With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
-    Define the initial state of the form inputs with useState()
-    */
-
-    //const currentUser = parseInt(localStorage.getItem("ZuringTheWorld_user"))
-
-    //const [imageURL, setImageURL] = useState("")
-    //for edit, hold on to state of habeshaFood in this view
+    // Set the initial state of HabeshaFood
     const [habeshaFood, setHabeshaFood] = useState({
+        id: 0,
         typeId: 0,
         picture: "",
         name: "",
@@ -40,123 +28,70 @@ export const HabeshaFoodCreateForm = () => {
         iron: 0,
         potassium: 0
     });
-    //wait for data before button is active
-    const [isLoading, setIsLoading] = useState(false);
-    const [habeshaFoodObj, setHabeshaFoodObj] = useState({});
 
-    //image upload handling
-    // const [loading, setLoading] = useState(false)
-    // const uploadImage = async e => {
-    //     const files = e.target.files
-    //     const data = new FormData()
-    //     data.append("file", files[0])
-    //     data.append("upload_preset", "ZuringTheWorld")
-    //     setLoading(true)
-    //     const response = await fetch(
-    //         "https://api.cloudinary.com/v1_1/sosina/image/upload",
-    //         {
-    //             method: "POST",
-    //             body: data
-    //         }
-    //     )
-    //     const file = await response.json()
-    //     setImageURL(file.secure_url)
-    //     setLoading(false)
-    // }
-
-
-    //when a field changes, update state. The return will re-render and display based on the values in state
-    //Controlled component
-    const handleControlledInputChange = (event) => {
-        /* When changing a state object or array,
-        always create a copy, make changes, and then set state.*/
-        const newHabeshaFood = { ...habeshaFood }
-
-        /* HabeshaFood is an object with properties.
-        Set the property to the new value
-        using object bracket notation. */
-        newHabeshaFood[event.target.id] = event.target.value
-        // update state
-        setHabeshaFood(newHabeshaFood)
-    }
-
-
-
-
-    const handleClickSaveHabeshaFood = () => {
-
-        const typeId = parseInt(habeshaFood.typeId)
-        const picture = habeshaFood.picture
-        const name = habeshaFood.name
-        const description = habeshaFood.description
-        const ingredient = habeshaFood.ingredient
-        let totalCalorie = parseInt(habeshaFood.totalCalorie)
-        let totalFat = parseInt(habeshaFood.totalFat)
-        let cholesterol = parseInt(habeshaFood.cholesterol)
-        let sodium = parseInt(habeshaFood.sodium)
-        let totalCarbohydrate = parseInt(habeshaFood.totalCarbohydrate)
-        let protein = parseInt(habeshaFood.protein)
-        let calcium = parseInt(habeshaFood.calcium)
-        let iron = parseInt(habeshaFood.iron)
-        let potassium = parseInt(habeshaFood.potassium)
-
-
-        if (description === "") {
-            window.alert("Please write description")
-        } else if (picture === "") {
-            window.alert("Please upload a picture")
-        } else if (name === "") {
-            window.alert("Please type in the name of the food")
-        } else if (ingredient === "") {
-            window.alert("Please type in the ingredients.")
-        } else {
-            //disable the button - no extra clicks
-            setIsLoading(true); //this ensures the user cannot repeatedly click the button while the API is being updated
-            //habeshaFood - add
-            addHabeshaFood({ //if not, this must be a new note so the input fields will be empty
-                typeId: habeshaFood.typeId,
-                picture: habeshaFood.picture,
-                name: habeshaFood.name,
-                description: habeshaFood.description,
-                ingredient: habeshaFood.ingredient,
-                totalCalorie: habeshaFood.totalCalorie,
-                totalFat: habeshaFood.totalFat,
-                cholesterol: habeshaFood.cholesterol,
-                sodium: habeshaFood.sodium,
-                totalCarbohydrate: habeshaFood.totalCarbohydrate,
-                protein: habeshaFood.protein,
-                calcium: habeshaFood.calcium,
-                iron: habeshaFood.iron,
-                potassium: habeshaFood.potassium
-            }).then(setHabeshaFoodObj)
-                .then(() => setIsLoading(false))
-        }
-    }
-
+    // Gets a list of all categories (for the Type dropdown) &
+    // Sets the state of HabeshaFood to the values from the original HabeshaFood
     useEffect(() => {
-        if (habeshaFoodObj.id > 0) {
-            history.push(`/habeshaFood`);
-        }
-    }, [habeshaFoodObj]) //habeshaFoodObj here is waiting for the state to be set
+        getAllTypes()
+            .then(getHabehsaFoodById(habeshaFoodId)
+                .then(oldHabeshaFood => {
+                    // Save the original habeshaFood to the local state variable, habeshaFood
+                    setHabeshaFood(oldHabeshaFood);
+                }))
+    }, [])
 
+    // Handles changes to any input field
+    const handleControlledInputChange = (event) => {
 
+        // saves the most recent version of the HabeshaFood object to newHabeshaFood
+        const newHabeshaFood = { ...habeshaFood };
 
-    // <div className="form-group">
-    //     <div>Upload Image</div>
-    //     <input type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
-    //     {loading ? (
-    //         <h3>Loading...</h3>
-    //     ) : (
-    //         <img src={imageURL} style={{ width: "100px" }} />
-    //     )}
-    // </div>
+        // Ex newHabeshaFood[TypeId] = 2
+        newHabeshaFood[event.target.id] = event.target.value;
+
+        // update state
+        setHabeshaFood(newHabeshaFood);
+    };
+
+    // Handles saving the new edited HabeshaFood
+    const handleClickEditHabeshaFood = () => {
+
+        // Check to make sure all relevant input fields have data
+        if (habeshaFood.picture === "") return window.alert("Please add an image url.");
+        if (habeshaFood.name === "") return window.alert("Please enter a name");
+        if (habeshaFood.description === "") return window.alert("Please add a description.");
+        if (habeshaFood.ingredient === "") return window.alert("Please type in the ingredients.");
+
+        //disable the button - no extra clicks
+        setIsLoading(true);
+
+        // Send the new HabeshaFood object to server side to update the original HabeshaFood
+        updateHabeshaFood({
+            id: habeshaFood.id,
+            typeId: habeshaFood.typeId,
+            picture: habeshaFood.picture,
+            name: habeshaFood.name,
+            description: habeshaFood.description,
+            ingredient: habeshaFood.ingredient,
+            totalCalorie: habeshaFood.totalCalorie,
+            totalFat: habeshaFood.totalFat,
+            cholesterol: habeshaFood.cholesterol,
+            sodium: habeshaFood.sodium,
+            totalCarbohydrate: habeshaFood.totalCarbohydrate,
+            protein: habeshaFood.protein,
+            calcium: habeshaFood.calcium,
+            iron: habeshaFood.iron,
+            potassium: habeshaFood.potassium
+        });
+    };
+
     return (
         <>
             <Form className="habeshaFoodForm">
                 <button className="link--close">
                     <Link to="/HabeshaFood">close</Link>
                 </button>
-                <h2 className="habeshaFoodForm__title">Add new habesha food</h2>
+                <h2 className="habeshaFoodForm__title">Edit habesha food</h2>
 
                 <Form.Group>
                     <Form.Label>Picture</Form.Label>
@@ -252,12 +187,12 @@ export const HabeshaFoodCreateForm = () => {
                     disabled={isLoading}
                     onClick={event => {
                         event.preventDefault()
-                        handleClickSaveHabeshaFood()
+                        handleClickEditHabeshaFood()
                     }}>
-                    Add habesha food</button>
+                    Save changes</button>
             </Form>
         </>
-    )
-}
+    );
+};
 
-export default HabeshaFoodCreateForm;
+export default HabeshaFoodEditForm;

@@ -6,6 +6,7 @@ using System.Security.Claims;
 
 namespace YeMigbeKeeper.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class HabeshaFoodController : ControllerBase

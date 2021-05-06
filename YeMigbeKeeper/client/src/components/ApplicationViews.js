@@ -7,6 +7,7 @@ import UserList from "././user/UserList";
 import HabeshaFoodList from "././habeshaFood/HabeshaFoodList";
 import HabeshaFoodDetails from "././habeshaFood/HabeshaFoodDetails";
 import HabeshaFoodCreateForm from "./habeshaFood/HabeshaFoodCreateForm";
+import HabeshaFoodEditForm from "./habeshaFood/HabeshaFoodEditForm";
 import TypeList from "././type/TypeList";
 
 
@@ -45,11 +46,11 @@ export default function ApplicationViews() {
                     <HabeshaFoodCreateForm />
                 </Route>
 
+                <Route path="/HabeshaFood/edit/:habeshaFoodId(\d+)">
+                    <HabeshaFoodEditForm />
+                </Route>
+
             </Switch>
         </main>
     );
 }
-
-                // <Route path="/HabeshaFood/edit/:habeshaFoodId(\d+)">
-                //     <HabeshaFoodForm />
-                // </Route>
