@@ -5,7 +5,7 @@ using YeMigbeKeeper.Utils;
 
 namespace YeMigbeKeeper.Repositories
 {
-    public class FavoriteFoodRepository : BaseRepository
+    public class FavoriteFoodRepository : BaseRepository, IFavoriteFoodRepository
     {
         public FavoriteFoodRepository(IConfiguration configuration) : base(configuration) { }
 
@@ -19,15 +19,15 @@ namespace YeMigbeKeeper.Repositories
                 {
                     cmd.CommandText = @"
                             SELECT ff.Id, ff.UserId, ff.HabeshaFoodId,
-	            u.DisplayName,
-	            hf.TypeId, hf.Picture, hf.[Name], hf.[Description], hf.Ingredient,
-                            hf.TotalCalorie, hf.TotalFat, hf.Cholesterol, hf.Sodium, hf.TotalCarbohydrate,
-                            hf.Protein, hf.Calcium, hf.Iron, hf.Potassium, hf.UserId,
-	            t.[Name] as TypeName
-	            FROM FavoriteFood ff
-	            LEFT JOIN [User] u on ff.UserId = u.Id
-	            LEFT JOIN HabeshaFood hf on hf.Id = ff.HabeshaFoodId
-	            LEFT JOIN Type t on hf.TypeId = t.Id";
+	                hf.TypeId, hf.Picture, hf.[Name], hf.[Description], hf.Ingredient,
+                                hf.TotalCalorie, hf.TotalFat, hf.Cholesterol, hf.Sodium, hf.TotalCarbohydrate,
+                                hf.Protein, hf.Calcium, hf.Iron, hf.Potassium, hf.UserId,
+	                t.[Name] as TypeName,
+	                u.DisplayName
+	                FROM FavoriteFood ff
+	                LEFT JOIN HabeshaFood hf on hf.Id = ff.HabeshaFoodId
+	                LEFT JOIN Type t on hf.TypeId = t.Id
+	                LEFT JOIN [User] u on hf.UserId = u.Id";
 
                     var reader = cmd.ExecuteReader();
 
@@ -37,12 +37,7 @@ namespace YeMigbeKeeper.Repositories
                         favoriteFoods.Add(new FavoriteFood()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
-                            UserId = DbUtils.GetInt(reader, "UserId"),
-                            User = new User()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserId"),
-                                DisplayName = DbUtils.GetString(reader, "DisplayName"),
-                            },
+                            UserId = DbUtils.GetInt(reader, "UserId"),               
                             HabeshaFoodId = DbUtils.GetInt(reader, "HabeshaFoodId"),
                             HabeshaFood = new HabeshaFood()
                             {
@@ -65,6 +60,12 @@ namespace YeMigbeKeeper.Repositories
                                 Protein = DbUtils.GetNullableInt(reader, "Protein"),
                                 Calcium = DbUtils.GetNullableInt(reader, "Calcium"),
                                 Iron = DbUtils.GetNullableInt(reader, "Iron"),
+                                UserId = DbUtils.GetInt(reader, "UserId"),
+                                User = new User()
+                                {
+                                    Id = DbUtils.GetInt(reader, "UserId"),
+                                    DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                },
                             }
                      
                         });

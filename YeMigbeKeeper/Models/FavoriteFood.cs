@@ -9,7 +9,6 @@ namespace YeMigbeKeeper.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
         public int HabeshaFoodId { get; set; }
         public HabeshaFood HabeshaFood { get; set; }
     }
