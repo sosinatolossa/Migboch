@@ -18,8 +18,8 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                SELECT Id, Name
-                  FROM Type";
+                SELECT Id, UserId, HabeshaFoodId
+                  FROM FavoriteFood";
 
                     var reader = cmd.ExecuteReader();
 
