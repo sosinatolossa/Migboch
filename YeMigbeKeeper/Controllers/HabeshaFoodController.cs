@@ -3,6 +3,7 @@ using YeMigbeKeeper.Repositories;
 using YeMigbeKeeper.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using System;
 
 namespace YeMigbeKeeper.Controllers
 {
@@ -49,6 +50,20 @@ namespace YeMigbeKeeper.Controllers
         {
             _habeshaFoodRepository.Update(habeshaFood);
             return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                _habeshaFoodRepository.Delete(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
         }
 
         // Retrieves the current user object by using the provided firebaseId
