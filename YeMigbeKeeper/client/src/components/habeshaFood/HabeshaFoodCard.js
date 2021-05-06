@@ -1,10 +1,23 @@
 import React from "react";
-import { CardGroup, Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
-import { Link } from "react-router-dom";
+import { CardGroup, Card, CardBody, CardTitle, CardText, CardImg, Button } from "reactstrap";
+import { Link, useHistory } from "react-router-dom";
 
 
 const HabeshaFood = ({ habeshaFood }) => {
-    //console.log(habeshaFood)
+
+    const history = useHistory();
+
+    // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 
+    const editButton = (habeshaFoodId) => {
+        let currentUser = JSON.parse(sessionStorage.getItem("User"));
+        if (habeshaFood.user.id === currentUser.id) {
+            return <Button type="button" onClick={() => {
+                history.push(`/habeshaFood/edit/${habeshaFoodId}`)
+            }} className="edit-button">
+                Edit
+            </Button>
+        }
+    }
 
     return (
         <CardGroup className="foodCard">
@@ -17,6 +30,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                     <CardText>Type: {habeshaFood.type.name}</CardText>
                     <CardText>{habeshaFood.description}</CardText>
                     <CardText>Ingredients: {habeshaFood.ingredient}</CardText>
+                    {editButton(habeshaFood.id)}
                 </CardBody>
             </Card>
         </CardGroup >

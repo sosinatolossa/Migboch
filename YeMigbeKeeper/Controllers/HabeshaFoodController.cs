@@ -6,6 +6,7 @@ using System.Security.Claims;
 
 namespace YeMigbeKeeper.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class HabeshaFoodController : ControllerBase
@@ -23,7 +24,7 @@ namespace YeMigbeKeeper.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            
+
             return Ok(_habeshaFoodRepository.GetAll());
         }
 
@@ -43,7 +44,7 @@ namespace YeMigbeKeeper.Controllers
             return CreatedAtAction("Get", new { id = habeshaFood.Id }, habeshaFood);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult Put(HabeshaFood habeshaFood)
         {
             _habeshaFoodRepository.Update(habeshaFood);
