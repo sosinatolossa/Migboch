@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 
 
 const OneHabeshaFood = ({ aHabeshaFood }) => {
-    console.log(aHabeshaFood)
 
     return (
         <CardGroup className="foodCard">

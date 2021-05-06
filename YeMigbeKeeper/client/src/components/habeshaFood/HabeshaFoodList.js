@@ -6,7 +6,6 @@ import { Row, Col, Container, Button } from "reactstrap";
 
 const HabeshaFoodList = () => {
     const { habeshaFoods, getAllHabeshaFoods } = useContext(HabeshaFoodContext);
-    console.log(habeshaFoods)
     const history = useHistory()
 
     useEffect(() => {

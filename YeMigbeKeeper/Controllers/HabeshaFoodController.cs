@@ -24,7 +24,7 @@ namespace YeMigbeKeeper.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            
+
             return Ok(_habeshaFoodRepository.GetAll());
         }
 
