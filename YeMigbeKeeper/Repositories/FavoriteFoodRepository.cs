@@ -88,13 +88,13 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO HabeshaFood (UserId, HabeshaFoodId)
+                        INSERT INTO FavoriteFood (UserId, HabeshaFoodId)
                         OUTPUT INSERTED.ID
                         VALUES (@UserId, @HabeshaFoodId)";
 
                     
                     DbUtils.AddParameter(cmd, "@UserId", favoriteHabeshaFood.UserId);
-                    DbUtils.AddParameter(cmd, "@UserId", favoriteHabeshaFood.HabeshaFoodId);
+                    DbUtils.AddParameter(cmd, "@HabeshaFoodId", favoriteHabeshaFood.HabeshaFoodId);
 
                     favoriteHabeshaFood.Id = (int)cmd.ExecuteScalar();
                 }
