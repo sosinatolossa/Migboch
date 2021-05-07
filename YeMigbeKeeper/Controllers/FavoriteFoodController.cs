@@ -7,7 +7,6 @@ using YeMigbeKeeper.Repositories;
 
 namespace YeMigbeKeeper.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FavoriteFoodController : ControllerBase
@@ -27,6 +26,19 @@ namespace YeMigbeKeeper.Controllers
 
             return Ok(_favoriteFoodRepository.GetAllFavoriteFoods());
         }
+
+        [HttpGet("{userId}")]
+        public IActionResult Get(int userId)
+        {
+            //User user = GetCurrentUser();
+            var favoriteFood = _favoriteFoodRepository.GetFavoriteFoodByUserId(userId);
+            if (favoriteFood == null)
+            {
+                return NotFound();
+            }
+            return Ok(favoriteFood);
+        }
+
 
         // Retrieves the current user object by using the provided firebaseId
         private User GetCurrentUser()

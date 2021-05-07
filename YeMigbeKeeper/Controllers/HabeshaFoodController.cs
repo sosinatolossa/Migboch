@@ -29,6 +29,7 @@ namespace YeMigbeKeeper.Controllers
             return Ok(_habeshaFoodRepository.GetAll());
         }
 
+        /* habesha food details*/
         [HttpGet("{habeshaFoodId}")]
         public IActionResult GetHabeshaFoodById(int habeshaFoodId)
         {
