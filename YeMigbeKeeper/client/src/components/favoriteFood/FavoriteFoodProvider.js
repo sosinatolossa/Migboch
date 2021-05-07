@@ -6,6 +6,7 @@ export const FavoriteFoodContext = createContext();
 export const FavoriteFoodProvider = (props) => {
     const { getToken } = useContext(UserContext);
     const [myFavoriteFoods, setMyFavoriteFoods] = useState([]);
+    const [myFavFoodDeleted, setMyFavFoodDeleted] = useState(false);
 
     const getFavoriteFoodsByUser = () => {
         return getToken().then((token) =>
@@ -34,9 +35,21 @@ export const FavoriteFoodProvider = (props) => {
         });
     };
 
+    const deleteFavoriteHabeshaFood = (favHabeshaFoodId) => {
+        getToken().then((token) =>
+            fetch(`/api/FavoriteFood/${favHabeshaFoodId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            })
+        );
+    };
+
 
     return (
-        <FavoriteFoodContext.Provider value={{ myFavoriteFoods, getFavoriteFoodsByUser, addFavoriteHabeshaFood }}>
+        <FavoriteFoodContext.Provider value={{ myFavoriteFoods, getFavoriteFoodsByUser, addFavoriteHabeshaFood, deleteFavoriteHabeshaFood, myFavFoodDeleted, setMyFavFoodDeleted }}>
             {props.children}
         </FavoriteFoodContext.Provider>
     )

@@ -4,12 +4,17 @@ import { FavoriteFoodContext } from "./FavoriteFoodProvider";
 import FavoriteFood from "../favoriteFood/FavoriteFoodCard";
 
 const FavoriteFoodList = () => {
-    const { myFavoriteFoods, getFavoriteFoodsByUser } = useContext(FavoriteFoodContext);
-
+    const { myFavoriteFoods, getFavoriteFoodsByUser, myFavFoodDeleted, setMyFavFoodDeleted } = useContext(FavoriteFoodContext);
 
     useEffect(() => {
         getFavoriteFoodsByUser()
-    }, [myFavoriteFoods]);
+    }, []);
+
+    useEffect(() => {
+        if (myFavFoodDeleted === true) { //watching the myFavFoodDeleted variable I created in the provider
+            getFavoriteFoodsByUser().then(() => setMyFavFoodDeleted(false)) //this stops the infinite loop in the console
+        }
+    }, [myFavFoodDeleted])
 
     // Maps through each habesh food object, sending 
     // them to be converted to HTML then prints them all out.

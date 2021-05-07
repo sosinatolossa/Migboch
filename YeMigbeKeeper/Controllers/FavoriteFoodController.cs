@@ -38,6 +38,19 @@ namespace YeMigbeKeeper.Controllers
             return CreatedAtAction("Get", new { id = favoriteFood.Id }, favoriteFood);
         }
 
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                _favoriteFoodRepository.Remove(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
 
         // Retrieves the current user object by using the provided firebaseId
         private User GetCurrentUser()
