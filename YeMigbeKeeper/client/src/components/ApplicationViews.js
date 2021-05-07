@@ -9,7 +9,7 @@ import HabeshaFoodDetails from "././habeshaFood/HabeshaFoodDetails";
 import HabeshaFoodCreateForm from "./habeshaFood/HabeshaFoodCreateForm";
 import HabeshaFoodEditForm from "./habeshaFood/HabeshaFoodEditForm";
 import TypeList from "././type/TypeList";
-import FavoriteFoodList from "././favoriteFood/FavoriteFoodList"
+import MyFavoriteFoodList from "././favoriteFood/FavoriteFoodList"
 
 
 export default function ApplicationViews() {
@@ -52,7 +52,7 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route path="/FavoriteFood">
-                    {isLoggedIn ? <FavoriteFoodList /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <MyFavoriteFoodList /> : <Redirect to="/login" />}
                 </Route>
 
             </Switch>

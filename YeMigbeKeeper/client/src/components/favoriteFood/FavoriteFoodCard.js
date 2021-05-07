@@ -1,9 +1,10 @@
 import React from "react";
-import { CardGroup, Card, CardBody, CardText, CardImg, CardHeader, CardTitle } from "reactstrap";
+import { CardGroup, Card, CardBody, CardText, CardImg, CardTitle } from "reactstrap";
 import { Link } from "react-router-dom";
 
 
 const FavoriteFood = ({ favoriteFood }) => {
+    console.log(favoriteFood)
 
     return (
         <CardGroup className="foodCard">

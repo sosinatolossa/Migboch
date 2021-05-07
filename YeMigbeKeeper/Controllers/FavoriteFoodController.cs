@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using YeMigbeKeeper.Models;
 using YeMigbeKeeper.Repositories;
 
@@ -20,23 +20,12 @@ namespace YeMigbeKeeper.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
 
-            return Ok(_favoriteFoodRepository.GetAllFavoriteFoods());
-        }
-
-        [HttpGet("{userId}")]
-        public IActionResult Get(int userId)
+        [HttpGet("myFavoriteFoods")]
+        public IActionResult MyPosts()
         {
-            //User user = GetCurrentUser();
-            var favoriteFood = _favoriteFoodRepository.GetFavoriteFoodByUserId(userId);
-            if (favoriteFood == null)
-            {
-                return NotFound();
-            }
-            return Ok(favoriteFood);
+            User user = GetCurrentUser();
+            return Ok(_favoriteFoodRepository.GetFavoriteFoodByUserId(user.Id));
         }
 
 

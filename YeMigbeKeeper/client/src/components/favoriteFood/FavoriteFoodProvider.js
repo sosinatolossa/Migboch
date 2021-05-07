@@ -5,22 +5,23 @@ export const FavoriteFoodContext = createContext();
 
 export const FavoriteFoodProvider = (props) => {
     const { getToken } = useContext(UserContext);
-    const [favoriteFoods, setFavoriteFoods] = useState([]);
+    const [myFavoriteFoods, setMyFavoriteFoods] = useState([]);
 
-    const getAllFavoriteFoods = () => {
-        return getToken()
-            .then(token => fetch("/api/FavoriteFood", {
+    const getFavoriteFoodsByUser = () => {
+        return getToken().then((token) =>
+            fetch("/api/FavoriteFood/myFavoriteFoods", {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                    Authorization: `Bearer ${token}`,
+                },
             })
                 .then((res) => res.json())
-                .then(setFavoriteFoods));
+                .then(setMyFavoriteFoods)
+        );
     }
 
     return (
-        <FavoriteFoodContext.Provider value={{ favoriteFoods, getAllFavoriteFoods }}>
+        <FavoriteFoodContext.Provider value={{ myFavoriteFoods, getFavoriteFoodsByUser }}>
             {props.children}
         </FavoriteFoodContext.Provider>
     )
