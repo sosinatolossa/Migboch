@@ -66,7 +66,7 @@ export const HabeshaFoodProvider = (props) => {
         );
     };
 
-    const deleteHabeshaFood = (habeshaFoodId) =>
+    const deleteHabeshaFood = (habeshaFoodId) => {
         getToken().then((token) =>
             fetch(`/api/HabeshaFood/${habeshaFoodId}`, {
                 method: "DELETE",
@@ -76,6 +76,7 @@ export const HabeshaFoodProvider = (props) => {
                 },
             })
         );
+    };
 
     return (
         <HabeshaFoodContext.Provider value={{ habeshaFoods, setHabeshaFoods, getAllHabeshaFoods, getHabehsaFoodById, addHabeshaFood, updateHabeshaFood, deleteHabeshaFood }}>

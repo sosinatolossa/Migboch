@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { CardGroup, Card, CardBody, CardTitle, CardText, CardImg, Button } from "reactstrap";
 import { Link, useHistory } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
-import AddHabeshaFoodToFavoriteHabeshaFood from "../favoriteFood/FavoriteFoodForm";
 import { FavoriteFoodContext } from "../favoriteFood/FavoriteFoodProvider";
 
 const HabeshaFood = ({ habeshaFood }) => {

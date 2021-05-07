@@ -7,5 +7,6 @@ namespace YeMigbeKeeper.Repositories
     {
         List<FavoriteFood> GetFavoriteFoodByUserId(int userId);
         void Add(FavoriteFood favoriteHabeshaFood);
+        void Remove(int id);
     }
 }
