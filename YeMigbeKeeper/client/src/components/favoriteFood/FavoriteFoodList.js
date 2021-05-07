@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import { Row, Col, Container } from "reactstrap";
-import FavoriteFood from "./FavoriteFoodCard";
 import { FavoriteFoodContext } from "./FavoriteFoodProvider";
+import FavoriteFood from "../favoriteFood/FavoriteFoodCard";
 
 const FavoriteFoodList = () => {
-    const { favoriteFoods, getAllFavoriteFoods } = useContext(FavoriteFoodContext);
+    const { myFavoriteFoods, getAllMyFavoriteFoods } = useContext(FavoriteFoodContext);
 
 
     useEffect(() => {
-        getAllFavoriteFoods()
+        getAllMyFavoriteFoods()
     }, []);
 
     // Maps through each habesh food object, sending 
@@ -17,7 +17,7 @@ const FavoriteFoodList = () => {
         <div>
             <Container>
                 <Row>
-                    {favoriteFoods.map((favoriteHabeshaFoodObj) => (
+                    {myFavoriteFoods.map((favoriteHabeshaFoodObj) => (
                         <Col md="4"><FavoriteFood key={favoriteHabeshaFoodObj.id} favoriteFood={favoriteHabeshaFoodObj} /></Col> //favoriteFood is our parameter(object) in FavoriteFoodCard
                     ))}
                 </Row>
