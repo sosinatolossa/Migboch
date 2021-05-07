@@ -37,7 +37,7 @@ export const AddHabeshaFoodToFavoriteHabeshaFood = () => {
         //disable the button - no extra clicks
         setIsLoading(true); //this ensures the user cannot repeatedly click the button while the API is being updated
         //habeshaFood - add
-        addHabeshaFood({ //if not, this must be a new note so the input fields will be empty
+        addFavoriteHabeshaFood({ //if not, this must be a new note so the input fields will be empty
             habeshaFoodId: favoriteHabeshaFood.habeshaFoodId
         }).then(setFavoriteHabeshaFoodObj)
             .then(() => setIsLoading(false))

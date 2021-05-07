@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { CardGroup, Card, CardBody, CardTitle, CardText, CardImg, Button } from "reactstrap";
 import { Link, useHistory } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
+import AddHabeshaFoodToFavoriteHabeshaFood from "../favoriteFood/FavoriteFoodForm";
 
 
 const HabeshaFood = ({ habeshaFood }) => {
@@ -10,12 +11,16 @@ const HabeshaFood = ({ habeshaFood }) => {
 
 
     // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 
-    const addFavoriteFoodButton = () => {
-        <Button type="button" onClick={() => {
-            history.push(`/habeshaFood/favoriteFood`)
-        }} className="addFavoriteButton-button">
+    const addFavoriteFoodButton = (habeshaFood) => {
+
+        return <Button type="button" onClick={() => {
+            let currentUser = JSON.parse(sessionStorage.getItem("User"));
+            (habeshaFood.user?.id === currentUser.id)
+                //AddHabeshaFoodToFavoriteHabeshaFood()
+                (history.push(`/favoriteFood`))
+        }} className="addFavoriteButton-button" >
             <i class="far fa-heart"></i>
-        </Button>
+        </Button >
 
     }
 
@@ -56,7 +61,7 @@ const HabeshaFood = ({ habeshaFood }) => {
         <CardGroup className="foodCard">
             <Card>
                 <CardBody>
-                    {addFavoriteFoodButton(habeshaFood)}
+                    {addFavoriteFoodButton(habeshaFood) && <AddHabeshaFoodToFavoriteHabeshaFood />}
                     <CardImg top width="100%" src={habeshaFood.picture} alt="route" />
                     <CardTitle>
                         <Link to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
