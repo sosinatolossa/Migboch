@@ -8,6 +8,17 @@ const HabeshaFood = ({ habeshaFood }) => {
 
     const history = useHistory();
 
+
+    // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 
+    const addFavoriteFoodButton = () => {
+        <Button type="button" onClick={() => {
+            history.push(`/habeshaFood/favoriteFood`)
+        }} className="addFavoriteButton-button">
+            <i class="far fa-heart"></i>
+        </Button>
+
+    }
+
     // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 
     const editButton = (habeshaFoodId) => {
         let currentUser = JSON.parse(sessionStorage.getItem("User"));
@@ -15,7 +26,7 @@ const HabeshaFood = ({ habeshaFood }) => {
             return <Button type="button" onClick={() => {
                 history.push(`/habeshaFood/edit/${habeshaFoodId}`)
             }} className="edit-button">
-                Edit
+                <i class="fas fa-pen"></i>
             </Button>
         }
     }
@@ -36,7 +47,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                         .then(history.push("/HabeshaFood"));
                 }
             }} className="delete-button">
-                Delete
+                <i class="fas fa-trash-alt"></i>
             </Button>
         }
     }
@@ -44,8 +55,9 @@ const HabeshaFood = ({ habeshaFood }) => {
     return (
         <CardGroup className="foodCard">
             <Card>
-                <CardImg top width="100%" src={habeshaFood.picture} alt="route" />
                 <CardBody>
+                    {addFavoriteFoodButton(habeshaFood)}
+                    <CardImg top width="100%" src={habeshaFood.picture} alt="route" />
                     <CardTitle>
                         <Link to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
                     </CardTitle>

@@ -20,8 +20,23 @@ export const FavoriteFoodProvider = (props) => {
         );
     }
 
+    //adding a new favorite habesha food
+    const addFavoriteHabeshaFood = (habeshaFood) => {
+        return getToken().then((token) => {
+            return fetch(`/api/FavoriteFood`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(habeshaFood), //this stringifies our habesha food object meaning it changes our object into string object
+            }).then(res => res.json()) //then send the stringified object(res), and we will use this in our PostForm after we add new object
+        });
+    };
+
+
     return (
-        <FavoriteFoodContext.Provider value={{ myFavoriteFoods, getFavoriteFoodsByUser }}>
+        <FavoriteFoodContext.Provider value={{ myFavoriteFoods, getFavoriteFoodsByUser, addFavoriteHabeshaFood }}>
             {props.children}
         </FavoriteFoodContext.Provider>
     )

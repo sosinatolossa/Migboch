@@ -149,7 +149,7 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO HabeshaFood (TypeId, Picture, Name, Description, Ingredient, TotalCalorie, TotalFat, Cholesterol, Sodium, TotalCarbohydrate, Protein, Calcium, Iron, Potassium, UserId)
+                        INSERT INTO HabeshaFood (TypeId, Picture, [Name], Description, Ingredient, TotalCalorie, TotalFat, Cholesterol, Sodium, TotalCarbohydrate, Protein, Calcium, Iron, Potassium, UserId)
                         OUTPUT INSERTED.ID
                         VALUES (@TypeId, @Picture, @Name, @Description, @Ingredient, @TotalCalorie, @TotalFat, @Cholesterol, @Sodium, @TotalCarbohydrate, @Protein, @Calcium, @Iron, @Potassium, @UserId)";
 

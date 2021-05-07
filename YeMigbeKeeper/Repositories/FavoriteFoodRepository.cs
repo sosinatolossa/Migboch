@@ -79,5 +79,26 @@ namespace YeMigbeKeeper.Repositories
                 }
             }
         }
+
+        public void Add(FavoriteFood favoriteHabeshaFood)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO HabeshaFood (UserId, HabeshaFoodId)
+                        OUTPUT INSERTED.ID
+                        VALUES (@UserId, @HabeshaFoodId)";
+
+                    
+                    DbUtils.AddParameter(cmd, "@UserId", favoriteHabeshaFood.UserId);
+                    DbUtils.AddParameter(cmd, "@UserId", favoriteHabeshaFood.HabeshaFoodId);
+
+                    favoriteHabeshaFood.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
     }
 }
