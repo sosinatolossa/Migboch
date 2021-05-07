@@ -16,7 +16,7 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name, hf.Description, hf.Ingredient,
+                SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name as habeshaFoodName, hf.Description, hf.Ingredient,
                 hf.TotalCalorie, hf.TotalFat, hf.Cholesterol, hf.Sodium, hf.TotalCarbohydrate,
                 hf.Protein, hf.Calcium, hf.Iron, hf.Potassium, hf.UserId,
 
@@ -41,7 +41,7 @@ namespace YeMigbeKeeper.Repositories
                                 Name = DbUtils.GetString(reader, "TypeName"),
                             },
                             Picture = DbUtils.GetString(reader, "Picture"),
-                            Name = DbUtils.GetString(reader, "Name"),
+                            Name = DbUtils.GetString(reader, "habeshaFoodName"),
                             Description = DbUtils.GetString(reader, "Description"),
                             Ingredient = DbUtils.GetString(reader, "Ingredient"),
                             TotalCalorie = DbUtils.GetNullableInt(reader, "TotalCalorie"),
@@ -82,7 +82,7 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name, hf.Description, hf.Ingredient,
+                        SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name as habeshaFoodName, hf.Description, hf.Ingredient,
                 hf.TotalCalorie, hf.TotalFat, hf.Cholesterol, hf.Sodium, hf.TotalCarbohydrate,
                 hf.Protein, hf.Calcium, hf.Iron, hf.Potassium, hf.UserId,
 
@@ -111,7 +111,7 @@ namespace YeMigbeKeeper.Repositories
                                 Name = DbUtils.GetString(reader, "TypeName"),
                             },
                             Picture = DbUtils.GetString(reader, "Picture"),
-                            Name = DbUtils.GetString(reader, "Name"),
+                            Name = DbUtils.GetString(reader, "habeshaFoodName"),
                             Description = DbUtils.GetString(reader, "Description"),
                             Ingredient = DbUtils.GetString(reader, "Ingredient"),
                             TotalCalorie = DbUtils.GetNullableInt(reader, "TotalCalorie"),

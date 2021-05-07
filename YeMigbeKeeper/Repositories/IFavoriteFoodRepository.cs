@@ -6,5 +6,6 @@ namespace YeMigbeKeeper.Repositories
     public interface IFavoriteFoodRepository
     {
         List<FavoriteFood> GetFavoriteFoodByUserId(int userId);
+        void Add(FavoriteFood favoriteHabeshaFood);
     }
 }

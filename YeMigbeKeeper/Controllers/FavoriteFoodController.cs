@@ -28,6 +28,16 @@ namespace YeMigbeKeeper.Controllers
             return Ok(_favoriteFoodRepository.GetFavoriteFoodByUserId(user.Id));
         }
 
+        [HttpPost]
+        public IActionResult Post(FavoriteFood favoriteFood)
+        {
+            var currentUser = GetCurrentUser();
+
+            favoriteFood.UserId = currentUser.Id;
+            _favoriteFoodRepository.Add(favoriteFood);
+            return CreatedAtAction("Get", new { id = favoriteFood.Id }, favoriteFood);
+        }
+
 
         // Retrieves the current user object by using the provided firebaseId
         private User GetCurrentUser()

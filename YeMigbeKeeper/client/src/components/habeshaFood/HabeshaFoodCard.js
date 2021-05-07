@@ -2,20 +2,38 @@ import React, { useContext, useEffect } from "react";
 import { CardGroup, Card, CardBody, CardTitle, CardText, CardImg, Button } from "reactstrap";
 import { Link, useHistory } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
-
+import AddHabeshaFoodToFavoriteHabeshaFood from "../favoriteFood/FavoriteFoodForm";
+import { FavoriteFoodContext } from "../favoriteFood/FavoriteFoodProvider";
 
 const HabeshaFood = ({ habeshaFood }) => {
+    const { addFavoriteHabeshaFood } = useContext(FavoriteFoodContext)
 
     const history = useHistory();
 
+    let currentUser = JSON.parse(sessionStorage.getItem("User"));
+    // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 
+    const addFavoriteFoodButton = (habeshaFoodId) => {
+        const favoriteHabeshaFoodObj = {
+            userId: currentUser.Id,
+            habeshaFoodId //this means habeshaFoodId:habeshaFoodId
+        }
+        return <Button type="button" onClick={() => {
+            addFavoriteHabeshaFood(favoriteHabeshaFoodObj)
+                .then(history.push(`/favoriteFood`))
+        }} className="addFavoriteButton-button" >
+            <i class="far fa-heart"></i>
+        </Button >
+
+
+    }
+
     // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 
     const editButton = (habeshaFoodId) => {
-        let currentUser = JSON.parse(sessionStorage.getItem("User"));
         if (habeshaFood.user.id === currentUser.id) {
             return <Button type="button" onClick={() => {
                 history.push(`/habeshaFood/edit/${habeshaFoodId}`)
             }} className="edit-button">
-                Edit
+                <i class="fas fa-pen"></i>
             </Button>
         }
     }
@@ -24,7 +42,6 @@ const HabeshaFood = ({ habeshaFood }) => {
 
     // Handles showing the delete button if the current user is viewing a habesha food that they created. 
     const deleteButton = (habeshaFood) => {
-        let currentUser = JSON.parse(sessionStorage.getItem("User"));
         if (habeshaFood.user?.id === currentUser.id) {
             return <Button variant="secondary" onClick={() => {
                 const confirmBox = window.confirm(
@@ -36,7 +53,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                         .then(history.push("/HabeshaFood"));
                 }
             }} className="delete-button">
-                Delete
+                <i class="fas fa-trash-alt"></i>
             </Button>
         }
     }
@@ -44,8 +61,9 @@ const HabeshaFood = ({ habeshaFood }) => {
     return (
         <CardGroup className="foodCard">
             <Card>
-                <CardImg top width="100%" src={habeshaFood.picture} alt="route" />
                 <CardBody>
+                    {addFavoriteFoodButton(habeshaFood.id)}
+                    <CardImg top width="100%" src={habeshaFood.picture} alt="route" />
                     <CardTitle>
                         <Link to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
                     </CardTitle>

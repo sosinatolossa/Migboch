@@ -2,27 +2,22 @@
 using Microsoft.Extensions.Configuration;
 using YeMigbeKeeper.Models;
 using YeMigbeKeeper.Utils;
-
 namespace YeMigbeKeeper.Repositories
 {
     public class TypeRepository : BaseRepository, ITypeRepository
     {
         public TypeRepository(IConfiguration configuration) : base(configuration) { }
-
         public List<Type> GetAllTypes()
         {
-
             using (var conn = Connection)
             {
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                SELECT Id, UserId, HabeshaFoodId
-                  FROM FavoriteFood";
-
+                SELECT Id, Name
+                  FROM Type";
                     var reader = cmd.ExecuteReader();
-
                     var types = new List<Type>();
                     while (reader.Read())
                     {
@@ -32,13 +27,10 @@ namespace YeMigbeKeeper.Repositories
                             Name = DbUtils.GetString(reader, "Name")
                         });
                     }
-
                     reader.Close();
-
                     return types;
                 }
             }
         }
     }
 }
-

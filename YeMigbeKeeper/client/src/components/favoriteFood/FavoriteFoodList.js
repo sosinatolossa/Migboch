@@ -9,7 +9,7 @@ const FavoriteFoodList = () => {
 
     useEffect(() => {
         getFavoriteFoodsByUser()
-    }, []);
+    }, [myFavoriteFoods]);
 
     // Maps through each habesh food object, sending 
     // them to be converted to HTML then prints them all out.
