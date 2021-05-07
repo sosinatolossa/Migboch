@@ -4,11 +4,11 @@ import { FavoriteFoodContext } from "./FavoriteFoodProvider";
 import FavoriteFood from "../favoriteFood/FavoriteFoodCard";
 
 const FavoriteFoodList = () => {
-    const { myFavoriteFoods, getAllMyFavoriteFoods } = useContext(FavoriteFoodContext);
+    const { myFavoriteFoods, getFavoriteFoodsByUser } = useContext(FavoriteFoodContext);
 
 
     useEffect(() => {
-        getAllMyFavoriteFoods()
+        getFavoriteFoodsByUser()
     }, []);
 
     // Maps through each habesh food object, sending 
