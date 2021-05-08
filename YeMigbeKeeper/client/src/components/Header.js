@@ -10,7 +10,7 @@ export default function Header() {
 
     return (
         <div>
-            <Navbar bg="warning" variant="light">
+            <Navbar bg="warning" variant="light" light expand="md">
                 <Navbar.Brand href="/">
                     Ye Migbe Keeper
                 </Navbar.Brand>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { CardGroup, Card, Button, Image, Col } from "react-bootstrap";
+import { CardGroup, Card, Button } from "react-bootstrap";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import { useParams, useHistory } from "react-router-dom";
 
