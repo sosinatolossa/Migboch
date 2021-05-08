@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CardGroup, Card, CardBody, CardTitle, CardText, CardImg, Button } from "reactstrap";
+import { CardGroup, Card, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import { FavoriteFoodContext } from "../favoriteFood/FavoriteFoodProvider";
@@ -16,7 +16,7 @@ const HabeshaFood = ({ habeshaFood }) => {
             userId: currentUser.Id,
             habeshaFoodId //this means habeshaFoodId:habeshaFoodId
         }
-        return <Button type="button" onClick={() => {
+        return <Button variant="danger" onClick={() => {
             addFavoriteHabeshaFood(favoriteHabeshaFoodObj)
                 .then(history.push(`/favoriteFood`))
         }} className="addFavoriteButton-button" >
@@ -59,19 +59,23 @@ const HabeshaFood = ({ habeshaFood }) => {
 
     return (
         <CardGroup className="foodCard">
-            <Card>
-                <CardBody>
+            <Card >
+                <Card.Body>
                     {addFavoriteFoodButton(habeshaFood.id)}
-                    <CardImg top width="100%" src={habeshaFood.picture} alt="route" />
-                    <CardTitle>
+                    <Card.Header>
                         <Link to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
-                    </CardTitle>
-                    <CardText>Type: {habeshaFood.type.name}</CardText>
-                    <CardText>{habeshaFood.description}</CardText>
-                    <CardText>Ingredients: {habeshaFood.ingredient}</CardText>
+                    </Card.Header>
+                    <Card.Img top width="80%" src={habeshaFood.picture} alt="route" />
+                    <Card.Text>Type: {habeshaFood.type.name}</Card.Text>
+                    <Card.Text>{habeshaFood.description}</Card.Text>
+                    <Card.Text>Ingredients: {habeshaFood.ingredient}</Card.Text>
                     {editButton(habeshaFood.id)}
                     {deleteButton(habeshaFood)}
-                </CardBody>
+                </Card.Body>
+
+                <Card.Footer>
+                    <small className="cardFooter">Created by: {habeshaFood.user.displayName}</small>
+                </Card.Footer>
             </Card>
         </CardGroup >
 

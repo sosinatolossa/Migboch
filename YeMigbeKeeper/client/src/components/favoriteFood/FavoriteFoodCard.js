@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CardGroup, Card, CardBody, CardText, CardImg, CardTitle, Button } from "reactstrap";
+import { CardGroup, Card, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { FavoriteFoodContext } from "./FavoriteFoodProvider";
 
@@ -12,7 +12,7 @@ const FavoriteFood = ({ favoriteFood }) => {
     // Handles showing the delete button if the current user is viewing a habesha food that they created. 
     const removeButton = (favoriteFood) => {
         console.log(favoriteFood)
-        return <Button variant="secondary" onClick={() => {
+        return <Button variant="danger" onClick={() => {
             const confirmBox = window.confirm(
                 "Do you really want to remove this habesha food from your favorite habesha food list?"
             )
@@ -27,19 +27,20 @@ const FavoriteFood = ({ favoriteFood }) => {
     }
 
     return (
-        <CardGroup className="foodCard">
+        <CardGroup className="foodCard" bg="warning" variant="light">
             <Card>
-                <CardBody>
+                <Card.Body>
                     {removeButton(favoriteFood.id)}
-                    <CardImg top width="100%" src={favoriteFood.habeshaFood.picture} alt="route" />
-                    <CardTitle>
+                    <Card.Header>
                         <Link to={`/habeshaFood/${favoriteFood.habeshaFood.id}`}>
                             {favoriteFood.habeshaFood.name}</Link>
-                    </CardTitle>
-                    <CardText>Type: {favoriteFood.habeshaFood.type.name}</CardText>
-                    <CardText>{favoriteFood.habeshaFood.description}</CardText>
-                    <CardText>Ingredients: {favoriteFood.habeshaFood.ingredient}</CardText>
-                </CardBody>
+                    </Card.Header>
+                    <Card.Img top width="100%" src={favoriteFood.habeshaFood.picture} alt="route" />
+
+                    <Card.Text>Type: {favoriteFood.habeshaFood.type.name}</Card.Text>
+                    <Card.Text>{favoriteFood.habeshaFood.description}</Card.Text>
+                    <Card.Text>Ingredients: {favoriteFood.habeshaFood.ingredient}</Card.Text>
+                </Card.Body>
             </Card>
         </CardGroup >
 
