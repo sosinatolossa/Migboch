@@ -2,6 +2,7 @@ import './App.css';
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { UserProvider } from "./components/user/UserProvider";
+import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
 import { HabeshaFoodProvider } from './components/habeshaFood/HabeshaFoodProvider';
 import { TypeProvider } from './components/type/TypeProvider';
@@ -15,6 +16,7 @@ function App() {
         <HabeshaFoodProvider>
           <TypeProvider>
             <FavoriteFoodProvider>
+              <Header />
               <ApplicationViews />
             </FavoriteFoodProvider>
           </TypeProvider>
