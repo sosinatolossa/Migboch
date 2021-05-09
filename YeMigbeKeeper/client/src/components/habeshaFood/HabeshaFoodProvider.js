@@ -38,6 +38,20 @@ export const HabeshaFoodProvider = (props) => {
         );
     }
 
+    //seeing only the user's list of habesha foods
+    const getHabeshaFoodsByUser = () => {
+        return getToken().then((token) =>
+            fetch("/api/habeshaFood/myHabeshaFoods", {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+                .then((res) => res.json())
+                .then(setHabeshaFoods)
+        );
+    };
+
     //adding a new habesha food
     const addHabeshaFood = (habeshaFood) => {
         return getToken().then((token) => {
@@ -78,7 +92,7 @@ export const HabeshaFoodProvider = (props) => {
         );
 
     return (
-        <HabeshaFoodContext.Provider value={{ habeshaFoods, setHabeshaFoods, getAllHabeshaFoods, getHabehsaFoodById, addHabeshaFood, updateHabeshaFood, deleteHabeshaFood }}>
+        <HabeshaFoodContext.Provider value={{ habeshaFoods, setHabeshaFoods, getAllHabeshaFoods, getHabehsaFoodById, addHabeshaFood, updateHabeshaFood, deleteHabeshaFood, getHabeshaFoodsByUser }}>
             {props.children}
         </HabeshaFoodContext.Provider>
     )
