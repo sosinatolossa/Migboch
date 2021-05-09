@@ -17,7 +17,7 @@ const MyHabeshaFoods = () => {
                 Add new habesha food
         </Link>
             <Row>
-                {habeshaFoods.map((habeshaFoodObj) => (
+                {habeshaFoods?.map((habeshaFoodObj) => (
                     <Col border="primary" md="4"><HabeshaFood key={habeshaFoodObj.id} habeshaFood={habeshaFoodObj} /></Col>
                 ))}
             </Row>

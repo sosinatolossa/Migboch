@@ -48,10 +48,10 @@ export function UserProvider(props) {
             .auth()
             .createUserWithEmailAndPassword(user.email, password)
             .then((createResponse) =>
-                saveUser({ ...user, firebaseUserId: createResponse.user.uid })
+                saveUser({ ...user, fireBaseUserId: createResponse.user.uid })
             )
             .then((savedUser) => {
-                sessionStorage.setItem("user", JSON.stringify(savedUser));
+                sessionStorage.setItem("User", JSON.stringify(savedUser));
                 setIsLoggedIn(true);
             });
     };
@@ -78,8 +78,9 @@ export function UserProvider(props) {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(user),
-            }).then((resp) => resp.json())
-        );
+            })
+                .then((resp) => resp.json()).then()
+                .then(setUsers));
     };
 
     /*
