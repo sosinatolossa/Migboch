@@ -36,6 +36,13 @@ namespace YeMigbeKeeper.Controllers
             return Ok(_habeshaFoodRepository.GetById(habeshaFoodId));
         }
 
+        [HttpGet("myHabeshaFoods")]
+        public IActionResult MyPosts()
+        {
+            User user = GetCurrentUser();
+            return Ok(_habeshaFoodRepository.GetHabeshaFoodsByUser(user.Id));
+        }
+
         [HttpPost]
         public IActionResult Post(HabeshaFood habeshaFood)
         {

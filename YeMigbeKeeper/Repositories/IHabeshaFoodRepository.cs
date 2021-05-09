@@ -11,5 +11,6 @@ namespace YeMigbeKeeper.Repositories
         void Add(HabeshaFood habeshaFood);
         void Update(HabeshaFood habeshaFood);
         void Delete(int id);
+        List<HabeshaFood> GetHabeshaFoodsByUser(int userId);
     }
 }

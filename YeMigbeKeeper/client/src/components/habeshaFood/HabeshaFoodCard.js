@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CardGroup, Card, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
@@ -48,8 +48,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                 )
                 if (confirmBox === true) {
                     deleteHabeshaFood(habeshaFood.id)
-                        .then(getAllHabeshaFoods)
-                        .then(history.push("/HabeshaFood"));
+                        .then(getAllHabeshaFoods);
                 }
             }} className="delete-button">
                 <i class="fas fa-trash-alt"></i>

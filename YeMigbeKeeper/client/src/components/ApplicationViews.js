@@ -6,6 +6,7 @@ import Register from "./Register";
 import UserList from "././user/UserList";
 import HabeshaFoodList from "././habeshaFood/HabeshaFoodList";
 import HabeshaFoodDetails from "././habeshaFood/HabeshaFoodDetails";
+import MyHabeshaFoods from "././habeshaFood/MyHabeshaFoods";
 import HabeshaFoodCreateForm from "./habeshaFood/HabeshaFoodCreateForm";
 import HabeshaFoodEditForm from "./habeshaFood/HabeshaFoodEditForm";
 import TypeList from "././type/TypeList";
@@ -37,6 +38,10 @@ export default function ApplicationViews() {
 
                 <Route exact path="/HabeshaFood/:id(\d+)">
                     {isLoggedIn ? <HabeshaFoodDetails /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route path="/myHabeshaFoods" exact>
+                    {isLoggedIn ? <MyHabeshaFoods /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/types" exact>
