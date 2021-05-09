@@ -82,6 +82,7 @@ export function UserProvider(props) {
         );
     };
 
+    /*
     const getAllUsers = () => {
         return getToken()
             .then(token => fetch(apiUrl, {
@@ -104,6 +105,7 @@ export function UserProvider(props) {
             })
                 .then((res) => res.json()))
     };
+    */
 
     return (
         <UserContext.Provider
@@ -113,9 +115,7 @@ export function UserProvider(props) {
                 login,
                 logout,
                 register,
-                getToken,
-                getAllUsers,
-                getUserById
+                getToken
             }}
         >
             {isFirebaseReady ? (

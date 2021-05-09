@@ -23,7 +23,7 @@ namespace YeMigbeKeeper.Repositories
                           FROM [User] u
                          WHERE FireBaseUserId = @FireBaseuserId";
 
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", fireBaseUserId);
+                    DbUtils.AddParameter(cmd, "@FireBaseUserId", fireBaseUserId);
 
                     User user = null;
 
