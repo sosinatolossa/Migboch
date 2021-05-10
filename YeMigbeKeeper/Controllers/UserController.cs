@@ -25,7 +25,7 @@ namespace YeMigbeKeeper.Controllers
             return Ok(profiles);
         }
 
-        [HttpGet("{firebaseUserId}")]
+        [HttpGet("{fireBaseUserId}")]
         public IActionResult GetUser(string fireBaseUserId)
         {
             return Ok(_userRepository.GetByFireBaseUserId(fireBaseUserId));

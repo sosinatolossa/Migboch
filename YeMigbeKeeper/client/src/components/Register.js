@@ -21,7 +21,7 @@ export default function Register() {
         } else {
             const user = { firstName, lastName, displayName, email };
             register(user, password)
-                .then(() => history.push("/HabeshaFood"));
+                .then(() => history.push("/"));
         }
     };
 

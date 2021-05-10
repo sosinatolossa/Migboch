@@ -31,7 +31,7 @@ export const FavoriteFoodProvider = (props) => {
                     Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(habeshaFood), //this stringifies our habesha food object meaning it changes our object into string object
-            }).then(res => res.json()) //then send the stringified object(res), and we will use this in our PostForm after we add new object
+            }).then(res => res.json()) //then send the stringified object(res), and we will use this in our HabeshaFoodCard after we add new object
         });
     };
 

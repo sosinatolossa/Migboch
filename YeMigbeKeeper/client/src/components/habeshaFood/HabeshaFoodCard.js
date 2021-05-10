@@ -10,10 +10,10 @@ const HabeshaFood = ({ habeshaFood }) => {
     const history = useHistory();
 
     let currentUser = JSON.parse(sessionStorage.getItem("User"));
-    // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 
+
     const addFavoriteFoodButton = (habeshaFoodId) => {
         const favoriteHabeshaFoodObj = {
-            userId: currentUser.Id,
+            userId: currentUser?.id,
             habeshaFoodId //this means habeshaFoodId:habeshaFoodId
         }
         return <Button variant="danger" onClick={() => {
@@ -28,7 +28,7 @@ const HabeshaFood = ({ habeshaFood }) => {
 
     // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 
     const editButton = (habeshaFoodId) => {
-        if (habeshaFood.user.id === currentUser.id) {
+        if (habeshaFood.user.id === currentUser?.id) {
             return <Button type="button" onClick={() => {
                 history.push(`/habeshaFood/edit/${habeshaFoodId}`)
             }} className="edit-button">
@@ -41,7 +41,7 @@ const HabeshaFood = ({ habeshaFood }) => {
 
     // Handles showing the delete button if the current user is viewing a habesha food that they created. 
     const deleteButton = (habeshaFood) => {
-        if (habeshaFood.user?.id === currentUser.id) {
+        if (habeshaFood.user.id === currentUser?.id) {
             return <Button variant="secondary" onClick={() => {
                 const confirmBox = window.confirm(
                     "Do you really want to delete this habesha food?"

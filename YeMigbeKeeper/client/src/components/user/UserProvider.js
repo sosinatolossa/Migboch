@@ -51,7 +51,7 @@ export function UserProvider(props) {
                 saveUser({ ...user, firebaseUserId: createResponse.user.uid })
             )
             .then((savedUser) => {
-                sessionStorage.setItem("user", JSON.stringify(savedUser));
+                sessionStorage.setItem("User", JSON.stringify(savedUser));
                 setIsLoggedIn(true);
             });
     };
@@ -78,10 +78,11 @@ export function UserProvider(props) {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(user),
-            }).then((resp) => resp.json())
+            }).then((resp) => resp.json()).then()
         );
     };
 
+    /*
     const getAllUsers = () => {
         return getToken()
             .then(token => fetch(apiUrl, {
@@ -104,6 +105,7 @@ export function UserProvider(props) {
             })
                 .then((res) => res.json()))
     };
+    */
 
     return (
         <UserContext.Provider
@@ -113,9 +115,7 @@ export function UserProvider(props) {
                 login,
                 logout,
                 register,
-                getToken,
-                getAllUsers,
-                getUserById
+                getToken
             }}
         >
             {isFirebaseReady ? (
