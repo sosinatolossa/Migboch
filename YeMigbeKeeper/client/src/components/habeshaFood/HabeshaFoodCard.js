@@ -11,10 +11,10 @@ const HabeshaFood = ({ habeshaFood }) => {
 
     let currentUser = JSON.parse(sessionStorage.getItem("User"));
 
-    const addFavoriteFoodButton = (habeshaFoodId) => {
+    const addFavoriteFoodButton = () => {
         const favoriteHabeshaFoodObj = {
-            userId: currentUser?.id,
-            habeshaFoodId //this means habeshaFoodId:habeshaFoodId
+            //userId: currentUser?.id,
+            habeshaFoodId: habeshaFood.id
         }
         return <Button variant="danger" onClick={() => {
             addFavoriteHabeshaFood(favoriteHabeshaFoodObj)
@@ -27,10 +27,10 @@ const HabeshaFood = ({ habeshaFood }) => {
     }
 
     // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 
-    const editButton = (habeshaFoodId) => {
+    const editButton = () => {
         if (habeshaFood.user.id === currentUser?.id) {
             return <Button type="button" onClick={() => {
-                history.push(`/habeshaFood/edit/${habeshaFoodId}`)
+                history.push(`/habeshaFood/edit/${habeshaFood.id}`)
             }} className="edit-button">
                 <i class="fas fa-pen"></i>
             </Button>
@@ -40,7 +40,7 @@ const HabeshaFood = ({ habeshaFood }) => {
     const { deleteHabeshaFood, getAllHabeshaFoods } = useContext(HabeshaFoodContext);
 
     // Handles showing the delete button if the current user is viewing a habesha food that they created. 
-    const deleteButton = (habeshaFood) => {
+    const deleteButton = () => {
         if (habeshaFood.user.id === currentUser?.id) {
             return <Button variant="secondary" onClick={() => {
                 const confirmBox = window.confirm(
@@ -60,7 +60,7 @@ const HabeshaFood = ({ habeshaFood }) => {
         <CardGroup className="foodCard">
             <Card >
                 <Card.Body>
-                    {addFavoriteFoodButton(habeshaFood.id)}
+                    {addFavoriteFoodButton()}
                     <Card.Header>
                         <Link to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
                     </Card.Header>
@@ -68,8 +68,8 @@ const HabeshaFood = ({ habeshaFood }) => {
                     <Card.Text>Type: {habeshaFood.type.name}</Card.Text>
                     <Card.Text>{habeshaFood.description}</Card.Text>
                     <Card.Text>Ingredients: {habeshaFood.ingredient}</Card.Text>
-                    {editButton(habeshaFood.id)}
-                    {deleteButton(habeshaFood)}
+                    {editButton()}
+                    {deleteButton()}
                 </Card.Body>
 
                 <Card.Footer>

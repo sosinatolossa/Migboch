@@ -101,14 +101,16 @@ export const HabeshaFoodCreateForm = () => {
         let potassium = parseInt(habeshaFood.potassium)
 
 
-        if (description === "") {
-            window.alert("Please write description")
+        if (name === "") {
+            window.alert("Please type in the name of the food")
+        } else if (typeId === 0 || typeId === NaN) {
+            window.alert("Please select a type")
         } else if (picture === "") {
             window.alert("Please upload a picture")
-        } else if (name === "") {
-            window.alert("Please type in the name of the food")
+        } else if (description === "") {
+            window.alert("Please write description")
         } else if (ingredient === "") {
-            window.alert("Please type in the ingredients.")
+            window.alert("Please type in the ingredients")
         } else {
             //disable the button - no extra clicks
             setIsLoading(true); //this ensures the user cannot repeatedly click the button while the API is being updated

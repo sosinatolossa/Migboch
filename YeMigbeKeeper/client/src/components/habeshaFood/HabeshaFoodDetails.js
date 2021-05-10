@@ -8,21 +8,33 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
     const { deleteHabeshaFood, getAllHabeshaFoods } = useContext(HabeshaFoodContext);
     const history = useHistory();
 
+    let currentUser = JSON.parse(sessionStorage.getItem("User"));
+
+    // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 
+    const editButton = () => {
+        if (aHabeshaFood.user?.id === currentUser?.id) {
+            return <Button type="button" onClick={() => {
+                history.push(`/habeshaFood/edit/${aHabeshaFood.id}`)
+            }} className="edit-button">
+                <i class="fas fa-pen"></i>
+            </Button>
+        }
+    }
+
     // Handles showing the delete button if the current user is viewing a habesha food that they created. 
-    const deleteButton = (habeshaFood) => {
-        let currentUser = JSON.parse(sessionStorage.getItem("User"));
+    const deleteButton = () => {
         if (aHabeshaFood.user?.id === currentUser.id) {
             return <Button variant="secondary" onClick={() => {
                 const confirmBox = window.confirm(
                     "Do you really want to delete this habesha food?"
                 )
                 if (confirmBox === true) {
-                    deleteHabeshaFood(habeshaFood.id)
+                    deleteHabeshaFood(aHabeshaFood.id)
                         .then(getAllHabeshaFoods)
                         .then(history.push("/HabeshaFood"));
                 }
             }} className="delete-button">
-                Delete
+                <i class="fas fa-trash-alt"></i>
             </Button>
         }
     }
@@ -45,7 +57,8 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
                     <Card.Text>{aHabeshaFood.calcium} % calcium</Card.Text>
                     <Card.Text>{aHabeshaFood.iron} % iron</Card.Text>
                     <Card.Text>{aHabeshaFood.potassium} mg potassium</Card.Text>
-                    {deleteButton(aHabeshaFood)}
+                    {editButton()}
+                    {deleteButton()}
                 </Card.Body>
             </Card>
         </CardGroup >
