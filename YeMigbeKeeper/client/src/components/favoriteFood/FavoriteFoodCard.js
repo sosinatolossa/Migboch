@@ -7,7 +7,7 @@ import { FavoriteFoodContext } from "./FavoriteFoodProvider";
 const FavoriteFood = ({ favoriteFood }) => {
 
     const { deleteFavoriteHabeshaFood, setMyFavFoodDeleted } = useContext(FavoriteFoodContext);
-    const history = useHistory();
+    //const history = useHistory();
 
     // Handles showing the delete button if the current user is viewing a habesha food that they created. 
     const removeButton = (favoriteFood) => {
