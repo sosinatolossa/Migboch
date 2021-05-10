@@ -295,6 +295,15 @@ namespace YeMigbeKeeper.Repositories
             using (var conn = Connection)
             {
                 conn.Open();
+
+                // Delete related PostTag rows
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FavoriteFood WHERE HabeshaFoodId = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"DELETE HabeshaFood WHERE id = @id";
