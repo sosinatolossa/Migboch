@@ -39,12 +39,14 @@ namespace YeMigbeKeeper.Controllers
             return CreatedAtAction("Get", new { id = favoriteFood.Id }, favoriteFood);
         }
 
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        [HttpDelete("{habeshaFoodId}")]
+        public ActionResult Delete(int habeshaFoodId)
         {
+            var currentUser = GetCurrentUser();
+            
             try
             {
-                _favoriteFoodRepository.Remove(id);
+                _favoriteFoodRepository.Remove(habeshaFoodId, currentUser.Id);
                 return Ok();
             }
             catch (Exception)

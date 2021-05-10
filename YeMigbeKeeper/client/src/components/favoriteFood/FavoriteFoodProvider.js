@@ -35,9 +35,9 @@ export const FavoriteFoodProvider = (props) => {
         });
     };
 
-    const deleteFavoriteHabeshaFood = (favHabeshaFoodId) => {
+    const deleteFavoriteHabeshaFood = (habeshaFoodId) => {
         getToken().then((token) =>
-            fetch(`/api/FavoriteFood/${favHabeshaFoodId}`, {
+            fetch(`/api/FavoriteFood/${habeshaFoodId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
