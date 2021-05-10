@@ -48,7 +48,7 @@ export function UserProvider(props) {
             .auth()
             .createUserWithEmailAndPassword(user.email, password)
             .then((createResponse) =>
-                saveUser({ ...user, fireBaseUserId: createResponse.user.uid })
+                saveUser({ ...user, firebaseUserId: createResponse.user.uid })
             )
             .then((savedUser) => {
                 sessionStorage.setItem("User", JSON.stringify(savedUser));
@@ -78,9 +78,8 @@ export function UserProvider(props) {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(user),
-            })
-                .then((resp) => resp.json()).then()
-                .then(setUsers));
+            }).then((resp) => resp.json()).then()
+        );
     };
 
     /*
