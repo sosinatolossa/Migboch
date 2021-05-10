@@ -101,15 +101,17 @@ namespace YeMigbeKeeper.Repositories
             }
         }
 
-        public void Remove(int id)
+        public void Remove(int habeshaFoodId, int userId)
         {
             using (var conn = Connection)
             {
                 conn.Open();
+
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE FavoriteFood WHERE id = @id";
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.CommandText = @"DELETE FavoriteFood WHERE habeshaFoodId = @habeshaFoodId AND userId = @userId";
+                    cmd.Parameters.AddWithValue("@habeshaFoodId", habeshaFoodId);
+                    cmd.Parameters.AddWithValue("@userId", userId);
                     cmd.ExecuteNonQuery();
                 }
             }

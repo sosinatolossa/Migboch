@@ -10,14 +10,14 @@ const FavoriteFood = ({ favoriteFood }) => {
     //const history = useHistory();
 
     // Handles showing the delete button if the current user is viewing a habesha food that they created. 
-    const removeButton = (favoriteFood) => {
+    const removeButton = () => {
         console.log(favoriteFood)
         return <Button variant="danger" onClick={() => {
             const confirmBox = window.confirm(
                 "Do you really want to remove this habesha food from your favorite habesha food list?"
             )
             if (confirmBox === true) {
-                deleteFavoriteHabeshaFood(favoriteFood)
+                deleteFavoriteHabeshaFood(favoriteFood.habeshaFoodId)
                 setMyFavFoodDeleted(true)//this means "I deleted a fav habesha food"
             }
         }} className="delete-button">
@@ -30,7 +30,7 @@ const FavoriteFood = ({ favoriteFood }) => {
         <CardGroup className="foodCard" bg="warning" variant="light">
             <Card>
                 <Card.Body>
-                    {removeButton(favoriteFood.id)}
+                    {removeButton()}
                     <Card.Header>
                         <Link to={`/habeshaFood/${favoriteFood.habeshaFood.id}`}>
                             {favoriteFood.habeshaFood.name}</Link>
@@ -41,6 +41,9 @@ const FavoriteFood = ({ favoriteFood }) => {
                     <Card.Text>{favoriteFood.habeshaFood.description}</Card.Text>
                     <Card.Text>Ingredients: {favoriteFood.habeshaFood.ingredient}</Card.Text>
                 </Card.Body>
+                <Card.Footer>
+                    <small className="cardFooter">Created by: {favoriteFood.habeshaFood.user.displayName}</small>
+                </Card.Footer>
             </Card>
         </CardGroup >
 
