@@ -1,11 +1,12 @@
 import React, { useEffect, useContext } from "react";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import HabeshaFood from "./HabeshaFoodCard";
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { useHistory } from "react-router";
 
 const MyHabeshaFoods = () => {
     const { habeshaFoods, getHabeshaFoodsByUser } = useContext(HabeshaFoodContext);
+    const history = useHistory();
 
     useEffect(() => {
         getHabeshaFoodsByUser();
@@ -13,9 +14,7 @@ const MyHabeshaFoods = () => {
 
     return (
         <Container>
-            <Link to="/HabeshaFood/create" className="nav-link">
-                Add new habesha food
-        </Link>
+            <Button className="addNewHabeshaFoodBtn" onClick={() => { history.push("/HabeshaFood/create") }}>Add habesha food</Button>
             <Row>
                 {habeshaFoods?.map((habeshaFoodObj) => (
                     <Col border="primary" md="4"><HabeshaFood key={habeshaFoodObj.id} habeshaFood={habeshaFoodObj} /></Col>

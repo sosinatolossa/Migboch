@@ -8,6 +8,8 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
+    let currentUser = JSON.parse(sessionStorage.getItem("User"));
+
     return (
         <div>
             <Navbar bg="warning" variant="light" light expand="md">
@@ -61,7 +63,7 @@ export default function Header() {
 
                     <Nav className="mr-auto" navbar>
                         {isLoggedIn && (
-                            <NavDropdown title="Dropdown" className="justify-content-end">
+                            <NavDropdown title={`Signed in as ${currentUser.firstName} ${currentUser.lastName}`} className="justify-content-end">
                                 <NavDropdown.Item href="#action/3.1">
                                     <Nav.Item>
                                         <a
