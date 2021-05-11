@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import { TypeContext } from "../type/TypeProvider";
-import { Form } from 'react-bootstrap';
+import { Form, Modal, Button } from 'react-bootstrap';
 
 export const HabeshaFoodEditForm = () => {
     const { updateHabeshaFood, getHabehsaFoodById } = useContext(HabeshaFoodContext);
@@ -84,6 +84,11 @@ export const HabeshaFoodEditForm = () => {
         });
     };
 
+    const [show, setShow] = useState(false); //modal state
+
+    const handleClose = () => setShow(false); //close modal
+    const handleShow = () => setShow(true); //opens the modal
+
     return (
         <>
             <Form className="habeshaFoodForm">
@@ -127,59 +132,75 @@ export const HabeshaFoodEditForm = () => {
                         value={habeshaFood.ingredient} as="textarea" rows={3} />
                 </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Calorie</Form.Label>
-                    <Form.Control type="text" placeholder="calorie" id="totalCalorie" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.totalCalorie} />
-                </Form.Group>
+                <Button variant="primary" onClick={handleShow}>
+                    Edit nutrition facts
+                </Button>
 
-                <Form.Group>
-                    <Form.Label>Fat</Form.Label>
-                    <Form.Control type="text" placeholder="fat" id="totalFat" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.totalFat} />
-                </Form.Group>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Nutrition facts</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Group>
+                            <Form.Label>Calorie</Form.Label>
+                            <Form.Control type="text" placeholder="calorie" id="totalCalorie" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                                value={habeshaFood.totalCalorie} />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Cholesterol</Form.Label>
-                    <Form.Control type="text" placeholder="cholesterol" id="cholesterol" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.cholesterol} />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Fat</Form.Label>
+                            <Form.Control type="text" placeholder="fat" id="totalFat" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                                value={habeshaFood.totalFat} />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Sodium</Form.Label>
-                    <Form.Control type="text" placeholder="sodium" id="sodium" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.sodium} />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Cholesterol</Form.Label>
+                            <Form.Control type="text" placeholder="cholesterol" id="cholesterol" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                                value={habeshaFood.cholesterol} />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Total Carbohydrate</Form.Label>
-                    <Form.Control type="text" placeholder="total carbohydrate" id="totalCarbohydrate" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.totalCarbohydrate} />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Sodium</Form.Label>
+                            <Form.Control type="text" placeholder="sodium" id="sodium" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                                value={habeshaFood.sodium} />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Protein</Form.Label>
-                    <Form.Control type="text" placeholder="protein" id="protein" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.protein} />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Total Carbohydrate</Form.Label>
+                            <Form.Control type="text" placeholder="total carbohydrate" id="totalCarbohydrate" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                                value={habeshaFood.totalCarbohydrate} />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Calcium</Form.Label>
-                    <Form.Control type="text" placeholder="calcium" id="calcium" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.calcium} />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Protein</Form.Label>
+                            <Form.Control type="text" placeholder="protein" id="protein" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                                value={habeshaFood.protein} />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Iron</Form.Label>
-                    <Form.Control type="text" placeholder="iron" id="iron" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.iron} />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Calcium</Form.Label>
+                            <Form.Control type="text" placeholder="calcium" id="calcium" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                                value={habeshaFood.calcium} />
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Potassium</Form.Label>
-                    <Form.Control type="text" placeholder="potassium" id="potassium" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.potassium} />
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Iron</Form.Label>
+                            <Form.Control type="text" placeholder="iron" id="iron" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                                value={habeshaFood.iron} />
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label>Potassium</Form.Label>
+                            <Form.Control type="text" placeholder="potassium" id="potassium" onChange={handleControlledInputChange} required autoFocus className="form-control"
+                                value={habeshaFood.potassium} />
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Save
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
                 <button className="btn btn-primary"
                     disabled={isLoading}
