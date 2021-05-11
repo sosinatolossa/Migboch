@@ -265,9 +265,8 @@ export const HabeshaFoodCreateForm = () => {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
-                            Close
-                    </Button>
-
+                            Add
+                        </Button>
                     </Modal.Footer>
                 </Modal>
 
