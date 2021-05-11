@@ -23,7 +23,6 @@ export const HabeshaFoodCreateForm = () => {
     //const currentUser = parseInt(localStorage.getItem("ZuringTheWorld_user"))
 
     //const [imageURL, setImageURL] = useState("")
-    //for edit, hold on to state of habeshaFood in this view
     const [habeshaFood, setHabeshaFood] = useState({
         typeId: 0,
         picture: "",
@@ -143,7 +142,7 @@ export const HabeshaFoodCreateForm = () => {
 
     const [show, setShow] = useState(false); //modal state
 
-    const handleClose = () => setShow(false); //close modal
+    const handleClose = () => setShow(false); //closes modal
     const handleShow = () => setShow(true); //opens the modal
 
     // <div className="form-group">
@@ -168,7 +167,6 @@ export const HabeshaFoodCreateForm = () => {
                     <Form.Control type="text" placeholder="picture" id="picture" onChange={handleControlledInputChange} required autoFocus className="form-control"
                         value={habeshaFood.picture} />
                 </Form.Group>
-
 
                 <Form.Group>
                     <Form.Label>Select type</Form.Label>
