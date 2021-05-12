@@ -43,8 +43,8 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
         <CardGroup className="foodCard">
             <Card>
 
-                <h1 className="text-danger">{aHabeshaFood.name}</h1>
-                <Card.Img top width="80%" src={aHabeshaFood.picture} rounded />
+                <h1 className="foodName">{aHabeshaFood.name}</h1>
+                <Card.Img src={aHabeshaFood.picture} rounded />
                 <Card.Body>
                     <Card.Text>Type: {aHabeshaFood.type?.name}</Card.Text>
                     <Card.Text>Star rating: {aHabeshaFood.rating}</Card.Text>

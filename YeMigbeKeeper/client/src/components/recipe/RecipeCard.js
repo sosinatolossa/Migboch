@@ -16,9 +16,9 @@ const Recipe = ({ recipe }) => {
             <CardGroup className="recipeCard">
                 <Card>
                     <Card.Body>
-                        <Card.Header>
-                            <Link to={`/HabeshaFood/${recipe.habeshaFoodId}`}>{recipe.habeshaFood.name}</Link>
-                        </Card.Header>
+                        <h1>
+                            <Link className="foodName" to={`/HabeshaFood/${recipe.habeshaFoodId}`}>{recipe.habeshaFood.name}</Link>
+                        </h1>
                         <Card.Img top width="80%" src={recipe.habeshaFood.picture} alt="route" />
                         <Button className="recipePopupBtn" variant="primary" onClick={handleShow}>Recipe</Button>
                         <Modal show={show} onHide={handleClose}>

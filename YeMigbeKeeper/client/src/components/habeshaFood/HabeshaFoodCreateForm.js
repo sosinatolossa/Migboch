@@ -149,7 +149,7 @@ export const HabeshaFoodCreateForm = () => {
                 <button className="link--close">
                     <Link to="/HabeshaFood">close</Link>
                 </button>
-                <h2 className="habeshaFoodForm__title">Add new habesha food</h2>
+                <h2 className="add-habeshaFoodButton">Add new habesha food</h2>
 
                 <Form.Group>
                     <Form.Label>Upload Image</Form.Label>
@@ -157,7 +157,7 @@ export const HabeshaFoodCreateForm = () => {
                     {loading ? (
                         <h3>Loading...</h3>
                     ) : (
-                        <img src={imageURL} style={{ width: "50px" }} />
+                        <img src={imageURL} />
                     )}
                 </Form.Group>
 

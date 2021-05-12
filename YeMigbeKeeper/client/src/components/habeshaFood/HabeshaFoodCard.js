@@ -3,6 +3,7 @@ import { CardGroup, Card, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import { FavoriteFoodContext } from "../favoriteFood/FavoriteFoodProvider";
+import "../styling/cards.css"
 
 const HabeshaFood = ({ habeshaFood }) => {
     const { addFavoriteHabeshaFood } = useContext(FavoriteFoodContext)
@@ -17,7 +18,7 @@ const HabeshaFood = ({ habeshaFood }) => {
         }
         return <Button variant="danger" onClick={() => {
             addFavoriteHabeshaFood(favoriteHabeshaFoodObj)
-        }} className="addFavoriteButton-button" >
+        }} className="addFavorite-button" >
             <i class="far fa-heart"></i>
         </Button >
     }
@@ -27,7 +28,7 @@ const HabeshaFood = ({ habeshaFood }) => {
         if (habeshaFood.user.id === currentUser?.id) {
             return <Button type="button" onClick={() => {
                 history.push(`/habeshaFood/edit/${habeshaFood.id}`)
-            }} className="edit-button">
+            }} className="edit-button" variant="danger">
                 <i class="fas fa-pen"></i>
             </Button>
         }
@@ -46,7 +47,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                     deleteHabeshaFood(habeshaFood.id)
                         .then(getAllHabeshaFoods);
                 }
-            }} className="delete-button">
+            }} className="delete-button" variant="danger">
                 <i class="fas fa-trash-alt"></i>
             </Button>
         }
@@ -57,20 +58,22 @@ const HabeshaFood = ({ habeshaFood }) => {
             <Card >
                 <Card.Body>
                     {addFavoriteFoodButton()}
-                    <Card.Header>
-                        <Link to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
-                    </Card.Header>
-                    <Card.Img top width="80%" src={habeshaFood.picture} alt="route" />
-                    <Card.Text>Type: {habeshaFood.type.name}</Card.Text>
-                    <Card.Text>Star rating: {habeshaFood.rating}</Card.Text>
-                    <Card.Text>{habeshaFood.description}</Card.Text>
-                    <Card.Text>Ingredients: {habeshaFood.ingredient}</Card.Text>
+                    <h1>
+                        <Link className="foodName" to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
+                    </h1>
+                    <Card.Img classname="picture" src={habeshaFood.picture} alt="route" />
+                    <div className="details">
+                        <Card.Text>Type: {habeshaFood.type.name}</Card.Text>
+                        <Card.Text>Star rating: {habeshaFood.rating}</Card.Text>
+                        <Card.Text>{habeshaFood.description}</Card.Text>
+                        <Card.Text>Ingredients: {habeshaFood.ingredient}</Card.Text>
+                    </div>
                     {editButton()}
                     {deleteButton()}
                 </Card.Body>
 
                 <Card.Footer>
-                    <small className="cardFooter">Created by: {habeshaFood.user.displayName}</small>
+                    <div className="cardFooter">Created by: {habeshaFood.user.displayName}</div>
                 </Card.Footer>
             </Card>
         </CardGroup >

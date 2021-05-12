@@ -10,7 +10,6 @@ const FavoriteFood = ({ favoriteFood }) => {
 
     // Handles showing the delete button if the current user is viewing a habesha food that they created. 
     const removeButton = () => {
-        console.log(favoriteFood)
         return <Button variant="danger" onClick={() => {
             const confirmBox = window.confirm(
                 "Do you really want to remove this habesha food from your favorite habesha food list?"
@@ -19,7 +18,7 @@ const FavoriteFood = ({ favoriteFood }) => {
                 deleteFavoriteHabeshaFood(favoriteFood.habeshaFoodId)
                 setMyFavFoodDeleted(true)//this means "I deleted a fav habesha food"
             }
-        }} className="delete-button">
+        }} className="removeFavorite-button">
             <i class="fas fa-heart"></i>
         </Button>
 
@@ -30,18 +29,19 @@ const FavoriteFood = ({ favoriteFood }) => {
             <Card>
                 <Card.Body>
                     {removeButton()}
-                    <Card.Header>
-                        <Link to={`/habeshaFood/${favoriteFood.habeshaFood.id}`}>
+                    <h1>
+                        <Link className="foodName" to={`/habeshaFood/${favoriteFood.habeshaFood.id}`}>
                             {favoriteFood.habeshaFood.name}</Link>
-                    </Card.Header>
-                    <Card.Img top width="100%" src={favoriteFood.habeshaFood.picture} alt="route" />
-
-                    <Card.Text>Type: {favoriteFood.habeshaFood.type.name}</Card.Text>
-                    <Card.Text>{favoriteFood.habeshaFood.description}</Card.Text>
-                    <Card.Text>Ingredients: {favoriteFood.habeshaFood.ingredient}</Card.Text>
+                    </h1>
+                    <Card.Img src={favoriteFood.habeshaFood.picture} />
+                    <div class="details">
+                        <Card.Text>Type: {favoriteFood.habeshaFood.type.name}</Card.Text>
+                        <Card.Text>{favoriteFood.habeshaFood.description}</Card.Text>
+                        <Card.Text>Ingredients: {favoriteFood.habeshaFood.ingredient}</Card.Text>
+                    </div>
                 </Card.Body>
                 <Card.Footer>
-                    <small className="cardFooter">Created by: {favoriteFood.habeshaFood.user.displayName}</small>
+                    <div className="cardFooter">Created by: {favoriteFood.habeshaFood.user.displayName}</div>
                 </Card.Footer>
             </Card>
         </CardGroup >
