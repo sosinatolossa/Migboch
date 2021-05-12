@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { TypeContext } from "./TypeProvider";
 import Type from "./TypeCard";
-import { Row, Col, Container } from "reactstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 const TypeList = () => {
     const { types, getAllTypes } = useContext(TypeContext);

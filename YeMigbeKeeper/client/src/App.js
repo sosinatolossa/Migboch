@@ -7,6 +7,7 @@ import ApplicationViews from "./components/ApplicationViews";
 import { HabeshaFoodProvider } from './components/habeshaFood/HabeshaFoodProvider';
 import { TypeProvider } from './components/type/TypeProvider';
 import { FavoriteFoodProvider } from './components/favoriteFood/FavoriteFoodProvider';
+import { RecipeProvider } from './components/recipe/RecipeProvider';
 
 
 function App() {
@@ -16,8 +17,10 @@ function App() {
         <HabeshaFoodProvider>
           <TypeProvider>
             <FavoriteFoodProvider>
-              <Header />
-              <ApplicationViews />
+              <RecipeProvider>
+                <Header />
+                <ApplicationViews />
+              </RecipeProvider>
             </FavoriteFoodProvider>
           </TypeProvider>
         </HabeshaFoodProvider>
