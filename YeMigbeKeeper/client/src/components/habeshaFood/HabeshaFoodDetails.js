@@ -42,7 +42,8 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
     return (
         <CardGroup className="foodCard">
             <Card>
-                <Card.Header>{aHabeshaFood.name}</Card.Header>
+
+                <h1 className="text-danger">{aHabeshaFood.name}</h1>
                 <Card.Img top width="80%" src={aHabeshaFood.picture} rounded />
                 <Card.Body>
                     <Card.Text>Type: {aHabeshaFood.type?.name}</Card.Text>

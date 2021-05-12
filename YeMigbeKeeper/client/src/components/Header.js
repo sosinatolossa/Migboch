@@ -81,29 +81,7 @@ export default function Header() {
 
                     </Nav>
 
-
-                    {/* <Nav className="justify-content-end">
-                        <Navbar.Text>
-                            Signed in as: <a href="#login">`${User.firstName} ${User.Lastname}`</a>
-                        </Navbar.Text>
-                    </Nav> */}
                     <Nav navbar>
-                        {/* {isLoggedIn && (
-                            <>
-                                <Nav.Item>
-                                    <a
-                                        aria-current="page"
-                                        className="nav-link"
-                                        style={{ cursor: "pointer" }}
-                                        onClick={logout}
-                                    >
-                                        Logout
-                                    </a>
-                                </Nav.Item>
-
-                            </>
-                        )} */}
-
                         {!isLoggedIn && (
                             <>
                                 <Nav.Item>

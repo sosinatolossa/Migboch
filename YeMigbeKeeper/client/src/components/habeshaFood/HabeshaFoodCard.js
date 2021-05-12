@@ -13,17 +13,13 @@ const HabeshaFood = ({ habeshaFood }) => {
 
     const addFavoriteFoodButton = () => {
         const favoriteHabeshaFoodObj = {
-            //userId: currentUser?.id,
             habeshaFoodId: habeshaFood.id
         }
         return <Button variant="danger" onClick={() => {
             addFavoriteHabeshaFood(favoriteHabeshaFoodObj)
-                .then(history.push(`/favoriteFood`))
         }} className="addFavoriteButton-button" >
             <i class="far fa-heart"></i>
         </Button >
-
-
     }
 
     // Handles showing the edit button if the current user is viewing a habeshaFood that they wrote. 

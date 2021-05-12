@@ -30,8 +30,8 @@ export const FavoriteFoodProvider = (props) => {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify(habeshaFood), //this stringifies our habesha food object meaning it changes our object into string object
-            }).then(res => res.json()) //then send the stringified object(res), and we will use this in our HabeshaFoodCard after we add new object
+                body: JSON.stringify(habeshaFood),
+            }).then(res => res.json())
         });
     };
 
@@ -46,7 +46,6 @@ export const FavoriteFoodProvider = (props) => {
             })
         );
     };
-
 
     return (
         <FavoriteFoodContext.Provider value={{ myFavoriteFoods, getFavoriteFoodsByUser, addFavoriteHabeshaFood, deleteFavoriteHabeshaFood, myFavFoodDeleted, setMyFavFoodDeleted }}>

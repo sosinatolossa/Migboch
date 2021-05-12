@@ -1,7 +1,6 @@
 import React from "react";
 import { CardGroup, Card, CardBody, CardText } from "reactstrap";
 
-
 const Type = ({ type }) => {
 
     return (
@@ -12,7 +11,6 @@ const Type = ({ type }) => {
                 </CardBody>
             </Card>
         </CardGroup >
-
     )
 };
 
