@@ -16,7 +16,7 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name as habeshaFoodName, hf.Description, hf.Ingredient,
+                SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name as habeshaFoodName, hf.Rating, hf.Description, hf.Ingredient,
                 hf.TotalCalorie, hf.TotalFat, hf.Cholesterol, hf.Sodium, hf.TotalCarbohydrate,
                 hf.Protein, hf.Calcium, hf.Iron, hf.Potassium, hf.UserId,
 
@@ -42,6 +42,7 @@ namespace YeMigbeKeeper.Repositories
                             },
                             Picture = DbUtils.GetString(reader, "Picture"),
                             Name = DbUtils.GetString(reader, "habeshaFoodName"),
+                            Rating = DbUtils.GetInt(reader, "Rating"),
                             Description = DbUtils.GetString(reader, "Description"),
                             Ingredient = DbUtils.GetString(reader, "Ingredient"),
                             TotalCalorie = DbUtils.GetNullableInt(reader, "TotalCalorie"),
@@ -82,7 +83,7 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name as habeshaFoodName, hf.Description, hf.Ingredient,
+                        SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name as habeshaFoodName, hf.Rating, hf.Description, hf.Ingredient,
                 hf.TotalCalorie, hf.TotalFat, hf.Cholesterol, hf.Sodium, hf.TotalCarbohydrate,
                 hf.Protein, hf.Calcium, hf.Iron, hf.Potassium, hf.UserId,
 
@@ -112,6 +113,7 @@ namespace YeMigbeKeeper.Repositories
                             },
                             Picture = DbUtils.GetString(reader, "Picture"),
                             Name = DbUtils.GetString(reader, "habeshaFoodName"),
+                            Rating = DbUtils.GetInt(reader, "Rating"),
                             Description = DbUtils.GetString(reader, "Description"),
                             Ingredient = DbUtils.GetString(reader, "Ingredient"),
                             TotalCalorie = DbUtils.GetNullableInt(reader, "TotalCalorie"),
@@ -149,7 +151,7 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name as habeshaFoodName, hf.Description, hf.Ingredient,
+                        SELECT hf.Id, hf.TypeId, hf.Picture, hf.Name as habeshaFoodName, hf.Rating, hf.Description, hf.Ingredient,
                 hf.TotalCalorie, hf.TotalFat, hf.Cholesterol, hf.Sodium, hf.TotalCarbohydrate,
                 hf.Protein, hf.Calcium, hf.Iron, hf.Potassium, hf.UserId,
 
@@ -179,6 +181,7 @@ namespace YeMigbeKeeper.Repositories
                             },
                             Picture = DbUtils.GetString(reader, "Picture"),
                             Name = DbUtils.GetString(reader, "habeshaFoodName"),
+                            Rating = DbUtils.GetInt(reader, "Rating"),
                             Description = DbUtils.GetString(reader, "Description"),
                             Ingredient = DbUtils.GetString(reader, "Ingredient"),
                             TotalCalorie = DbUtils.GetNullableInt(reader, "TotalCalorie"),
@@ -217,13 +220,14 @@ namespace YeMigbeKeeper.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO HabeshaFood (TypeId, Picture, Name, Description, Ingredient, TotalCalorie, TotalFat, Cholesterol, Sodium, TotalCarbohydrate, Protein, Calcium, Iron, Potassium, UserId)
+                        INSERT INTO HabeshaFood (TypeId, Picture, Name, Rating, Description, Ingredient, TotalCalorie, TotalFat, Cholesterol, Sodium, TotalCarbohydrate, Protein, Calcium, Iron, Potassium, UserId)
                         OUTPUT INSERTED.ID
-                        VALUES (@TypeId, @Picture, @Name, @Description, @Ingredient, @TotalCalorie, @TotalFat, @Cholesterol, @Sodium, @TotalCarbohydrate, @Protein, @Calcium, @Iron, @Potassium, @UserId)";
+                        VALUES (@TypeId, @Picture, @Name, @Rating, @Description, @Ingredient, @TotalCalorie, @TotalFat, @Cholesterol, @Sodium, @TotalCarbohydrate, @Protein, @Calcium, @Iron, @Potassium, @UserId)";
 
                     DbUtils.AddParameter(cmd, "@TypeId", habeshaFood.TypeId);
                     DbUtils.AddParameter(cmd, "@Picture", habeshaFood.Picture);
                     DbUtils.AddParameter(cmd, "@Name", habeshaFood.Name);
+                    DbUtils.AddParameter(cmd, "@Rating", habeshaFood.Rating);
                     DbUtils.AddParameter(cmd, "@Description", habeshaFood.Description);
                     DbUtils.AddParameter(cmd, "@Ingredient", habeshaFood.Ingredient);
                     DbUtils.AddParameter(cmd, "@TotalCalorie", habeshaFood.TotalCalorie);
@@ -256,6 +260,7 @@ namespace YeMigbeKeeper.Repositories
                            SET TypeId = @TypeId, 
                                Picture = @Picture,
                                Name = @Name,
+                               Rating = @Rating,
                                Description = @Description,
                                Ingredient = @Ingredient,
                                TotalCalorie = @TotalCalorie, 
@@ -273,6 +278,7 @@ namespace YeMigbeKeeper.Repositories
                     DbUtils.AddParameter(cmd, "@TypeId", habeshaFood.TypeId);
                     DbUtils.AddParameter(cmd, "@Picture", habeshaFood.Picture);
                     DbUtils.AddParameter(cmd, "@Name", habeshaFood.Name);
+                    DbUtils.AddParameter(cmd, "@Rating", habeshaFood.Rating);
                     DbUtils.AddParameter(cmd, "@Description", habeshaFood.Description);
                     DbUtils.AddParameter(cmd, "@Ingredient", habeshaFood.Ingredient);
                     DbUtils.AddParameter(cmd, "@TotalCalorie", habeshaFood.TotalCalorie);

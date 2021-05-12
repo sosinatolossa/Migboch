@@ -66,6 +66,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                     </Card.Header>
                     <Card.Img top width="80%" src={habeshaFood.picture} alt="route" />
                     <Card.Text>Type: {habeshaFood.type.name}</Card.Text>
+                    <Card.Text>Star rating: {habeshaFood.rating}</Card.Text>
                     <Card.Text>{habeshaFood.description}</Card.Text>
                     <Card.Text>Ingredients: {habeshaFood.ingredient}</Card.Text>
                     {editButton()}

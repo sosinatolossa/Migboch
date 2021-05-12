@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom";
-import { HabeshaFoodContext } from "./HabeshaFoodProvider"
 //import "./HabeshaFood.css"
-import { Form, Modal, Button } from 'react-bootstrap';
+import { Form, Modal, Button } from "react-bootstrap";
+import { HabeshaFoodContext } from "./HabeshaFoodProvider"
+import StarRatingSystem from "./StarRating";
 import { TypeContext } from "../type/TypeProvider";
 
 export const HabeshaFoodCreateForm = () => {
@@ -27,6 +28,7 @@ export const HabeshaFoodCreateForm = () => {
         typeId: 0,
         picture: "",
         name: "",
+        rating: 0,
         description: "",
         ingredient: "",
         totalCalorie: 0,
@@ -87,6 +89,7 @@ export const HabeshaFoodCreateForm = () => {
         const typeId = parseInt(habeshaFood.typeId)
         const picture = habeshaFood.picture
         const name = habeshaFood.name
+        const rating = habeshaFood.rating
         const description = habeshaFood.description
         const ingredient = habeshaFood.ingredient
         let totalCalorie = parseInt(habeshaFood.totalCalorie)
@@ -118,6 +121,7 @@ export const HabeshaFoodCreateForm = () => {
                 typeId: habeshaFood.typeId,
                 picture: habeshaFood.picture,
                 name: habeshaFood.name,
+                rating: habeshaFood.rating,
                 description: habeshaFood.description,
                 ingredient: habeshaFood.ingredient,
                 totalCalorie: habeshaFood.totalCalorie,
@@ -184,6 +188,11 @@ export const HabeshaFoodCreateForm = () => {
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" placeholder="name" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control"
                         value={habeshaFood.name} />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label>Star rating</Form.Label>
+                    <StarRatingSystem habeshaFood={habeshaFood} />
                 </Form.Group>
 
                 <Form.Group>
