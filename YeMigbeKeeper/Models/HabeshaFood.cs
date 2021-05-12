@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace YeMigbeKeeper.Models
+﻿namespace YeMigbeKeeper.Models
 {
     public class HabeshaFood
     {

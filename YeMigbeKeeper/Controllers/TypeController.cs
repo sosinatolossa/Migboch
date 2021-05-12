@@ -21,6 +21,5 @@ namespace YeMigbeKeeper.Controllers
         {
             return Ok(_typeRepository.GetAllTypes());
         }  
-
     }
 }
