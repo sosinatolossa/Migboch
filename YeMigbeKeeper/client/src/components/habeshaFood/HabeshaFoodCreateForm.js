@@ -23,7 +23,7 @@ export const HabeshaFoodCreateForm = () => {
 
     //const currentUser = parseInt(localStorage.getItem("ZuringTheWorld_user"))
 
-    //const [imageURL, setImageURL] = useState("")
+    const [imageURL, setImageURL] = useState("")
     const [habeshaFood, setHabeshaFood] = useState({
         typeId: 0,
         picture: "",
@@ -46,24 +46,24 @@ export const HabeshaFoodCreateForm = () => {
     const [habeshaFoodObj, setHabeshaFoodObj] = useState({});
 
     //image upload handling
-    // const [loading, setLoading] = useState(false)
-    // const uploadImage = async e => {
-    //     const files = e.target.files
-    //     const data = new FormData()
-    //     data.append("file", files[0])
-    //     data.append("upload_preset", "ZuringTheWorld")
-    //     setLoading(true)
-    //     const response = await fetch(
-    //         "https://api.cloudinary.com/v1_1/sosina/image/upload",
-    //         {
-    //             method: "POST",
-    //             body: data
-    //         }
-    //     )
-    //     const file = await response.json()
-    //     setImageURL(file.secure_url)
-    //     setLoading(false)
-    // }
+    const [loading, setLoading] = useState(false)
+    const uploadImage = async e => {
+        const files = e.target.files
+        const data = new FormData()
+        data.append("file", files[0])
+        data.append("upload_preset", "YeMigbeKeeper")
+        setLoading(true)
+        const response = await fetch(
+            "https://api.cloudinary.com/v1_1/sosina/image/upload",
+            {
+                method: "POST",
+                body: data
+            }
+        )
+        const file = await response.json()
+        setImageURL(file.secure_url)
+        setLoading(false)
+    }
 
 
     //when a field changes, update state. The return will re-render and display based on the values in state
@@ -107,8 +107,6 @@ export const HabeshaFoodCreateForm = () => {
             window.alert("Please type in the name of the food")
         } else if (typeId === 0 || typeId === NaN) {
             window.alert("Please select a type")
-        } else if (picture === "") {
-            window.alert("Please upload a picture")
         } else if (rating === 0) {
             window.alert("Please rate your habesha food")
         } else if (description === "") {
@@ -121,7 +119,7 @@ export const HabeshaFoodCreateForm = () => {
             //habeshaFood - add
             addHabeshaFood({ //if not, this must be a new note so the input fields will be empty
                 typeId: habeshaFood.typeId,
-                picture: habeshaFood.picture,
+                picture: imageURL,
                 name: habeshaFood.name,
                 rating: habeshaFood.rating,
                 description: habeshaFood.description,
@@ -151,15 +149,6 @@ export const HabeshaFoodCreateForm = () => {
     const handleClose = () => setShow(false); //closes modal
     const handleShow = () => setShow(true); //opens the modal
 
-    // <div className="form-group">
-    //     <div>Upload Image</div>
-    //     <input type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
-    //     {loading ? (
-    //         <h3>Loading...</h3>
-    //     ) : (
-    //         <img src={imageURL} style={{ width: "100px" }} />
-    //     )}
-    // </div>
     return (
         <>
             <Form className="habeshaFoodForm">
@@ -169,9 +158,13 @@ export const HabeshaFoodCreateForm = () => {
                 <h2 className="habeshaFoodForm__title">Add new habesha food</h2>
 
                 <Form.Group>
-                    <Form.Label>Picture</Form.Label>
-                    <Form.Control type="text" placeholder="picture" id="picture" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.picture} />
+                    <Form.Label>Upload Image</Form.Label>
+                    <Form.Control id="picture" type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
+                    {loading ? (
+                        <h3>Loading...</h3>
+                    ) : (
+                        <img src={imageURL} style={{ width: "50px" }} />
+                    )}
                 </Form.Group>
 
                 <Form.Group>
