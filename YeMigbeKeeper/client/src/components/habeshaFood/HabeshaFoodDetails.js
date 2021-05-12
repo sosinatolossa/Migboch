@@ -46,6 +46,7 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
                 <Card.Img top width="80%" src={aHabeshaFood.picture} rounded />
                 <Card.Body>
                     <Card.Text>Type: {aHabeshaFood.type?.name}</Card.Text>
+                    <Card.Text>Star rating: {aHabeshaFood.rating}</Card.Text>
                     <Card.Text>{aHabeshaFood.description}</Card.Text>
                     <Card.Text>Ingredients: {aHabeshaFood.ingredient}</Card.Text>
                     <Card.Text>{aHabeshaFood.totalCalorie} calories</Card.Text>

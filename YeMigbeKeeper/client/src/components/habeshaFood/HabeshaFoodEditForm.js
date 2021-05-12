@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
+import StarRatingSystem from "./StarRating";
 import { TypeContext } from "../type/TypeProvider";
 import { Form, Modal, Button } from 'react-bootstrap';
 
@@ -15,6 +16,7 @@ export const HabeshaFoodEditForm = () => {
         typeId: 0,
         picture: "",
         name: "",
+        rating: 0,
         description: "",
         ingredient: "",
         totalCalorie: 0,
@@ -70,6 +72,7 @@ export const HabeshaFoodEditForm = () => {
             typeId: habeshaFood.typeId,
             picture: habeshaFood.picture,
             name: habeshaFood.name,
+            rating: habeshaFood.rating,
             description: habeshaFood.description,
             ingredient: habeshaFood.ingredient,
             totalCalorie: habeshaFood.totalCalorie,
@@ -105,6 +108,7 @@ export const HabeshaFoodEditForm = () => {
 
 
                 <Form.Group>
+                    <Form.Label>Type</Form.Label>
                     <Form.Control id="typeId" value={habeshaFood.typeId} onChange={handleControlledInputChange} as="select">
                         {types.map((t) => (
                             <option key={t.id} value={t.id}>
@@ -118,6 +122,11 @@ export const HabeshaFoodEditForm = () => {
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" placeholder="name" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control"
                         value={habeshaFood.name} />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label>Star rating</Form.Label>
+                    <StarRatingSystem habeshaFood={habeshaFood} />
                 </Form.Group>
 
                 <Form.Group>
