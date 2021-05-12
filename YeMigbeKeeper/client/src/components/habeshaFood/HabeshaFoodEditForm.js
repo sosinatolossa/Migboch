@@ -11,7 +11,9 @@ export const HabeshaFoodEditForm = () => {
     const { habeshaFoodId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
 
-    // Set the initial state of HabeshaFood
+
+    // Set the initial state of image and HabeshaFood
+    const [imageURL, setImageURL] = useState("")
     const [habeshaFood, setHabeshaFood] = useState({
         typeId: 0,
         picture: "",
@@ -41,6 +43,26 @@ export const HabeshaFoodEditForm = () => {
                 }))
     }, [])
 
+    //image upload handling
+    const [loading, setLoading] = useState(false)
+    const uploadImage = async e => {
+        const files = e.target.files
+        const data = new FormData()
+        data.append("file", files[0])
+        data.append("upload_preset", "YeMigbeKeeper")
+        setLoading(true)
+        const response = await fetch(
+            "https://api.cloudinary.com/v1_1/sosina/image/upload",
+            {
+                method: "POST",
+                body: data
+            }
+        )
+        const file = await response.json()
+        setImageURL(file.secure_url)
+        setLoading(false)
+    }
+
     // Handles changes to any input field
     const handleControlledInputChange = (event) => {
 
@@ -58,7 +80,6 @@ export const HabeshaFoodEditForm = () => {
     const handleClickEditHabeshaFood = () => {
 
         // Check to make sure all relevant input fields have data
-        if (habeshaFood.picture === "") return window.alert("Please add an image url.");
         if (habeshaFood.name === "") return window.alert("Please enter a name");
         if (habeshaFood.description === "") return window.alert("Please add a description.");
         if (habeshaFood.ingredient === "") return window.alert("Please type in the ingredients.");
@@ -70,7 +91,7 @@ export const HabeshaFoodEditForm = () => {
         updateHabeshaFood({
             id: habeshaFood.id,
             typeId: habeshaFood.typeId,
-            picture: habeshaFood.picture,
+            picture: imageURL,
             name: habeshaFood.name,
             rating: habeshaFood.rating,
             description: habeshaFood.description,
@@ -101,11 +122,14 @@ export const HabeshaFoodEditForm = () => {
                 <h2 className="habeshaFoodForm__title">Edit habesha food</h2>
 
                 <Form.Group>
-                    <Form.Label>Picture</Form.Label>
-                    <Form.Control type="text" placeholder="picture" id="picture" onChange={handleControlledInputChange} required autoFocus className="form-control"
-                        value={habeshaFood.picture} />
+                    <Form.Label>Upload Image</Form.Label>
+                    <Form.Control id="picture" type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
+                    {loading ? (
+                        <h3>Loading...</h3>
+                    ) : (
+                        <img src={habeshaFood.picture} style={{ width: "50px" }} />
+                    )}
                 </Form.Group>
-
 
                 <Form.Group>
                     <Form.Label>Type</Form.Label>
