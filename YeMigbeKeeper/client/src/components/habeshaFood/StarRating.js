@@ -34,7 +34,7 @@ function StarRating({ count, value,
 
 
 function StarRatingSystem({ habeshaFood }) {
-    const [rating, setRating] = useState();
+    const [rating, setRating] = useState(3);
 
     const handleChange = (value) => {
         habeshaFood.rating = value

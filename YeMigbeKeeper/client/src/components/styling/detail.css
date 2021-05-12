@@ -1,0 +1,10 @@
+.detailsPicture {
+    height: 28rem;
+    width: 2rem;
+    border-radius: .5rem;
+}
+
+.nutritionFacts {
+    background-color: darkorange;
+    color: darkred;
+}
