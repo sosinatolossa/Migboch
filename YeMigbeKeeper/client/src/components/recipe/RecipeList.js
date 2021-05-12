@@ -16,9 +16,9 @@ const RecipeList = () => {
     return (
         <Container>
             <Row>
-                {recipes.map((recipeObj) => {
+                {recipes?.map((recipeObj) => (
                     <Col md="4"><Recipe key={recipeObj.id} recipe={recipeObj} /></Col>
-                })}
+                ))}
             </Row>
         </Container>
     );
