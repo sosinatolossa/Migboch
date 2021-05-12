@@ -126,7 +126,7 @@ export const HabeshaFoodEditForm = () => {
 
                 <Form.Group>
                     <Form.Label>Star rating</Form.Label>
-                    <StarRatingSystem habeshaFood={habeshaFood} />
+                    <StarRatingSystem habeshaFood={habeshaFood} id="rating" onChange={handleControlledInputChange} />
                 </Form.Group>
 
                 <Form.Group>

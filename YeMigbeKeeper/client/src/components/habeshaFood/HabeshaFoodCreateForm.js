@@ -109,6 +109,8 @@ export const HabeshaFoodCreateForm = () => {
             window.alert("Please select a type")
         } else if (picture === "") {
             window.alert("Please upload a picture")
+        } else if (rating === 0) {
+            window.alert("Please rate your habesha food")
         } else if (description === "") {
             window.alert("Please write description")
         } else if (ingredient === "") {
@@ -193,6 +195,7 @@ export const HabeshaFoodCreateForm = () => {
                 <Form.Group>
                     <Form.Label>Star rating</Form.Label>
                     <StarRatingSystem habeshaFood={habeshaFood} />
+
                 </Form.Group>
 
                 <Form.Group>
