@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom";
-//import "./HabeshaFood.css"
 import { Form, Modal, Button } from "react-bootstrap";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider"
 import StarRatingSystem from "./StarRating";
 import { TypeContext } from "../type/TypeProvider";
+//import "./HabeshaFood.css"
 
 export const HabeshaFoodCreateForm = () => {
     const { addHabeshaFood } = useContext(HabeshaFoodContext)
@@ -15,13 +15,6 @@ export const HabeshaFoodCreateForm = () => {
     useEffect(() => {
         getAllTypes();
     }, []);
-
-    /*
-    With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
-    Define the initial state of the form inputs with useState()
-    */
-
-    //const currentUser = parseInt(localStorage.getItem("ZuringTheWorld_user"))
 
     const [imageURL, setImageURL] = useState("")
     const [habeshaFood, setHabeshaFood] = useState({
@@ -41,6 +34,7 @@ export const HabeshaFoodCreateForm = () => {
         iron: 0,
         potassium: 0
     });
+
     //wait for data before button is active
     const [isLoading, setIsLoading] = useState(false);
     const [habeshaFoodObj, setHabeshaFoodObj] = useState({});
