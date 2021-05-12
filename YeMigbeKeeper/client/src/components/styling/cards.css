@@ -2,15 +2,20 @@
 .foodName {
     color: #ff7b00;
     justify-content: center;
-    margin-top: 4rem;
+    margin-top: 4rem;    
+}
 
-    
+.size {
+    width: 1rem;
+    height: .5rem;
 }
 
 .details {
     background-color: #ffc400;
     padding: .4rem;
     border-radius: .5rem;
+    height: 17rem;
+    overflow: auto;
 }
 
 .delete-button {
