@@ -6,7 +6,7 @@ import { Row, Col, Container, Button } from "reactstrap";
 
 const HabeshaFoodList = () => {
     const { habeshaFoods, getAllHabeshaFoods } = useContext(HabeshaFoodContext);
-    //console.log(habeshaFoods)
+
     const history = useHistory()
 
     useEffect(() => {
@@ -16,16 +16,14 @@ const HabeshaFoodList = () => {
     // Maps through each habesh food object, sending 
     // them to be converted to HTML then prints them all out.
     return (
-        <div>
-            <Container>
-                <Button className="addNewHabeshaFoodBtn" onClick={() => { history.push("/HabeshaFood/create") }}>Add habesha food</Button>
-                <Row>
-                    {habeshaFoods.map((habeshaFoodObj) => (
-                        <Col md="4"><HabeshaFood key={habeshaFoodObj.id} habeshaFood={habeshaFoodObj} /></Col> //habeshaFood is our parameter(object) in HabeshaFoodCard
-                    ))}
-                </Row>
-            </Container>
-        </div>
+        <Container>
+            <Button className="addNewHabeshaFoodBtn" onClick={() => { history.push("/HabeshaFood/create") }}>Add habesha food</Button>
+            <Row>
+                {habeshaFoods.map((habeshaFoodObj) => (
+                    <Col md="4"><HabeshaFood key={habeshaFoodObj.id} habeshaFood={habeshaFoodObj} /></Col> //habeshaFood is our parameter(object) in HabeshaFoodCard
+                ))}
+            </Row>
+        </Container>
     );
 };
 
