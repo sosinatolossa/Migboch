@@ -302,7 +302,20 @@ namespace YeMigbeKeeper.Repositories
             {
                 conn.Open();
 
-                // Delete related PostTag rows
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE Comment WHERE HabeshaFoodId = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE Recipe WHERE HabeshaFoodId = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"DELETE FavoriteFood WHERE HabeshaFoodId = @id";

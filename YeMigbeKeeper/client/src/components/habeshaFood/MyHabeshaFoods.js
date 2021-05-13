@@ -14,7 +14,7 @@ const MyHabeshaFoods = () => {
 
     return (
         <Container>
-            <Button className="addNewHabeshaFoodBtn" onClick={() => { history.push("/HabeshaFood/create") }}>Add habesha food</Button>
+            <Button variant="danger" style={{ margin: "10px" }} onClick={() => { history.push("/HabeshaFood/create") }}>Add habesha food</Button>
             <Row>
                 {habeshaFoods?.map((habeshaFoodObj) => (
                     <Col border="primary" md="4"><HabeshaFood key={habeshaFoodObj.id} habeshaFood={habeshaFoodObj} /></Col>

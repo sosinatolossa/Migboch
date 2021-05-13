@@ -15,7 +15,7 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
         if (aHabeshaFood.user?.id === currentUser?.id) {
             return <Button type="button" onClick={() => {
                 history.push(`/habeshaFood/edit/${aHabeshaFood.id}`)
-            }} className="edit-button">
+            }} className="edit-button" variant="danger">
                 <i class="fas fa-pen"></i>
             </Button>
         }
@@ -33,7 +33,7 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
                         .then(getAllHabeshaFoods)
                         .then(history.push("/HabeshaFood"));
                 }
-            }} className="delete-button">
+            }} className="delete-button" variant="danger">
                 <i class="fas fa-trash-alt"></i>
             </Button>
         }
@@ -43,22 +43,24 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
         <CardGroup className="foodCard">
             <Card>
 
-                <h1 className="text-danger">{aHabeshaFood.name}</h1>
-                <Card.Img top width="80%" src={aHabeshaFood.picture} rounded />
-                <Card.Body>
+                <h1 className="foodName">{aHabeshaFood.name}</h1>
+                <Card.Img className="detailsPicture" src={aHabeshaFood.picture} style={{ width: "50rem" }} />
+                <Card.Body className="detailDetails">
                     <Card.Text>Type: {aHabeshaFood.type?.name}</Card.Text>
                     <Card.Text>Star rating: {aHabeshaFood.rating}</Card.Text>
                     <Card.Text>{aHabeshaFood.description}</Card.Text>
                     <Card.Text>Ingredients: {aHabeshaFood.ingredient}</Card.Text>
-                    <Card.Text>{aHabeshaFood.totalCalorie} calories</Card.Text>
-                    <Card.Text>{aHabeshaFood.totalFat} grams fat</Card.Text>
-                    <Card.Text>{aHabeshaFood.cholesterol} mg cholesterol</Card.Text>
-                    <Card.Text>{aHabeshaFood.sodium} mg sodium</Card.Text>
-                    <Card.Text>{aHabeshaFood.totalCarbohydrate} gram carbohydrate</Card.Text>
-                    <Card.Text>{aHabeshaFood.protein} grams protein</Card.Text>
-                    <Card.Text>{aHabeshaFood.calcium} % calcium</Card.Text>
-                    <Card.Text>{aHabeshaFood.iron} % iron</Card.Text>
-                    <Card.Text>{aHabeshaFood.potassium} mg potassium</Card.Text>
+                    <div className="nutritionFacts">
+                        <Card.Text>{aHabeshaFood.totalCalorie} calories</Card.Text>
+                        <Card.Text>{aHabeshaFood.totalFat} grams fat</Card.Text>
+                        <Card.Text>{aHabeshaFood.cholesterol} mg cholesterol</Card.Text>
+                        <Card.Text>{aHabeshaFood.sodium} mg sodium</Card.Text>
+                        <Card.Text>{aHabeshaFood.totalCarbohydrate} gram carbohydrate</Card.Text>
+                        <Card.Text>{aHabeshaFood.protein} grams protein</Card.Text>
+                        <Card.Text>{aHabeshaFood.calcium} % calcium</Card.Text>
+                        <Card.Text>{aHabeshaFood.iron} % iron</Card.Text>
+                        <Card.Text>{aHabeshaFood.potassium} mg potassium</Card.Text>
+                    </div>
                     {editButton()}
                     {deleteButton()}
                 </Card.Body>

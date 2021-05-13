@@ -1,0 +1,28 @@
+
+.foodName {
+    color: #ff7b00;
+    justify-content: center;
+    margin-top: 4rem;    
+}
+
+.size {   
+    margin: 10px;
+    padding: .4rem;
+}
+
+.details {
+    background-color: #ffd95e;
+    margin-top: 8px;
+    padding: .4rem;
+    border-radius: .5rem;
+    height: 17rem;
+    overflow: auto;
+}
+
+.delete-button {
+    float: right;
+}
+
+.cardFooter {
+    float: right;
+}
