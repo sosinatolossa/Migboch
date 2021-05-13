@@ -93,7 +93,7 @@ export const HabeshaFoodEditForm = () => {
         updateHabeshaFood({
             id: habeshaFood.id,
             typeId: habeshaFood.typeId,
-            picture: imageURL,
+            picture: habeshaFood.picture,
             name: habeshaFood.name,
             rating: habeshaFood.rating,
             description: habeshaFood.description,
