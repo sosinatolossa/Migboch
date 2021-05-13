@@ -29,8 +29,8 @@ const FavoriteFood = ({ favoriteFood }) => {
             <Card>
                 <Card.Body>
                     {removeButton()}
-                    <h1>
-                        <Link className="foodName" to={`/habeshaFood/${favoriteFood.habeshaFood.id}`}>
+                    <h1 className="foodName">
+                        <Link style={{ color: "#ff7b00" }} to={`/habeshaFood/${favoriteFood.habeshaFood.id}`}>
                             {favoriteFood.habeshaFood.name}</Link>
                     </h1>
                     <Card.Img src={favoriteFood.habeshaFood.picture} />
