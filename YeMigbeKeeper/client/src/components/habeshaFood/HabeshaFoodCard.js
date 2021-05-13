@@ -54,12 +54,12 @@ const HabeshaFood = ({ habeshaFood }) => {
     }
 
     return (
-        <CardGroup className="foodCard">
+        <CardGroup className="foodCard" style={{ marginBottom: "10px" }} >
             <Card >
                 <Card.Body>
                     {addFavoriteFoodButton()}
-                    <h1>
-                        <Link className="foodName" style={{ marginLeft: "25px" }} to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
+                    <h1 className="foodName">
+                        <Link style={{ color: "#ff7b00" }} to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
                     </h1>
                     <Card.Img classname="size picture" src={habeshaFood.picture} alt="route" />
                     <div className="details">
@@ -73,7 +73,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                 </Card.Body>
 
                 <Card.Footer>
-                    <div className="cardFooter">Created by: {habeshaFood.user.displayName}</div>
+                    <div className="cardFooter"><em>Created by:</em> {habeshaFood.user.displayName}</div>
                 </Card.Footer>
             </Card>
         </CardGroup >

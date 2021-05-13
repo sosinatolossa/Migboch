@@ -1,8 +1,6 @@
 
 .foodName {
-    color: #ff7b00;
-    justify-content: center;
-    margin-top: 4rem;    
+    text-align: center;    
 }
 
 .size {   
@@ -25,4 +23,30 @@
 
 .cardFooter {
     float: right;
+    color: #ff7b00;
 }
+
+.recipePopupBtn {
+    text-align: center;
+}
+
+.helfulLinkTitle {
+    text-align: center;
+    color: #352618;
+    margin-top: 10px;
+}
+
+.video-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+  }
+  
+  .video-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }

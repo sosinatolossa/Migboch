@@ -12,6 +12,7 @@ import HabeshaFoodEditForm from "./habeshaFood/HabeshaFoodEditForm";
 import TypeList from "././type/TypeList";
 import MyFavoriteFoodList from "././favoriteFood/FavoriteFoodList";
 import RecipeList from "././recipe/RecipeList";
+import Welcome from "./Welcome";
 
 
 export default function ApplicationViews() {
@@ -20,6 +21,10 @@ export default function ApplicationViews() {
     return (
         <main>
             <Switch>
+
+                <Route path="/" exact>
+                    {isLoggedIn ? <Welcome /> : <Redirect to="/login" />}
+                </Route>
 
                 <Route path="/login">
                     <Login />

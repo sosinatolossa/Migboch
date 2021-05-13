@@ -238,7 +238,7 @@ export const HabeshaFoodEditForm = () => {
                     </Modal>
                 </div>
 
-                <Button style={{ float: "right", margin: "10px" }} variant="danger"
+                <Button style={{ float: "right", marginTop: "15px", marginBottom: "20px" }} variant="danger"
                     disabled={isLoading}
                     onClick={event => {
                         event.preventDefault()

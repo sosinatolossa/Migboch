@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { CardGroup, Card, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { MDBContainer } from 'mdbreact';
-
+import PropTypes from "prop-types";
 
 const Recipe = ({ recipe }) => {
 
@@ -13,23 +12,25 @@ const Recipe = ({ recipe }) => {
 
     return (
         <>
-            <CardGroup className="recipeCard">
+            <CardGroup className="recipeCard" style={{ margin: "10px" }}>
                 <Card>
                     <Card.Body>
-                        <h1>
-                            <Link className="foodName" to={`/HabeshaFood/${recipe.habeshaFoodId}`}>{recipe.habeshaFood.name}</Link>
+                        <h1 className="foodName">
+                            <Link style={{ color: "#ff7b00" }} to={`/HabeshaFood/${recipe.habeshaFoodId}`}>{recipe.habeshaFood.name}</Link>
                         </h1>
                         <Card.Img top width="80%" src={recipe.habeshaFood.picture} alt="route" />
-                        <Button className="recipePopupBtn" onClick={handleShow} variant="warning" style={{ margin: "5px" }}>Recipe</Button>
+                        <div className="recipePopupBtn">
+                            <Button onClick={handleShow} variant="warning" style={{ margin: "5px" }}>Recipe</Button>
+                        </div>
                         <Modal show={show} onHide={handleClose}>
-                            <Card.Text>{recipe.theRecipe}</Card.Text>
+                            <Card.Text style={{ backgroundColor: "rgba(170, 237, 139, 0.35)" }}>{recipe.theRecipe}</Card.Text>
                             <Button variant="danger" onClick={handleClose} style={{ margin: "5px" }}>
                                 <i class="fas fa-window-close"></i>
                             </Button>
                         </Modal>
-
-                        <Card.Text className="embed-responsive embed-responsive-16by9">
-                            Helpful link: <iframe className="embed-responsive-item" src={recipe.helpfulLink} allowfullscreen></iframe>
+                        <h4 className="helfulLinkTitle">Helpful link</h4>
+                        <Card.Text className="embed-responsive embed-responsive-16by9" >
+                            <iframe className="embed-responsive-item" src={recipe.helpfulLink} allowfullscreen />
                         </Card.Text>
                     </Card.Body>
                 </Card>

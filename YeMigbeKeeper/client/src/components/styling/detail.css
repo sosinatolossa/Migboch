@@ -1,10 +1,14 @@
-.detailsPicture {
-    height: 28rem;
-    width: 2rem;
-    border-radius: .5rem;
+
+.foodName {
+    color: #ff7b00;
 }
 
 .nutritionFacts {
-    background-color: darkorange;
-    color: darkred;
+    background-color: #ffd95e;
+    margin: 2rem 8rem;
+    padding: .4rem;
+    border-radius: .5rem;
+    text-align: center;
+    height: 17rem;
+    overflow: auto;
 }
