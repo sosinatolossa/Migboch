@@ -59,7 +59,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                 <Card.Body>
                     {addFavoriteFoodButton()}
                     <h1>
-                        <Link className="foodName" to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
+                        <Link className="foodName" style={{ marginLeft: "25px" }} to={`/HabeshaFood/${habeshaFood.id}`}>{habeshaFood.name}</Link>
                     </h1>
                     <Card.Img classname="size picture" src={habeshaFood.picture} alt="route" />
                     <div className="details">

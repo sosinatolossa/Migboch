@@ -5,13 +5,14 @@
     margin-top: 4rem;    
 }
 
-.size {
-    width: 1rem;
-    height: .5rem;
+.size {   
+    margin: 10px;
+    padding: .4rem;
 }
 
 .details {
-    background-color: #ffc400;
+    background-color: #ffd95e;
+    margin-top: 8px;
     padding: .4rem;
     border-radius: .5rem;
     height: 17rem;
@@ -30,5 +31,10 @@
     margin-top: 23px;
     margin-left: 15px;
     margin-right: 23px;
-    background-color: rgba(255, 255, 0, 0.47);
+    background-color: #f1d883;
+    
+}
+
+.addNewHabeshaFoodBtn {
+    background-color: #ff7b00;
 }

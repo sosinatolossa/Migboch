@@ -44,8 +44,8 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
             <Card>
 
                 <h1 className="foodName">{aHabeshaFood.name}</h1>
-                <Card.Img className="detailsPicture" src={aHabeshaFood.picture} rounded />
-                <Card.Body className="details">
+                <Card.Img className="detailsPicture" src={aHabeshaFood.picture} style={{ width: "50rem" }} />
+                <Card.Body className="detailDetails">
                     <Card.Text>Type: {aHabeshaFood.type?.name}</Card.Text>
                     <Card.Text>Star rating: {aHabeshaFood.rating}</Card.Text>
                     <Card.Text>{aHabeshaFood.description}</Card.Text>

@@ -17,7 +17,7 @@ const HabeshaFoodList = () => {
     // them to be converted to HTML then prints them all out.
     return (
         <Container>
-            <Button className="addNewHabeshaFoodBtn" onClick={() => { history.push("/HabeshaFood/create") }}>Add habesha food</Button>
+            <Button variant="danger" style={{ margin: "10px" }} onClick={() => { history.push("/HabeshaFood/create") }}>Add habesha food</Button>
             <Row>
                 {habeshaFoods.map((habeshaFoodObj) => (
                     <Col md="4"><HabeshaFood key={habeshaFoodObj.id} habeshaFood={habeshaFoodObj} /></Col> //habeshaFood is our parameter(object) in HabeshaFoodCard
