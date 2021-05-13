@@ -1,0 +1,9 @@
+.welcomeUserText {
+    width: 14rem;
+    font-family: "Comfortaa", Arial, sans-serif;
+    font-size: 150%;
+    color: #ac5c00;
+    background-clip: padding-box;
+    border-radius: 125rem;
+    padding: 10px;
+}
