@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import StarRatingSystem from "./StarRating";
 import { TypeContext } from "../type/TypeProvider";
@@ -11,6 +11,7 @@ export const HabeshaFoodEditForm = () => {
     const { habeshaFoodId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
 
+    const history = useHistory();
 
     // Set the initial state of image and HabeshaFood
     const [imageURL, setImageURL] = useState("")
@@ -116,8 +117,8 @@ export const HabeshaFoodEditForm = () => {
     return (
         <>
             <Form className="habeshaFoodForm">
-                <Button style={{ float: "right", margin: "10px" }} variant="danger">
-                    <Link to="/HabeshaFood">close</Link>
+                <Button style={{ float: "right", margin: "10px" }} variant="danger" onClick={() => { history.push("/HabeshaFood") }}>
+                    <i class="fas fa-window-close"></i>
                 </Button>
 
                 <div className="habeshaFoodForm theForm">
@@ -173,7 +174,7 @@ export const HabeshaFoodEditForm = () => {
                         <Modal.Header closeButton>
                             <Modal.Title>Nutrition facts</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>
+                        <Modal.Body style={{ backgroundColor: "#f1d883" }}>
                             <Form.Group>
                                 <Form.Label>Calorie</Form.Label>
                                 <Form.Control type="text" placeholder="calorie" id="totalCalorie" onChange={handleControlledInputChange} required autoFocus className="form-control"
@@ -229,7 +230,7 @@ export const HabeshaFoodEditForm = () => {
                             </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
+                            <Button variant="danger" onClick={handleClose}>
                                 Save
                             </Button>
                         </Modal.Footer>

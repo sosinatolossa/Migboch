@@ -18,7 +18,7 @@ const HabeshaFood = ({ habeshaFood }) => {
         }
         return <Button variant="danger" onClick={() => {
             addFavoriteHabeshaFood(favoriteHabeshaFoodObj)
-        }} className="addFavorite-button" >
+        }} className="addFavorite-button">
             <i class="far fa-heart"></i>
         </Button >
     }

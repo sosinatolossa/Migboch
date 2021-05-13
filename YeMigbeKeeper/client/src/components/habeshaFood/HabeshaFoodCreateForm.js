@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react"
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Form, Modal, Button } from "react-bootstrap";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider"
 import StarRatingSystem from "./StarRating";
@@ -147,8 +147,8 @@ export const HabeshaFoodCreateForm = () => {
         <>
             <Form className="habeshaFoodForm">
 
-                <Button style={{ float: "right", margin: "10px" }} variant="danger">
-                    <Link to="/HabeshaFood">close</Link>
+                <Button style={{ float: "right", margin: "10px" }} variant="danger" onClick={() => { history.push("/HabeshaFood") }}>
+                    <i class="fas fa-window-close"></i>
                 </Button>
 
                 <div className="habeshaFoodForm theForm">
@@ -206,7 +206,7 @@ export const HabeshaFoodCreateForm = () => {
                         <Modal.Header closeButton>
                             <Modal.Title>Nutrition facts</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>
+                        <Modal.Body style={{ backgroundColor: "#f1d883" }}>
                             <Form.Group>
                                 <Form.Label>Calorie</Form.Label>
                                 <Form.Control type="text" placeholder="calorie" id="totalCalorie" onChange={handleControlledInputChange} required autoFocus className="form-control"
@@ -262,7 +262,7 @@ export const HabeshaFoodCreateForm = () => {
                             </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
+                            <Button variant="danger" onClick={handleClose}>
                                 Add
                         </Button>
                         </Modal.Footer>
