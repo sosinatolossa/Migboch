@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import HabeshaFood from "./HabeshaFoodCard";
-import { Row, Col, Container, Button } from "reactstrap";
+import { Row, Col, Container, Button } from "react-bootstrap";
 
 const HabeshaFoodList = () => {
     const { habeshaFoods, getAllHabeshaFoods } = useContext(HabeshaFoodContext);

@@ -28,7 +28,7 @@ const HabeshaFood = ({ habeshaFood }) => {
         if (habeshaFood.user.id === currentUser?.id) {
             return <Button type="button" onClick={() => {
                 history.push(`/habeshaFood/edit/${habeshaFood.id}`)
-            }} className="edit-button" variant="danger">
+            }} className="edit-button" variant="danger" style={{ margin: "5px" }}>
                 <i class="fas fa-pen"></i>
             </Button>
         }
@@ -47,7 +47,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                     deleteHabeshaFood(habeshaFood.id)
                         .then(getAllHabeshaFoods);
                 }
-            }} className="delete-button" variant="danger">
+            }} className="delete-button" variant="danger" style={{ margin: "5px" }}>
                 <i class="fas fa-trash-alt"></i>
             </Button>
         }

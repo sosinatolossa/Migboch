@@ -4,6 +4,7 @@ import { HabeshaFoodContext } from "./HabeshaFoodProvider";
 import StarRatingSystem from "./StarRating";
 import { TypeContext } from "../type/TypeProvider";
 import { Form, Modal, Button } from 'react-bootstrap';
+import "../styling/forms.css"
 
 export const HabeshaFoodEditForm = () => {
     const { updateHabeshaFood, getHabehsaFoodById } = useContext(HabeshaFoodContext);
@@ -174,7 +175,7 @@ export const HabeshaFoodEditForm = () => {
                         <Modal.Header closeButton>
                             <Modal.Title>Nutrition facts</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body style={{ backgroundColor: "#f1d883" }}>
+                        <Modal.Body style={{ backgroundColor: "rgba(170, 237, 139, 0.35)" }}>
                             <Form.Group>
                                 <Form.Label>Calorie</Form.Label>
                                 <Form.Control type="text" placeholder="calorie" id="totalCalorie" onChange={handleControlledInputChange} required autoFocus className="form-control"

@@ -20,11 +20,11 @@ const Recipe = ({ recipe }) => {
                             <Link className="foodName" to={`/HabeshaFood/${recipe.habeshaFoodId}`}>{recipe.habeshaFood.name}</Link>
                         </h1>
                         <Card.Img top width="80%" src={recipe.habeshaFood.picture} alt="route" />
-                        <Button className="recipePopupBtn" variant="primary" onClick={handleShow}>Recipe</Button>
+                        <Button className="recipePopupBtn" onClick={handleShow} variant="warning" style={{ margin: "5px" }}>Recipe</Button>
                         <Modal show={show} onHide={handleClose}>
                             <Card.Text>{recipe.theRecipe}</Card.Text>
-                            <Button variant="secondary" onClick={handleClose}>
-                                close
+                            <Button variant="danger" onClick={handleClose} style={{ margin: "5px" }}>
+                                <i class="fas fa-window-close"></i>
                             </Button>
                         </Modal>
 

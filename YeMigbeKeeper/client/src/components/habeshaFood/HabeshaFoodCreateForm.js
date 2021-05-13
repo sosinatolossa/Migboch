@@ -4,7 +4,7 @@ import { Form, Modal, Button } from "react-bootstrap";
 import { HabeshaFoodContext } from "./HabeshaFoodProvider"
 import StarRatingSystem from "./StarRating";
 import { TypeContext } from "../type/TypeProvider";
-//import "./HabeshaFood.css"
+import "../styling/forms.css"
 
 export const HabeshaFoodCreateForm = () => {
     const { addHabeshaFood } = useContext(HabeshaFoodContext)
@@ -59,7 +59,6 @@ export const HabeshaFoodCreateForm = () => {
         setLoading(false)
     }
 
-
     //when a field changes, update state. The return will re-render and display based on the values in state
     //Controlled component
     const handleControlledInputChange = (event) => {
@@ -74,9 +73,6 @@ export const HabeshaFoodCreateForm = () => {
         // update state
         setHabeshaFood(newHabeshaFood)
     }
-
-
-
 
     const handleClickSaveHabeshaFood = () => {
 
@@ -206,7 +202,7 @@ export const HabeshaFoodCreateForm = () => {
                         <Modal.Header closeButton>
                             <Modal.Title>Nutrition facts</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body style={{ backgroundColor: "#f1d883" }}>
+                        <Modal.Body style={{ backgroundColor: "rgba(170, 237, 139, 0.35)" }}>
                             <Form.Group>
                                 <Form.Label>Calorie</Form.Label>
                                 <Form.Control type="text" placeholder="calorie" id="totalCalorie" onChange={handleControlledInputChange} required autoFocus className="form-control"
