@@ -12,3 +12,7 @@
     height: 17rem;
     overflow: auto;
 }
+
+.details-edit-button, .details-delete-button {
+    margin-right: 10px;
+}
