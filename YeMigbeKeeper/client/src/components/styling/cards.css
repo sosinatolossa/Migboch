@@ -1,6 +1,5 @@
 
 .foodName {
-    
     text-align: center;    
 }
 
@@ -29,6 +28,12 @@
 
 .recipePopupBtn {
     text-align: center;
+}
+
+.helfulLinkTitle {
+    text-align: center;
+    color: #352618;
+    margin-top: 10px;
 }
 
 .video-responsive {

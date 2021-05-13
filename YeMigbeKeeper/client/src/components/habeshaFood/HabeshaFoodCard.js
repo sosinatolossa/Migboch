@@ -54,7 +54,7 @@ const HabeshaFood = ({ habeshaFood }) => {
     }
 
     return (
-        <CardGroup className="foodCard">
+        <CardGroup className="foodCard" style={{ marginBottom: "10px" }} >
             <Card >
                 <Card.Body>
                     {addFavoriteFoodButton()}
@@ -73,7 +73,7 @@ const HabeshaFood = ({ habeshaFood }) => {
                 </Card.Body>
 
                 <Card.Footer>
-                    <div className="cardFooter">Created by: {habeshaFood.user.displayName}</div>
+                    <div className="cardFooter"><em>Created by:</em> {habeshaFood.user.displayName}</div>
                 </Card.Footer>
             </Card>
         </CardGroup >

@@ -12,7 +12,7 @@ const Recipe = ({ recipe }) => {
 
     return (
         <>
-            <CardGroup className="recipeCard">
+            <CardGroup className="recipeCard" style={{ margin: "10px" }}>
                 <Card>
                     <Card.Body>
                         <h1 className="foodName">
@@ -23,14 +23,13 @@ const Recipe = ({ recipe }) => {
                             <Button onClick={handleShow} variant="warning" style={{ margin: "5px" }}>Recipe</Button>
                         </div>
                         <Modal show={show} onHide={handleClose}>
-                            <Card.Text>{recipe.theRecipe}</Card.Text>
+                            <Card.Text style={{ backgroundColor: "rgba(170, 237, 139, 0.35)" }}>{recipe.theRecipe}</Card.Text>
                             <Button variant="danger" onClick={handleClose} style={{ margin: "5px" }}>
                                 <i class="fas fa-window-close"></i>
                             </Button>
                         </Modal>
-                        <h4>Helpful link</h4>
-                        <Card.Text className="embed-responsive embed-responsive-16by9">
-                            <h3>Helpful link:</h3>
+                        <h4 className="helfulLinkTitle">Helpful link</h4>
+                        <Card.Text className="embed-responsive embed-responsive-16by9" >
                             <iframe className="embed-responsive-item" src={recipe.helpfulLink} allowfullscreen />
                         </Card.Text>
                     </Card.Body>

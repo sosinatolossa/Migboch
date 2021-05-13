@@ -25,7 +25,7 @@ const FavoriteFood = ({ favoriteFood }) => {
     }
 
     return (
-        <CardGroup className="foodCard" bg="warning" variant="light">
+        <CardGroup className="foodCard" bg="warning" variant="light" style={{ margin: "10px" }} >
             <Card>
                 <Card.Body>
                     {removeButton()}
@@ -41,7 +41,7 @@ const FavoriteFood = ({ favoriteFood }) => {
                     </div>
                 </Card.Body>
                 <Card.Footer>
-                    <div className="cardFooter">Created by: {favoriteFood.habeshaFood.user.displayName}</div>
+                    <div className="cardFooter"><em>Created by:</em> {favoriteFood.habeshaFood.user.displayName}</div>
                 </Card.Footer>
             </Card>
         </CardGroup >

@@ -10,8 +10,7 @@ export default function Welcome() {
                 right: 0,
                 top: "50%",
                 marginTop: "-0.5rem",
-                textAlign: "center",
-
+                textAlign: "center"
             }}><strog><em>Welcome to Ye Migbe Keeper </em>😃</strog></span>
         </div>
     );
