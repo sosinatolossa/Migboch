@@ -200,7 +200,7 @@ export const HabeshaFoodCreateForm = () => {
 
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
-                            <Modal.Title>Nutrition facts</Modal.Title>
+                            <Modal.Title>Nutrition facts based on 1 serving</Modal.Title>
                         </Modal.Header>
                         <Modal.Body style={{ backgroundColor: "rgba(170, 237, 139, 0.35)" }}>
                             <Form.Group>

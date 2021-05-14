@@ -14,8 +14,6 @@ export const HabeshaFoodEditForm = () => {
 
     const history = useHistory();
 
-    // Set the initial state of image and HabeshaFood
-    const [imageURL, setImageURL] = useState("")
     const [habeshaFood, setHabeshaFood] = useState({
         typeId: 0,
         picture: "",
@@ -45,14 +43,24 @@ export const HabeshaFoodEditForm = () => {
                 }))
     }, [])
 
+    // User Ids
+    const { userId } = useParams();
+    const aUserId = parseInt(userId);
+
     //image upload handling
+    // Set the initial state of image
+    const [imageURL, setImageURL] = useState("")
     const [loading, setLoading] = useState(false)
+
+    let newImage = "";
     const uploadImage = async e => {
         const files = e.target.files
         const data = new FormData()
         data.append("file", files[0])
         data.append("upload_preset", "YeMigbeKeeper")
         setLoading(true)
+
+        //Fetch the upload
         const response = await fetch(
             "https://api.cloudinary.com/v1_1/sosina/image/upload",
             {
@@ -61,9 +69,13 @@ export const HabeshaFoodEditForm = () => {
             }
         )
         const file = await response.json()
+
+        // Set the upload to false once the response comes back
         setImageURL(file.secure_url)
+        newImage = file.secure_url;
         setLoading(false)
     }
+
 
     // Handles changes to any input field
     const handleControlledInputChange = (event) => {
@@ -76,6 +88,16 @@ export const HabeshaFoodEditForm = () => {
 
         // update state
         setHabeshaFood(newHabeshaFood);
+    };
+
+    const handleYesUpdate = () => {
+
+        const newHabeshaFood = { ...habeshaFood }
+        newHabeshaFood.picture = imageURL;
+
+        updateHabeshaFood(newHabeshaFood)
+            .then(() => getHabehsaFoodById(aUserId))
+        handleClose()
     };
 
     // Handles saving the new edited HabeshaFood
@@ -93,7 +115,7 @@ export const HabeshaFoodEditForm = () => {
         updateHabeshaFood({
             id: habeshaFood.id,
             typeId: habeshaFood.typeId,
-            picture: habeshaFood.picture,
+            picture: imageURL,
             name: habeshaFood.name,
             rating: habeshaFood.rating,
             description: habeshaFood.description,
@@ -118,18 +140,22 @@ export const HabeshaFoodEditForm = () => {
     return (
         <>
             <Form className="habeshaFoodForm">
-                <Button style={{ float: "right", margin: "10px" }} variant="danger" onClick={() => { history.push("/HabeshaFood") }}>
+                <Button style={{ float: "right", margin: "10px" }} variant="danger" onClick={() => { history.push("/HabeshaFood/") }}>
                     <i class="fas fa-window-close"></i>
                 </Button>
 
                 <div className="habeshaFoodForm theForm">
                     <Form.Group>
-                        <Form.Label style={{ margin: "10px" }}>Upload Image</Form.Label>
-                        <Form.Control id="picture" type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
+                        <Form.Label style={{ margin: "10px" }} htmlFor="picture">Upload Image</Form.Label>
+                        <Form.Control type="file" name="file" placeholder="Upload an image" onChange={uploadImage} />
                         {loading ? (
                             <h3>Loading...</h3>
                         ) : (
-                            <img src={habeshaFood.picture} style={{ width: "150px", margin: "5px" }} />
+                            imageURL ?
+                                <img src={imageURL} style={{ width: "150px", margin: "5px" }} />
+                                :
+                                <img src={habeshaFood.picture} style={{ width: "150px", margin: "5px" }} />
+
                         )}
                     </Form.Group>
 
@@ -173,7 +199,7 @@ export const HabeshaFoodEditForm = () => {
 
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
-                            <Modal.Title>Nutrition facts</Modal.Title>
+                            <Modal.Title>Nutrition facts based on 1 serving</Modal.Title>
                         </Modal.Header>
                         <Modal.Body style={{ backgroundColor: "rgba(170, 237, 139, 0.35)" }}>
                             <Form.Group>
