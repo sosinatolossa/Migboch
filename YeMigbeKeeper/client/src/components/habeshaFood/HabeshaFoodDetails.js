@@ -54,6 +54,7 @@ const OneHabeshaFood = ({ aHabeshaFood }) => {
                     <Card.Text>Star rating: {aHabeshaFood.rating}</Card.Text>
                     <Card.Text>{aHabeshaFood.description}</Card.Text>
                     <Card.Text>Ingredients: {aHabeshaFood.ingredient}</Card.Text>
+                    <Card.Text><h5>Nutrition facts based on 1 serving</h5></Card.Text>
                     <Card.Text>{aHabeshaFood.totalCalorie} calories</Card.Text>
                     <Card.Text>{aHabeshaFood.totalFat} grams fat</Card.Text>
                     <Card.Text>{aHabeshaFood.cholesterol} mg cholesterol</Card.Text>
